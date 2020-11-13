@@ -3,7 +3,7 @@ import { render, fireEvent } from '../testUtils'
 import Home from '../../pages/index'
 
 describe('Home page', () => {
-    it('matches snapshot', () => {
+    it('matches snapshots', () => {
         const { asFragment } = render(<Home />, {})
         expect(asFragment()).toMatchSnapshot()
     })
