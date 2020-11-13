@@ -1,3 +1,3 @@
-yarn build
-yarn test
-NODE_ENV=production yarn start
+npm run build
+npm run test
+NODE_ENV=production npm start
