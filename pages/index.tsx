@@ -19,7 +19,7 @@ export default function Home() {
           <a>Voir le cours</a>
           
         </Link>
-    <div>Environnement : {process.env.APP_ENV}</div>
+    <div>Environnement: {process.env.APP_ENV}</div>
      <h1 className={styles.test}>Hello World toto</h1>
     </div>
   )
