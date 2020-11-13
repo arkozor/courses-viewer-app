@@ -1,24 +1,8 @@
 version: 2.1
 orbs:
-    heroku: circleci/heroku@0.0.10
-build:
-    working_directory: ~/courses-viewer-app
-    docker:
-        - image: circleci/node:8
-    steps:
-        - checkout
-        - restore_cache:
-              key: yarn-cache-v1-{{ checksum "yarn-lock" }}
-        - run:
-              name: Install Dependencies
-              command: yarn
-        - save_cache:
-              key: yarn-cache-v1-{{ checksum "yarn-lock" }}
-              paths:
-                  - /home/circleci/.npm
-        - run:
-              name: Run Tests
-              command: yarn test
-         heroku_deploy:
-          jobs:
-              - heroku/deploy-via-git
+  heroku: circleci/heroku@0.0.10
+workflows:
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
+t
