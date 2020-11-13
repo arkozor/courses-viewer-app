@@ -1,0 +1,11 @@
+{
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "editor.cursorBlinking": "smooth",
+    "files.trimFinalNewlines": true,
+    "editor.acceptSuggestionOnEnter": "off"
+}
