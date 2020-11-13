@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+    heroku: circleci/heroku@0.0.10
 jobs:
     build:
         working_directory: ~/courses-viewer-app
@@ -18,13 +20,17 @@ jobs:
                   key: dependency-cache-{{ checksum "package-lock.json" }}
                   paths:
                       - ./node_modules
+      test:
+        working_directory: ~/courses-viewer-app
+        steps:
+            - checkout
             - run:
                   name: Run tests
                   command: npm run test
-orbs:
-    heroku: circleci/heroku@0.0.10
 workflows:
-    heroku_deploy:
+    build_and_test:
         jobs:
             - build
+            - test
+        heroku_deploy:
             - heroku/deploy-via-git
