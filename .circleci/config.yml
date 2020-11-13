@@ -20,7 +20,7 @@ jobs:
                   key: dependency-cache-{{ checksum "package-lock.json" }}
                   paths:
                       - ./node_modules
-      test:
+    test:
         working_directory: ~/courses-viewer-app
         steps:
             - checkout
@@ -32,5 +32,6 @@ workflows:
         jobs:
             - build
             - test
-        heroku_deploy:
+    heroku_deploy:
+        jobs:
             - heroku/deploy-via-git
