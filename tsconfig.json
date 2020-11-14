@@ -15,8 +15,8 @@
         "jsx": "preserve",
         "baseUrl": "./pages",
         "paths": {
-            "#common/*": ["pages/common/*"],
-            "#api/*": ["./src/api/*"]
+            "#common/*": ["./pages/common/*"],
+            "#api/*": ["./pages/api/*"]
         }
     },
     "exclude": ["node_modules", ".next", "out"],
