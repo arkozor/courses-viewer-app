@@ -7,5 +7,5 @@
     "workbench.editor.highlightModifiedTabs": true,
     "editor.cursorBlinking": "smooth",
     "files.trimFinalNewlines": true,
-    "editor.acceptSuggestionOnEnter": "off"
+    "editor.fontSize": 16
 }
