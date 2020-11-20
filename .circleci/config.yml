@@ -2,14 +2,19 @@ orbs:
     heroku: circleci/heroku@0.0.10
     node: circleci/node@4.1.0
 version: 2.1
+jobs:
+  test:
+    - node/test
+  deploy:
+    - heroku/deploy-via-git:
+        filters:
+          branches:
+            only:
+              - main
+        requires:
+          - node/test
 workflows:
   test-and-deploy:
     jobs:
-      - node/test
-      - heroku/deploy-via-git:
-          filters:
-            branches:
-              only:
-                - main
-          requires:
-            - node/test
+      - test
+      - deploy
