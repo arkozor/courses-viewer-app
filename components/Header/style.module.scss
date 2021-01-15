@@ -1,0 +1,51 @@
+@import 'theme/theme';
+
+.header {
+    display: flex;
+    align-items: center;
+    background-color: $primary;
+    height: 70px;
+}
+
+.searchField {
+    vertical-align: middle;
+}
+.title {
+    display: none;
+    @media screen and (min-width: $breakpoints_media_smMin) {
+        display: block;
+    }
+}
+
+.search {
+    position: relative;
+    margin-left: 0;
+    width: 100%;
+    @media screen and (min-width: $breakpoints_media_mdMin) {
+    }
+}
+
+.searchIcon {
+    height: '100%';
+    position: 'absolute';
+    pointer-events: 'none';
+    display: 'flex';
+    align-items: 'center';
+    justify-content: 'center';
+}
+
+.inputRoot {
+    color: 'inherit';
+}
+
+.inputInput {
+    width: 100%;
+}
+
+.sectionDesktop {
+    display: 'none';
+}
+
+.sectionmobile {
+    display: 'flex';
+}

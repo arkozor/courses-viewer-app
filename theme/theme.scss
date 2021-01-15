@@ -1,0 +1,30 @@
+// spacings
+
+$spacing_xs: 4px;
+$spacing_sm: 8px;
+$spacing_md: 16px;
+$spacing_lg: 24px;
+$spacing_xl: 32px;
+$spacing_xxl: 40px;
+
+// colors
+
+$primary: #6dcebb;
+$primary-light: #8fe0d0;
+$primary-dark: #789cd1;
+
+$secondary: #ffd387;
+$secondary-light: #ffe8c1;
+$secondary-dark: #fdc057;
+
+// Breakpoints
+$breakpoints_media_xsMax: 359px;
+$breakpoints_media_xsMin: 360px;
+$breakpoints_media_smMax: 599px;
+$breakpoints_media_smMin: 600px;
+$breakpoints_media_mdMax: 959px;
+$breakpoints_media_mdMin: 960px;
+$breakpoints_media_lgMax: 1199px;
+$breakpoints_media_lgMin: 1200px;
+$breakpoints_media_xlMax: 1919px;
+$breakpoints_media_xlMin: 1920px;

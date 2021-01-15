@@ -1,0 +1,13 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    align-items: center;
+}
+.textField {
+    background-color: white;
+}
+
+.searchButton {
+    margin-right: $spacing_sm;
+}

@@ -13,12 +13,20 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
-        "baseUrl": "./pages",
+        "baseUrl": ".",
         "paths": {
-            "#common/*": ["./pages/common/*"],
-            "#api/*": ["./pages/api/*"]
+            "common/*": ["./pages/common/*"],
+            "api/*": ["api/*"],
+            "components/*": ["components/*"],
+            "theme/*": ["theme/*"]
         }
     },
     "exclude": ["node_modules", ".next", "out"],
-    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "next.config.js"]
+    "include": [
+        "next-env.d.ts",
+        "**/*.ts",
+        "**/*.tsx",
+        "next.config.js",
+        "pages/_app.js"
+    ]
 }
