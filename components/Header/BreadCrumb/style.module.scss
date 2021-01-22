@@ -1,0 +1,12 @@
+@import 'theme/theme';
+
+.breadcrumb {
+    width: 100%;
+    background-color: $primary-light;
+}
+.link {
+    cursor: pointer;
+    :hover {
+        color: white;
+    }
+}
