@@ -1,7 +1,13 @@
 import React from 'react'
-import { TextField } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-import { IconButton } from '@material-ui/core'
+import {
+    OutlinedInput,
+    Button,
+    InputAdornment,
+    IconButton
+} from '@material-ui/core'
+import SearchIcon from '@material-ui/icons/search'
+import CloseIcon from '@material-ui/icons/close'
+
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
@@ -33,31 +39,42 @@ const SearchBar = (): JSX.Element => {
     }
 
     return (
-        <TextField
-            InputProps={{
-                startAdornment: (
-                    <IconButton
-                        size="small"
-                        className={classes.searchButton}
-                        onClick={sendSearchRequest}
-                    >
-                        <SearchIcon />
-                    </IconButton>
-                )
-            }}
-            classes={{
-                root: classes.textField
-            }}
-            onKeyPress={(e) => {
-                if (e.key === 'Enter') {
-                    sendSearchRequest()
+        <div className={classes.searchBarContainer}>
+            <Button
+                size="large"
+                onClick={sendSearchRequest}
+                classes={{
+                    root: classes.searchButton
+                }}
+            >
+                <SearchIcon className={classes.searchIcon} />
+            </Button>
+            <OutlinedInput
+                classes={{
+                    root: classes.textFieldInput,
+                    notchedOutline: classes.notch
+                }}
+                endAdornment={
+                    searchValue && (
+                        <InputAdornment position="end">
+                            <IconButton onClick={() => setSearchValue('')}>
+                                <CloseIcon />
+                            </IconButton>
+                        </InputAdornment>
+                    )
                 }
-            }}
-            onChange={handleChange}
-            id="input-with-icon-grid"
-            placeholder="Chercher un cours"
-            variant="outlined"
-        />
+                onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                        sendSearchRequest()
+                    }
+                }}
+                onChange={handleChange}
+                id="search"
+                placeholder="Chercher un cours"
+                fullWidth
+                value={searchValue}
+            />
+        </div>
     )
 }
 

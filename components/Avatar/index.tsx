@@ -10,6 +10,7 @@ type Props = {
 const Avatar = (props: Props): JSX.Element => {
     const nickname = 'Toto'
     const { withNickname, src } = props
+
     return (
         <div className={classes.container}>
             <MUIAvatar

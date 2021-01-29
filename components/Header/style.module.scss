@@ -2,19 +2,17 @@
 
 .header {
     background-color: $primary;
-}
-.headerItems {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 $spacing_md;
+    padding: $spacing_sm $spacing_md;
 }
 
 .homeIcon {
-    width: 80px;
-    height: 40px;
+    cursor: pointer;
 }
 
-.searchBar {
-    width: 50%;
+.connectionButtonsContainer {
+}
+
+.connectionButton {
+    background-color: $secondary !important;
+    color: white !important;
 }

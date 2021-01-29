@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from 'components/Header'
+import ContentLayout from './ContentLayout'
 
 type Props = {
     children: React.ReactNode
@@ -10,7 +11,7 @@ const Layout = (props: Props): JSX.Element => {
     return (
         <div>
             <Header />
-            {children}
+            <ContentLayout>{children}</ContentLayout>
         </div>
     )
 }

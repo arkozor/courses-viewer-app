@@ -1,10 +1,27 @@
 @import 'theme/theme';
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+}
 
-.textField {
-    width: 100%;
+.textFieldInput {
+    height: 40px;
     background-color: white;
+    border-radius: 0px 4px 4px 0px !important;
 }
 
 .searchButton {
-    margin-right: $spacing_sm;
+    height: 40px;
+    width: 150px;
+    background-color: $primary-light !important;
+    border-radius: 4px 0px 0px 4px !important;
+    padding: 0 !important;
+}
+
+.searchIcon {
+    color: white;
+}
+
+.notch {
+    border: none !important;
 }
