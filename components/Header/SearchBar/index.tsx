@@ -52,7 +52,8 @@ const SearchBar = (): JSX.Element => {
             <OutlinedInput
                 classes={{
                     root: classes.textFieldInput,
-                    notchedOutline: classes.notch
+                    notchedOutline: classes.notch,
+                    focused: classes.focused
                 }}
                 endAdornment={
                     searchValue && (
@@ -71,7 +72,6 @@ const SearchBar = (): JSX.Element => {
                 onChange={handleChange}
                 id="search"
                 placeholder="Chercher un cours"
-                fullWidth
                 value={searchValue}
             />
         </div>

@@ -1,12 +1,58 @@
 @import 'theme/theme';
 
 .header {
+    display: flex;
+    align-items: baseline;
     background-color: $primary;
     padding: $spacing_sm $spacing_md;
+    @media (min-width: $breakpoints_media_smMin) {
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.search {
+    display: block;
+    width: 100%;
+    @media (min-width: $breakpoints_media_smMin) {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.homeIconContainer {
+    width: 50px;
 }
 
 .homeIcon {
     cursor: pointer;
+}
+
+.avatar {
+    display: flex;
+    justify-content: flex-end;
+    @media (min-width: $breakpoints_media_smMin) {
+        margin-left: $spacing_md;
+    }
+}
+
+.connectionContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $spacing_sm;
+
+    @media (min-width: $breakpoints_media_smMin) {
+        margin-top: 0;
+    }
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    @media (min-width: $breakpoints_media_smMin) {
+        margin-left: $spacing_md;
+    }
 }
 
 .connectionButton {

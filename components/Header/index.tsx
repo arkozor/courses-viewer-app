@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Grid } from '@material-ui/core'
+import { Button } from '@material-ui/core'
 import Link from 'next/link'
 import HomeIcon from '@material-ui/icons/Home'
 import BreadCrumb from './BreadCrumb'
@@ -8,28 +8,45 @@ import Avatar from 'components/Avatar'
 import classes from './style.module.scss'
 
 const Header = (): JSX.Element => {
-    const isLoggedIn =
-        typeof window !== 'undefined' && window.location.pathname === '/'
-            ? false
-            : true
+    // const [isLogged, setIsLogged] = React.useState(false)
+    const isLogged = false
     return (
         <>
             <div className={classes.header}>
-                <Grid container justify="space-between" alignItems="center">
+                <div className={classes.homeIconContainer}>
                     <Link href="/">
                         <HomeIcon className={classes.homeIcon} />
                     </Link>
-                    <Grid item xs={8} md={6} className={classes.searchBar}>
-                        <SearchBar />
-                    </Grid>
-                    <Grid item>
-                        {isLoggedIn ? (
+                </div>
+                <div className={classes.search}>
+                    <SearchBar />
+                    {isLogged ? (
+                        <div className={classes.avatar}>
                             <Avatar withNickname />
-                        ) : (
-                            <Button>{"S'enregistrer"}</Button>
-                        )}
-                    </Grid>
-                </Grid>
+                        </div>
+                    ) : (
+                        <div className={classes.connectionContainer}>
+                            <div className={classes.buttonsContainer}>
+                                <Button
+                                    href="/sign-up"
+                                    classes={{
+                                        root: classes.connectionButton
+                                    }}
+                                >
+                                    {"S'enregistrer"}
+                                </Button>
+                                <Button
+                                    href="/sign-in"
+                                    classes={{
+                                        root: classes.connectionButton
+                                    }}
+                                >
+                                    {'Se connecter'}
+                                </Button>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
             <BreadCrumb />
         </>
