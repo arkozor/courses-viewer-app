@@ -1,7 +1,7 @@
 import React from 'react'
-import ChipFilters from 'components/ChipFilters'
+import ChipFilters from '../components/ChipFilters'
 
-const HomePage = () => {
+const HomePage = (): JSX.Element => {
     return (
         <div>
             <ChipFilters />
