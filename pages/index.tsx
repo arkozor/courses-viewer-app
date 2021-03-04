@@ -1,7 +1,13 @@
 import React from 'react'
+import ChipFilters from '../components/ChipFilters'
 
-const HomePage = () => {
-    return <div>Hello World</div>
+const HomePage = (): JSX.Element => {
+    return (
+        <div>
+            <ChipFilters />
+            <div>Hello World</div>
+        </div>
+    )
 }
 
 export default HomePage
