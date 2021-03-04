@@ -7,7 +7,7 @@ const Register = () => {
         <form className={classes.form} noValidate autoComplete="off">
             <Grid container xs={8} md={6} spacing={4}>
                 <Grid item xs={12}>
-                    <h1>S'ENREGISTER</h1>
+                    <h1>S&apos;ENREGISTER</h1>
                 </Grid>
                 <Grid item xs={12}>
                     <TextField id="email-input" fullWidth label="Email" />
