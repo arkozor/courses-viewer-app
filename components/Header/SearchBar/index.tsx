@@ -58,7 +58,10 @@ const SearchBar = (): JSX.Element => {
                 endAdornment={
                     searchValue && (
                         <InputAdornment position="end">
-                            <IconButton onClick={() => setSearchValue('')}>
+                            <IconButton
+                                classes={{ root: classes.iconButton }}
+                                onClick={() => setSearchValue('')}
+                            >
                                 <CloseIcon />
                             </IconButton>
                         </InputAdornment>
