@@ -10,16 +10,35 @@ const Register = () => {
                     <h1>S'ENREGISTER</h1>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField id="email-input" fullWidth label="Email"/>
+                    <TextField id="email-input" fullWidth label="Email" />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField id="password-input" fullWidth label="Mot de passe" type="password" />
+                    <TextField
+                        id="password-input"
+                        fullWidth
+                        label="Mot de passe"
+                        type="password"
+                    />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField id="password-confirm-input" fullWidth label="Confirmation" type="password" />
+                    <TextField
+                        id="password-confirm-input"
+                        fullWidth
+                        label="Confirmation"
+                        type="password"
+                    />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button classes={{root:classes.button}} variant="contained" color="primary" onClick={() => {window.location.pathname='/'}}>Envoyer</Button>
+                    <Button
+                        classes={{ root: classes.button }}
+                        variant="contained"
+                        color="primary"
+                        onClick={() => {
+                            window.location.pathname = '/'
+                        }}
+                    >
+                        Envoyer
+                    </Button>
                 </Grid>
             </Grid>
         </form>

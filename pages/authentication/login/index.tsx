@@ -10,13 +10,27 @@ const Login = () => {
                     <h1>CONNEXION</h1>
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField id="email-input" fullWidth label="Email"/>
+                    <TextField id="email-input" fullWidth label="Email" />
                 </Grid>
                 <Grid item xs={12}>
-                    <TextField id="password-input" fullWidth label="Mot de passe" type="password" />
+                    <TextField
+                        id="password-input"
+                        fullWidth
+                        label="Mot de passe"
+                        type="password"
+                    />
                 </Grid>
                 <Grid item xs={12}>
-                    <Button classes={{root:classes.button}} variant="contained" color="primary" onClick={() => {window.location.pathname='/'}}>Se connecter</Button>
+                    <Button
+                        classes={{ root: classes.button }}
+                        variant="contained"
+                        color="primary"
+                        onClick={() => {
+                            window.location.pathname = '/'
+                        }}
+                    >
+                        Se connecter
+                    </Button>
                 </Grid>
             </Grid>
         </form>
