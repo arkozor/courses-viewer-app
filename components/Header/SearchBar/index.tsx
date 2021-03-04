@@ -17,11 +17,11 @@ const SearchBar = (): JSX.Element => {
 
     const [searchValue, setSearchValue] = React.useState('')
 
-    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value)
     }
 
-    function sendSearchRequest() {
+    const sendSearchRequest = () => {
         if (searchValue) {
             const param = 'ok'
             router.push(
@@ -46,10 +46,12 @@ const SearchBar = (): JSX.Element => {
                 classes={{
                     root: classes.searchButton
                 }}
+                aria-label="search-button"
             >
                 <SearchIcon className={classes.searchIcon} />
             </Button>
             <OutlinedInput
+                aria-label="search-input"
                 classes={{
                     root: classes.textFieldInput,
                     notchedOutline: classes.notch,
@@ -59,6 +61,7 @@ const SearchBar = (): JSX.Element => {
                     searchValue && (
                         <InputAdornment position="end">
                             <IconButton
+                                aria-label="clear-button"
                                 classes={{ root: classes.iconButton }}
                                 onClick={() => setSearchValue('')}
                             >
