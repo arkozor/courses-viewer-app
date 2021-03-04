@@ -2,7 +2,7 @@ import { Button, Grid, TextField } from '@material-ui/core'
 import React from 'react'
 import classes from './style.module.scss'
 
-const SignIn = () => {
+const Register = () => {
     return (
         <form className={classes.form} noValidate autoComplete="off">
             <Grid container xs={8} md={6} spacing={4}>
@@ -26,4 +26,4 @@ const SignIn = () => {
     )
 }
 
-export default SignIn
+export default Register
