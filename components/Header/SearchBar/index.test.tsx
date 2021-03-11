@@ -1,9 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import * as React from 'react'
-
 import SearchBar from '.'
 
-describe('toto', () => {
+describe('SearchBar', () => {
     it('Should allow user to write on the search input', () => {
         render(<SearchBar />)
 
@@ -27,14 +26,5 @@ describe('toto', () => {
 
         //@ts-expect-error input.value exists ...
         expect(input.value).toBe('')
-    })
-    it('Should change the location when the user clicks on the search Button after entering a query', () => {
-        render(<SearchBar />)
-
-        const input = screen.getByPlaceholderText('Chercher un cours')
-        const searchButton = screen.getByLabelText('search-button')
-
-        fireEvent.change(input, { target: { value: 'Mobile' } })
-        fireEvent.click(searchButton)
     })
 })
