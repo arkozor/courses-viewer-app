@@ -1,31 +1,53 @@
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button } from '@material-ui/core'
+import classes from './style.module.scss'
 
 const CarousselView = (): JSX.Element => {
 
     var items = [
         {
-            name: "Random Name #1",
-            description: "Probably the most random thing you have ever seen!"
+            name: "Java for beginners",
+            description: "Probably the best Java course you have ever seen!"
         },
         {
-            name: "Random Name #2",
-            description: "Hello World!"
+            name: "C# for beginners",
+            description: "Probably the best C# course you have ever seen!"
         }
     ]
 
     function Item(props)
     {
         return (
-            <div>
+            <div className={classes.carousel}>
+                <h1>{"Les plus suivis"}</h1>
                 <Paper>
-                    <h2>{props.item.name}</h2>
-                    <p>{props.item.description}</p>
-
-                    <Button className="CheckButton">
-                        Check it out!
-                    </Button>
+                    <div className={classes.courseList}>
+                        <div className={classes.course}>
+                            <div className={classes.vignette}>
+                                <h2 className={classes.title}>{props.item.name}</h2>
+                            </div>
+                            <div className={classes.description}>
+                                <p>{props.item.description}</p>
+                            </div>
+                        </div>
+                        <div className={classes.course}>
+                            <div className={classes.vignette}>
+                                <h2 className={classes.title}>{props.item.name}</h2>
+                            </div>
+                            <div className={classes.description}>
+                                <p>{props.item.description}</p>
+                            </div>
+                        </div>
+                        <div className={classes.course}>
+                            <div className={classes.vignette}>
+                                <h2 className={classes.title}>{props.item.name}</h2>
+                            </div>
+                            <div className={classes.description}>
+                                <p>{props.item.description}</p>
+                            </div>
+                        </div>
+                    </div>
                 </Paper>
             </div>
         )
