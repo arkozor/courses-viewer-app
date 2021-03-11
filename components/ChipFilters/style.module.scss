@@ -1,0 +1,29 @@
+@import 'theme/theme';
+
+.chip {
+    margin-right: $spacing_sm !important;
+}
+
+.selected {
+    border-style: solid !important;
+}
+
+.javaChip {
+    background-color: $java-color !important;
+}
+
+.cSharpChip {
+    background-color: $cSharp-color !important;
+}
+
+.jsChip {
+    background-color: $js-color !important;
+}
+
+.phpChip {
+    background-color: $php-color !important;
+}
+
+.searchButton {
+    margin-right: $spacing_sm;
+}
