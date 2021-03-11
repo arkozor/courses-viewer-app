@@ -18,19 +18,21 @@ const CarousselView = (): JSX.Element => {
     function Item(props)
     {
         return (
-            <Paper>
-                <h2>{props.item.name}</h2>
-                <p>{props.item.description}</p>
+            <div>
+                <Paper>
+                    <h2>{props.item.name}</h2>
+                    <p>{props.item.description}</p>
 
-                <Button className="CheckButton">
-                    Check it out!
-                </Button>
-            </Paper>
+                    <Button className="CheckButton">
+                        Check it out!
+                    </Button>
+                </Paper>
+            </div>
         )
     }
 
     return (
-        <Carousel>
+        <Carousel autoPlay={false} animation="slide" indicators={false}>
             {
                 items.map( (item, i) => <Item key={i} item={item} /> )
             }
