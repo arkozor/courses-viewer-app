@@ -11,7 +11,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         popover: {
-            //pointerEvents: 'none',
+            pointerEvents: 'none',
             width: '320px'
         },
         paper: {
@@ -46,7 +46,7 @@ const CourseCard = (props): JSX.Element => {
                         aria-owns={open ? 'mouse-over-popover' : undefined}
                         aria-haspopup="true"
                         onMouseEnter={handlePopoverOpen}
-                        // onMouseLeave={handlePopoverClose}
+                        onMouseLeave={handlePopoverClose}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
