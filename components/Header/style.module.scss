@@ -2,50 +2,60 @@
 
 .header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     background-color: $primary;
-    height: 70px;
-}
-
-.searchField {
-    vertical-align: middle;
-}
-.title {
-    display: none;
-    @media screen and (min-width: $breakpoints_media_smMin) {
-        display: block;
+    padding: $spacing_sm $spacing_md;
+    @media (min-width: $breakpoints_media_smMin) {
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
 .search {
-    position: relative;
-    margin-left: 0;
+    display: block;
     width: 100%;
-    @media screen and (min-width: $breakpoints_media_mdMin) {
+    @media (min-width: $breakpoints_media_smMin) {
+        display: flex;
+        justify-content: flex-end;
     }
 }
 
-.searchIcon {
-    height: '100%';
-    position: 'absolute';
-    pointer-events: 'none';
-    display: 'flex';
-    align-items: 'center';
-    justify-content: 'center';
+.homeIconContainer {
+    width: 50px;
 }
 
-.inputRoot {
-    color: 'inherit';
+.homeIcon {
+    cursor: pointer;
 }
 
-.inputInput {
-    width: 100%;
+.avatar {
+    display: flex;
+    justify-content: flex-end;
+    @media (min-width: $breakpoints_media_smMin) {
+        margin-left: $spacing_md;
+    }
 }
 
-.sectionDesktop {
-    display: 'none';
+.connectionContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $spacing_sm;
+
+    @media (min-width: $breakpoints_media_smMin) {
+        margin-top: 0;
+    }
 }
 
-.sectionmobile {
-    display: 'flex';
+.buttonsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+    @media (min-width: $breakpoints_media_smMin) {
+        margin-left: $spacing_md;
+    }
+}
+
+.connectionButton {
+    background-color: $secondary !important;
+    color: white !important;
 }

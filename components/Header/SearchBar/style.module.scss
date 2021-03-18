@@ -1,0 +1,37 @@
+@import 'theme/theme';
+
+.searchBarContainer {
+    display: flex;
+    align-items: center;
+    transition: width 2s;
+    min-width: 300px;
+    @media (min-width: $breakpoints_media_mdMin) {
+        min-width: 500px;
+    }
+}
+
+.textFieldInput {
+    height: 40px;
+    background-color: white;
+    border-radius: 0px 4px 4px 0px !important;
+    width: 100%;
+}
+
+.searchButton {
+    height: 40px;
+    background-color: $primary-light !important;
+    border-radius: 4px 0px 0px 4px !important;
+    padding: 0 !important;
+}
+
+.searchIcon {
+    color: white;
+}
+
+.notch {
+    border: none !important;
+}
+
+.iconButton {
+    padding: $spacing_sm !important;
+}
