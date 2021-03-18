@@ -1,0 +1,65 @@
+@import 'theme/theme';
+
+.App {
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+
+.carousel {
+    position: relative;
+    background-color: $primary;;
+}
+.carouselItems {
+    display: flex;
+    overflow-x: hidden;
+    white-space: nowrap;
+    margin-left: 40px;
+}
+.carouselItem {
+    flex: 1 0 300px;
+    margin-left: 1rem;
+    scroll-snap-align: start;
+    width: 16%;
+}   
+
+.carouselArrowLeft {
+    position: absolute;
+    top: 50%;
+    display: block;
+    color: #111;
+    cursor: pointer;
+    opacity: .75;
+    transform: translateY(-50%);
+    transition: opacity .15s cubic-bezier(.4, 0, 1, 1);
+  
+    &:focus {
+      outline: 0;
+    }
+  
+    &:hover {
+      opacity: .5;
+    }
+  }
+
+  .carouselArrowRight {
+    position: absolute;
+    margin-left: 98.5%;
+    top: 50%;
+    display: block;
+    color: #111;
+    cursor: pointer;
+    opacity: .75;
+    transform: translateY(-50%);
+    transition: opacity .15s cubic-bezier(.4, 0, 1, 1);
+  
+    &:focus {
+      outline: 0;
+    }
+  
+    &:hover {
+      opacity: .5;
+    }
+  }
