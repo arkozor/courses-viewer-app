@@ -9,7 +9,7 @@ import classes from './style.module.scss'
 const CourseCard = (props): JSX.Element => {
     return (
         <div className={classes.card}>
-            <Card>
+            <Card key={props.key}>
                 <CardActionArea>
                     <CardMedia
                         component="img"

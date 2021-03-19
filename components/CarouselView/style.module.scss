@@ -10,13 +10,11 @@
 
 .carousel {
     position: relative;
-    background-color: $primary;
 }
 .carouselItems {
     display: flex;
     overflow-x: hidden;
     white-space: nowrap;
-    margin-left: 40px;
 }
 .carouselItem {
     flex: 1 0 300px;

@@ -1,57 +1,15 @@
 import React from 'react'
 import Carousel from 'react-elastic-carousel'
+import Card from '../Card'
 import classes from './style.module.scss'
 
-const courses = [
-    {
-        id: 1,
-        title: 'card'
-    },
-    {
-        id: 2,
-        title: 'card'
-    },
-    {
-        id: 3,
-        title: 'card'
-    },
-    {
-        id: 4,
-        title: 'card'
-    },
-    {
-        id: 5,
-        title: 'card'
-    },
-    {
-        id: 6,
-        title: 'card'
-    },
-    {
-        id: 7,
-        title: 'card'
-    },
-    {
-        id: 8,
-        title: 'card'
-    },
-    {
-        id: 9,
-        title: 'card'
-    },
-    {
-        id: 10,
-        title: 'card'
-    },
-    {
-        id: 11,
-        title: 'card'
-    },
-    {
-        id: 11,
-        title: 'card'
-    }
-]
+type Props = {
+    courseList: {
+        id: number
+        name: string
+        description: string
+    }[]
+}
 
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
@@ -60,7 +18,7 @@ const breakPoints = [
     { width: 1200, itemsToShow: 5 }
 ]
 
-const SlideShow = () => {
+const SlideShow = ({ courseList }: Props) => {
     return (
         <div className={classes.app}>
             <Carousel
@@ -68,12 +26,12 @@ const SlideShow = () => {
                 breakPoints={breakPoints}
                 className={classes.carousel}
             >
-                {courses.map((course) => (
-                    <div key={course.id} className={classes.carouselItem}>
-                        <div className={classes.card}>
-                            <h2>{course.title}</h2>
-                        </div>
-                    </div>
+                {courseList.map((course) => (
+                    <Card
+                        key={course.id}
+                        name={course.name}
+                        description={course.description}
+                    />
                 ))}
             </Carousel>
         </div>
