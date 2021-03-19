@@ -63,7 +63,11 @@ const breakPoints = [
 const SlideShow = () => {
     return (
         <div className={classes.app}>
-            <Carousel breakPoints={breakPoints} className={classes.carousel}>
+            <Carousel
+                isRTL={false}
+                breakPoints={breakPoints}
+                className={classes.carousel}
+            >
                 {courses.map((course) => (
                     <div key={course.id} className={classes.carouselItem}>
                         <div className={classes.card}>
