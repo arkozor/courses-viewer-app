@@ -13,5 +13,502 @@ exports[`CoursesViewerApp page matches snapshot 1`] = `
       />
     </div>
   </div>
+  <div
+    class="container"
+  >
+    <div
+      class="sc-jSgupP ewJlEB rec rec-carousel-wrapper "
+    >
+      <div
+        class="sc-eCssSg galrjd rec rec-carousel"
+        style="height: 0px;"
+      >
+        <button
+          class="sc-bdfBwQ lgksPe rec rec-arrow rec rec-arrow-left"
+          tabindex="0"
+          type="button"
+        >
+          ❮
+        </button>
+        <div
+          class="sc-dlfnbm cukhLH rec rec-slider-container"
+        >
+          <div
+            class="sc-hKgILt kFXEwu rec rec-slider"
+            style="transition: all 500ms ease; left: 0px;"
+          >
+            <div
+              class="rec rec-swipable"
+              style="display: flex; flex-direction: row;"
+            >
+              <div
+                class="rec rec-carousel-item rec-carousel-item-0 rec-carousel-item-visible"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="0"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 1
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo, facilisis sit amet fringilla in, tempus non est. Nunc metus mi, congue a accumsan at, finibus in orci. Praesent eu tincidunt erat, in suscipit dui. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer consequat lectus quis diam sodales, ut mattis mauris lacinia. Curabitur gravida eu nulla egestas ullamcorper. In vel neque condimentum, placerat turpis quis, pretium lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque luctus ante eu libero pulvinar aliquam ac nec lacus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque a purus condimentum, auctor mi nec, semper enim. Fusce ac odio cursus, iaculis nunc at, auctor ligula. Ut dapibus mauris at ullamcorper porta. Integer gravida lacus sed elit placerat hendrerit. Sed nulla magna, vulputate vitae orci ac, gravida vulputate risus. Aliquam tincidunt blandit volutpat. Nunc non commodo ligula. Nullam at nisi dignissim urna malesuada maximus quis sed risus. Etiam lobortis placerat pretium. Nam mollis et ipsum a pharetra. Nullam arcu purus, feugiat at ipsum sit amet, iaculis porta libero. Maecenas rutrum eget nibh ac feugiat. Phasellus a urna id mi ullamcorper malesuada at nec odio. Integer non mollis sem. Donec viverra tristique ipsum. Sed mauris mi, sollicitudin sed dapibus vitae, facilisis ut urna. Mauris pharetra consectetur lectus sit amet auctor. In hac habitasse platea dictumst. Fusce tristique enim quis nibh malesuada pretium. Praesent dolor dolor, porttitor in malesuada iaculis, accumsan vitae ante. Vestibulum bibendum ipsum eros, at porta tellus tincidunt non.
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-1 rec-carousel-item-hidden rec-carousel-item-next"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="1"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 2
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-2 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="2"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 3
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-3 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="3"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 4
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-4 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="4"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 5
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-5 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="5"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 6
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-6 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="6"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 7
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum 
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-7 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="7"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 8
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-8 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="8"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 9
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-9 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="9"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 10
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-10 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="10"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 11
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="rec rec-carousel-item rec-carousel-item-11 rec-carousel-item-hidden"
+              >
+                <div
+                  class="sc-gsTCUz tXlBS rec rec-item-wrapper"
+                  id="11"
+                  style="width: 0px; padding: 4px 4px;"
+                >
+                  <a
+                    class="MuiTypography-root MuiLink-root MuiLink-underlineNone link MuiTypography-colorPrimary"
+                    href="/"
+                  >
+                    <div
+                      class="MuiPaper-root MuiCard-root card MuiPaper-elevation8 MuiPaper-rounded"
+                    >
+                      <div
+                        class="MuiCardMedia-root media"
+                        style="background-image: url(/images/JDG.png);"
+                        title="Vignette"
+                      />
+                      <div
+                        class="MuiCardContent-root content"
+                      >
+                        <h5
+                          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+                        >
+                          card 12
+                        </h5>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2"
+                        >
+                          lorem ipsum
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="sc-bdfBwQ lgksPe rec rec-arrow rec rec-arrow-right"
+          tabindex="0"
+          type="button"
+        >
+          ❯
+        </button>
+      </div>
+    </div>
+  </div>
 </DocumentFragment>
 `;
