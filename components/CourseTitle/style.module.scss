@@ -1,0 +1,15 @@
+@import 'theme/theme';
+
+.title {
+    margin-top: $spacing-xl;
+    background: $cSharp-color;
+    width: 60%;
+    height: 64px;
+    border-radius: 0 32px 32px 0;
+    span {
+        margin-left: $spacing-xl;
+        vertical-align: middle;
+        font-size: x-large;
+        line-height: 64px;
+    }
+}
