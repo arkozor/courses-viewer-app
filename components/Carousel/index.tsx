@@ -2,7 +2,7 @@ import React from 'react'
 import ElasticCarousel from 'react-elastic-carousel'
 
 import { Course } from 'components/types'
-import Card from '../Card'
+import CourseCard from '../CourseCard'
 
 import classes from './style.module.scss'
 
@@ -28,10 +28,11 @@ const Carousel = ({ courseList }: Props): JSX.Element => {
                 disableArrowsOnEnd={false}
             >
                 {courseList.map((course) => (
-                    <Card
+                    <CourseCard
                         key={course.id}
                         name={course.name}
                         description={course.description}
+                        url={course.url}
                     />
                 ))}
             </ElasticCarousel>
