@@ -2,67 +2,15 @@
 
 exports[`CoursesViewerApp page matches snapshot 1`] = `
 <DocumentFragment>
-  <div>
-    <div>
-      <div
-        class="MuiButtonBase-root MuiChip-root cSharpChip chip MuiChip-clickable"
-        role="button"
-        tabindex="0"
-      >
-        <span
-          class="MuiChip-label"
-        >
-          CSharp
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </div>
-      <div
-        class="MuiButtonBase-root MuiChip-root javaChip chip MuiChip-clickable"
-        role="button"
-        tabindex="0"
-      >
-        <span
-          class="MuiChip-label"
-        >
-          Java
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </div>
-      <div
-        class="MuiButtonBase-root MuiChip-root jsChip chip MuiChip-clickable"
-        role="button"
-        tabindex="0"
-      >
-        <span
-          class="MuiChip-label"
-        >
-          JavaScript
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </div>
-      <div
-        class="MuiButtonBase-root MuiChip-root phpChip chip MuiChip-clickable"
-        role="button"
-        tabindex="0"
-      >
-        <span
-          class="MuiChip-label"
-        >
-          Php
-        </span>
-        <span
-          class="MuiTouchRipple-root"
-        />
-      </div>
-    </div>
-    <div>
-      Hello World
+  <div
+    class="container"
+  >
+    <div
+      class="MuiPaper-root imgContainer MuiPaper-elevation2 MuiPaper-rounded"
+    >
+      <span
+        class="MuiSkeleton-root MuiSkeleton-rect img MuiSkeleton-pulse"
+      />
     </div>
   </div>
 </DocumentFragment>

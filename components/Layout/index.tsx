@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from 'components/Header'
-import ContentLayout from './ContentLayout'
+import MessageBanner from 'components/Banners/MessageBanner'
+
+import classes from './style.module.scss'
 
 type Props = {
     children: React.ReactNode
@@ -8,10 +10,17 @@ type Props = {
 
 const Layout = (props: Props): JSX.Element => {
     const { children } = props
+
+    const message = {
+        value: 'Bienvenue sur la première version de la visionneuse de cours !',
+        id: 'welcome-message'
+    }
+
     return (
-        <div>
+        <div className={classes.container}>
             <Header />
-            <ContentLayout>{children}</ContentLayout>
+            <MessageBanner message={message} />
+            {children}
         </div>
     )
 }
