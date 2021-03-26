@@ -1,10 +1,14 @@
+import CourseComments from 'components/CourseComments'
 import CourseTitle from 'components/CourseTitle'
 import React from 'react'
 import classes from './style.module.scss'
 
 const Course = (): JSX.Element => {
     return (
-        <CourseTitle text="CSharp - les bases"></CourseTitle>
+        <div className={classes.comment}>
+            <CourseTitle text="CSharp - les bases"></CourseTitle>
+            <CourseComments comments={[]}></CourseComments>
+        </div>
     )
 }
 

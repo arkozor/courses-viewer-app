@@ -1,0 +1,35 @@
+@import 'theme/theme';
+
+.comments {
+    margin: auto;
+    width: 1000px;
+    height: 100%;
+}
+
+.comment {
+    border-bottom: solid 2px grey;
+    margin-bottom: $spacing-md;
+}
+
+.anwers {
+    margin-left: 64px;
+}
+
+.section {
+    margin: $spacing-xl 0 $spacing-xl 0;
+    border: solid 4px $primary;
+    border-radius: 8px;
+    .sectionTitle {
+        padding: $spacing-sm;
+        background-color: $primary;
+    }
+    .sectionBody {
+        padding: $spacing-xl;
+    }
+    .input {
+        width: 100%;
+    }
+    h2, h3 {
+        margin: 0;
+    }
+}
