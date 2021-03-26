@@ -1,31 +1,31 @@
 import React from 'react'
-import Carousel from 'react-elastic-carousel'
+import ElasticCarousel from 'react-elastic-carousel'
+
+import { Course } from 'components/types'
 import Card from '../Card'
+
 import classes from './style.module.scss'
 
 type Props = {
-    courseList: {
-        id: number
-        name: string
-        description: string
-    }[]
+    courseList: Course[]
 }
 
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2, itemsToScroll: 2 },
+    { width: 550, itemsToShow: 2 },
     { width: 768, itemsToShow: 3 },
     { width: 1200, itemsToShow: 5 }
 ]
 
-const SlideShow = ({ courseList }: Props) => {
+const Carousel = ({ courseList }: Props): JSX.Element => {
     return (
-        <div className={classes.App}>
-            <Carousel
-                itemPadding={[10, 10]}
+        <div className={classes.container}>
+            <ElasticCarousel
+                itemPadding={[4, 4]}
                 isRTL={false}
                 breakPoints={breakPoints}
-                className={classes.carousel}
+                pagination={false}
+                disableArrowsOnEnd={false}
             >
                 {courseList.map((course) => (
                     <Card
@@ -34,9 +34,9 @@ const SlideShow = ({ courseList }: Props) => {
                         description={course.description}
                     />
                 ))}
-            </Carousel>
+            </ElasticCarousel>
         </div>
     )
 }
 
-export default SlideShow
+export default Carousel

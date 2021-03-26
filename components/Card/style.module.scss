@@ -1,5 +1,16 @@
 @import 'theme/theme';
 
 .card {
-    margin-bottom: $spacing-md;
+    width: 320px;
+}
+
+.media {
+    min-width: 320px;
+    min-height: 180px;
+}
+
+.content {
+    height: 95px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
