@@ -1,14 +1,15 @@
 import React from 'react'
-import ChipFilters from 'components/ChipFilters'
 import Carousel from 'components/Carousel'
 import courses from 'components/Carousel/CoursesProvider/courses.json'
 
+import HomepageBanner from '../components/Banners/HomepageBanner'
+
 const HomePage = (): JSX.Element => {
     return (
-        <div>
-            <ChipFilters />
+        <>
+            <HomepageBanner />
             <Carousel courseList={courses} />
-        </div>
+        </>
     )
 }
 

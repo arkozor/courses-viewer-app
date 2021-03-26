@@ -1,0 +1,28 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: $spacing_xl;
+}
+
+.imgContainer {
+    /* Those values will change when real banners will be created, each banner should be optimized for a screen size */
+    width: 600px;
+    height: 223px !important;
+
+    @media (min-width: $breakpoints_media_mdMin) {
+        width: 950px;
+        height: 354px !important;
+    }
+    @media (min-width: $breakpoints_media_lgMin) {
+        width: 1200px;
+        height: 447px !important;
+    }
+}
+
+.img {
+    border-radius: 4px;
+    width: 100%;
+    height: 100% !important;
+}

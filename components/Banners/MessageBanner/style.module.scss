@@ -1,0 +1,18 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary !important;
+    padding: $spacing_sm;
+}
+.text {
+    width: 100%;
+    text-align: center;
+}
+.iconButton {
+    position: block;
+    justify-self: flex-end;
+    padding: $spacing_xs !important;
+}
