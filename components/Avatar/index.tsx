@@ -8,7 +8,7 @@ type Props = {
     sizes?: 'small' | 'large'
 }
 const Avatar = (props: Props): JSX.Element => {
-    const nickname = 'Toto'
+    const nickname = 'Étudiant'
     const { withNickname, src } = props
 
     return (
@@ -16,6 +16,7 @@ const Avatar = (props: Props): JSX.Element => {
             <MUIAvatar
                 src={src}
                 className={withNickname && classes.withNickname}
+                classes={{ colorDefault: classes.avatarBackgroundColor }}
             >
                 {!src && nickname.charAt(0)}
             </MUIAvatar>

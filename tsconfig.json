@@ -16,9 +16,9 @@
         "baseUrl": ".",
         "paths": {
             "common/*": ["./pages/common/*"],
-            "api/*": ["api/*"],
-            "components/*": ["components/*"],
-            "theme/*": ["theme/*"]
+            "api/*": ["./api/*"],
+            "components/*": ["./components/*"],
+            "theme/*": ["./theme/*"]
         }
     },
     "exclude": ["node_modules", ".next", "out"],
@@ -27,6 +27,7 @@
         "**/*.ts",
         "**/*.tsx",
         "next.config.js",
-        "pages/_app.js"
+        "pages/_app.js",
+        "./jest-setup.ts"
     ]
 }

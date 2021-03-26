@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.avatarBackgroundColor {
+    background-color: $primary-light !important;
+}
+
 .withNickname {
     margin-right: $spacing_sm;
 }
