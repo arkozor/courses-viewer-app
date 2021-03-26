@@ -16,6 +16,7 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
                     as="font"
                     crossOrigin=""
                 />
+                <title>Courses Viewer App</title>
                 <link
                     rel="preload"
                     href="/fonts/Roboto/Roboto-Medium.ttf"
