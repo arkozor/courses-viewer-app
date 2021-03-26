@@ -22,6 +22,7 @@ const SlideShow = ({ courseList }: Props) => {
     return (
         <div className={classes.App}>
             <Carousel
+                itemPadding={[10, 10]}
                 isRTL={false}
                 breakPoints={breakPoints}
                 className={classes.carousel}
