@@ -32,7 +32,7 @@ export const courses = [
     {
         id: 7,
         name: 'card 7',
-        description: 'lorem ipsum'
+        description: 'lorem ipsum zvkhezb eevneoizhf oii hz oiiaho hfoiz hazioh oiazhf pah oa oiha ijz'
     },
     {
         id: 8,
@@ -55,7 +55,7 @@ export const courses = [
         description: 'lorem ipsum'
     },
     {
-        id: 11,
+        id: 12,
         name: 'card 12',
         description: 'lorem ipsum'
     }

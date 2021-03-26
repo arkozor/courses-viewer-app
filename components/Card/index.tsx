@@ -14,7 +14,6 @@ const CourseCard = (props): JSX.Element => {
                     <CardMedia
                         component="img"
                         image="/images/JDG.png"
-                        height="180"
                         title="Vignette"
                     />
                     <CardContent>

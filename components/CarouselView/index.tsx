@@ -20,7 +20,7 @@ const breakPoints = [
 
 const SlideShow = ({ courseList }: Props) => {
     return (
-        <div className={classes.app}>
+        <div className={classes.App}>
             <Carousel
                 isRTL={false}
                 breakPoints={breakPoints}
