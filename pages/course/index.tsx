@@ -7,7 +7,7 @@ const Course = (): JSX.Element => {
     return (
         <div className={classes.comment}>
             <CourseTitle text="CSharp - les bases"></CourseTitle>
-            <CourseComments comments={[]}></CourseComments>
+            <CourseComments></CourseComments>
         </div>
     )
 }
