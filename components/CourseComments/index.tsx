@@ -4,6 +4,7 @@ import React from 'react'
 import classes from './style.module.scss'
 
 const CourseComments = (): JSX.Element => {
+    // eslint-disable-next-line no-console
     const commentList = [
         {
             author: 'James',

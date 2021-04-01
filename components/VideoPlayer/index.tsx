@@ -11,9 +11,10 @@ import {
 } from 'video-react'
 import 'node_modules/video-react/dist/video-react.css'
 
-const VideoPlayer = () => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+const VideoPlayer = (props: { poster: string }) => {
     return (
-        <Player poster="../public/image/JDG.png">
+        <Player poster={props.poster}>
             <source src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4" />
             <source src="http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4" />
 
