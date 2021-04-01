@@ -3,12 +3,6 @@ orbs:
     node: circleci/node@4.1.0
 version: 2.1
 
-orbs:
-    heroku: circleci/heroku@0.0.10
-    node: circleci/node@4.1.0
-
-version: 2.1
-
 # Define the jobs we want to run for this project
 jobs:
   test:
