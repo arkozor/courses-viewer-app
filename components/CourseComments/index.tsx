@@ -1,4 +1,5 @@
-import { Input } from '@material-ui/core'
+import { Input, Typography } from '@material-ui/core'
+import Avatar from 'components/Avatar'
 import React from 'react'
 import classes from './style.module.scss'
 
@@ -20,10 +21,6 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
             body: "Super cours, j'adore !",
         },
         {
-            author: "Johanna",
-            body: "",
-        },
-        {
             author: "Jackie",
             body: "khoezihaojdazp hoazhoi azhoi zoiah ozahoi azhoidhaz oiihdoai hd oahzoiz hozahdoidh aoizhd oiiazhoidh zoiifh oiahfoi."
         },
@@ -33,7 +30,7 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
         <div className={classes.comments}>
             <div className={classes.section}>
                 <div className={classes.sectionTitle}>
-                    <h2>Un commentaire, pose ta question ici !</h2>
+                    <Typography variant="h4">Un commentaire ? pose ta question ici !</Typography>
                 </div>
                 <div className={classes.sectionBody}>
                     <Input className={classes.input}></Input>
@@ -41,24 +38,34 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
             </div>
             <div className={classes.section}>
                 <div className={classes.sectionTitle}>
-                    <h2>Questions des autres utilisateurs</h2>
+                    <Typography variant="h4">Questions des autres utilisateurs</Typography>
                 </div>
                 <div className={classes.sectionBody}>
-                    {commentList.map( comment => (
-                        <div>
-                            <div className={classes.comment}>
-                                <h2>{comment.author}</h2>
-                                <p>{comment.body}</p>
-                                <div className={classes.anwers}>
-                                    {comment.answers?.map( answers => (
-                                        <div>
-                                            <div className={classes.answers}>
-                                                <h3>{answers.author}</h3>
-                                                <p>{answers?.body}</p>
+                    {commentList.map( (comment,i) => (
+                        <div className={classes.comment} key={i}>
+                            <div className={classes.line}>
+                                <div className={classes.author}>
+                                    <Avatar></Avatar>
+                                    <Typography variant="h5">{comment.author}</Typography>
+                                </div>
+                                <div className={classes.lineContent}>
+                                    <Typography variant="body1">{comment.body}</Typography>
+                                </div>
+                            </div>
+                            <div className={classes.anwers}>
+                                {comment.answers?.map( (answers,i) => (
+                                    <div className={classes.answers} key={i}>
+                                        <div className={classes.line}>
+                                            <div className={classes.author}>
+                                                <Avatar></Avatar>
+                                                <Typography variant="h5">{answers.author}</Typography>
+                                            </div>  
+                                            <div className={classes.lineContent}>
+                                                <Typography variant="body1">{answers?.body}</Typography>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     ))}

@@ -9,6 +9,8 @@
 .comment {
     border-bottom: solid 2px grey;
     margin-bottom: $spacing-md;
+    justify-content: space-around;
+    padding-bottom: $spacing-sm;
 }
 
 .anwers {
@@ -29,7 +31,14 @@
     .input {
         width: 100%;
     }
-    h2, h3 {
-        margin: 0;
-    }
+}
+
+.avatar {
+    max-width: max-content;
+    margin-right: $spacing-xl;
+}
+
+.line {
+    display: flex;
+    align-items: center;
 }
