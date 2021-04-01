@@ -14,4 +14,4 @@ workflows:
               only:
                 - main
           requires:
-            - node/test
+            - test
