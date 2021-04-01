@@ -15,4 +15,4 @@ workflows:
               only:
                 - main
           requires:
-            test
+             - test
