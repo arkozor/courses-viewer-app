@@ -7,20 +7,18 @@ version: 2.1
 # Define the jobs we want to run for this project
 jobs:
   test:
-    steps:
-      - node/test
-      - run: echo "Running tests"
+    - node/test
+    - run: echo "Running tests"
   deploy:
-    steps:
-      - node/test
-      - heroku/deploy-via-git:
-          filters:
-            branches:
-              only:
-                - main
-          requires:
-             - test
-      - run: echo "Testing and deploying"
+    - node/test
+    - heroku/deploy-via-git:
+        filters:
+           branches:
+             only:
+               - main
+         requires:
+          - test
+    - run: echo "Testing and deploying"
 
 # Orchestrate our job run sequence
 workflows:
