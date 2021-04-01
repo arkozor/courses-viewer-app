@@ -16,10 +16,7 @@ jobs:
 workflows:
   build_and_deploy:
     jobs:
-      - run: echo "Test Start"
       - test
-      - run: echo "Test End"
-      - run: echo "Deploy Start"
       - deploy:
           filters:
             branches:
