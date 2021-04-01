@@ -10,6 +10,7 @@ import classes from './style.module.scss'
 const Header = (): JSX.Element => {
     // const [isLogged, setIsLogged] = React.useState(false)
     const isLogged = true
+    const nickname = '' // replace by real nickname
     return (
         <>
             <div className={classes.header}>
@@ -22,7 +23,10 @@ const Header = (): JSX.Element => {
                     <SearchBar />
                     {isLogged ? (
                         <div className={classes.avatar}>
-                            <Avatar withNickname />
+                            <Avatar
+                                withNickname
+                                nickname={nickname || 'invité'}
+                            />
                         </div>
                     ) : (
                         <div className={classes.connectionContainer}>
