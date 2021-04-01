@@ -8,6 +8,7 @@ workflows:
       - node/test
   deploy:
     jobs:
+      - test
       - heroku/deploy-via-git:
           filters:
             branches:
