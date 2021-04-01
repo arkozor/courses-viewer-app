@@ -508,6 +508,70 @@ exports[`CoursesViewerApp page matches snapshot 1`] = `
           ❯
         </button>
       </div>
+      <div
+        class="sc-iBPRYJ bkVSTc rec rec-pagination"
+      >
+        <button
+          class="sc-gKsewC cJeRRR rec rec-dot rec rec-dot_active"
+          tabindex="-1"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+        <button
+          class="sc-gKsewC guuruq rec rec-dot "
+          tabindex="0"
+          type="button"
+        />
+      </div>
     </div>
   </div>
 </DocumentFragment>

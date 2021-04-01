@@ -24,8 +24,9 @@ const Carousel = ({ courseList }: Props): JSX.Element => {
                 itemPadding={[4, 4]}
                 isRTL={false}
                 breakPoints={breakPoints}
-                pagination={false}
                 disableArrowsOnEnd={false}
+                pagination={true}
+                enableTilt={true}
             >
                 {courseList.map((course) => (
                     <CourseCard
