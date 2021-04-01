@@ -36,7 +36,6 @@ const SearchBar = (): JSX.Element => {
             )
         }
     }
-
     return (
         <div className={classes.searchBarContainer}>
             <Button
