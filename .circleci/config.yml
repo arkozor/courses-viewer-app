@@ -10,22 +10,23 @@ jobs:
     - node/test
     - run: echo "Running tests"
   deploy:
-    - node/test
     - heroku/deploy-via-git:
-        filters:
-           branches:
-             only:
-               - main
-         requires:
-          - test
-    - run: echo "Testing and deploying"
 
 # Orchestrate our job run sequence
 workflows:
-  build_and_test:
+  build_and_deploy:
     jobs:
+      - run: echo "Test Start"
       - test
-      - deploy
-
+      - run: echo "Test End"
+      - run: echo "Deploy Start"
+      - deploy:
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - test
+      - run: echo "Deploy End"
   
   
