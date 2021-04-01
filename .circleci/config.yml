@@ -1,15 +1,17 @@
 orbs:
     heroku: circleci/heroku@0.0.10
     node: circleci/node@4.1.0
+
 version: 2.1
 
+# Define the jobs we want to run for this project
 jobs:
   test:
-    jobs:
+    steps:
       - node/test
+      - run: echo "Running tests"
   deploy:
-    jobs:
-      - test
+    steps:
       - heroku/deploy-via-git:
           filters:
             branches:
@@ -17,10 +19,14 @@ jobs:
                 - main
           requires:
              - test
+      - run: echo "Testing and deploying"
+
+# Orchestrate our job run sequence
 workflows:
-  jobs:
-    - test
-    - deploy
+  build_and_test:
+    jobs:
+      - test
+      - deploy
 
   
   
