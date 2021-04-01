@@ -12,6 +12,7 @@ jobs:
       - run: echo "Running tests"
   deploy:
     steps:
+      - node/test
       - heroku/deploy-via-git:
           filters:
             branches:
