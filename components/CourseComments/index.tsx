@@ -30,13 +30,14 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
         },
     ]
     
-    function addComment(commentBody): any{
-        if (newComment.length>4) {
+    function addComment(commentBody: any): any{
+        if (commentBody.length>4) {
+
             //TODO: add comment in database
         }
     }
 
-    function onInputChange(event): any {
+    function onInputChange(event: any): any {
         setNewComment(event.target.value);
     }
 
