@@ -1,4 +1,4 @@
-import { Input, Typography } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
 import Avatar from 'components/Avatar'
 import React from 'react'
 import classes from './style.module.scss'
@@ -26,6 +26,25 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
         },
     ]
     
+    let newComment = "";
+
+    function addComment(commentBody) {
+        if (newComment) {
+            commentList.push({
+                author: "Me",
+                body: commentBody,
+            })
+            console.log(commentList);
+            
+        }
+    }
+
+    function onInputChange(event) {
+        newComment = event.target.value;
+        console.log(newComment);
+        
+    }
+
     return (
         <div className={classes.comments}>
             <div className={classes.section}>
@@ -33,7 +52,12 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
                     <Typography variant="h4">Un commentaire ? pose ta question ici !</Typography>
                 </div>
                 <div className={classes.sectionBody}>
-                    <Input className={classes.input}></Input>
+                <TextField
+                    onChange={onInputChange}
+                    error={newComment.length<4}
+                     helperText={newComment?"":"Enter at least 3 characters"}
+                    />
+                    <Button className={classes.button} onClick={() => {addComment(newComment)}}>Submit</Button>
                 </div>
             </div>
             <div className={classes.section}>
@@ -45,7 +69,9 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
                         <div className={classes.comment} key={i}>
                             <div className={classes.line}>
                                 <div className={classes.author}>
-                                    <Avatar></Avatar>
+                                    <div className={classes.avatar}>
+                                        <Avatar nickname={comment.author}></Avatar>
+                                    </div>
                                     <Typography variant="h5">{comment.author}</Typography>
                                 </div>
                                 <div className={classes.lineContent}>
@@ -57,7 +83,9 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
                                     <div className={classes.answers} key={i}>
                                         <div className={classes.line}>
                                             <div className={classes.author}>
-                                                <Avatar></Avatar>
+                                                <div className={classes.avatar}>
+                                                    <Avatar nickname={answers.author}></Avatar>
+                                                </div>
                                                 <Typography variant="h5">{answers.author}</Typography>
                                             </div>  
                                             <div className={classes.lineContent}>

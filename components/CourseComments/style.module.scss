@@ -10,7 +10,6 @@
     border-bottom: solid 2px grey;
     margin-bottom: $spacing-md;
     justify-content: space-around;
-    padding-bottom: $spacing-sm;
 }
 
 .anwers {
@@ -27,18 +26,31 @@
     }
     .sectionBody {
         padding: $spacing-xl;
+        display: flex;
+        flex-direction: column;
     }
     .input {
         width: 100%;
+        margin-bottom: $spacing-md;
     }
+    .button {
+        align-self: flex-end;
+        background-color: $secondary !important;
+        color: $secondary_text !important;
+    }
+}
+
+.line {
+    margin-bottom: $spacing-md;
 }
 
 .avatar {
     max-width: max-content;
-    margin-right: $spacing-xl;
+    margin-right: $spacing-md;
 }
 
-.line {
+.author {
     display: flex;
     align-items: center;
+    margin-bottom: $spacing-sm;
 }
