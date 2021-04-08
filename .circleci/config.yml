@@ -1,24 +1,41 @@
 orbs:
-    heroku: circleci/heroku@0.0.10
-    node: circleci/node@4.1.0
+  react: thefrontside/react@0.2.0
 version: 2.1
-
-# Define the jobs we want to run for this project
-jobs:
-  test:
-    - node/test
-  deploy:
-    - heroku/deploy-via-git:
-
-# Orchestrate our job run sequence
 workflows:
-  test-and-deploy:
+  push:
     jobs:
-      - node/test
-      - heroku/deploy-via-git:
-          filters:
-            branches:
-              only:
-                - main
+      - react/install
+      - react/eslint:
           requires:
-            - node/test
+            - react/install
+      - react/test:
+          requires:
+            - react/install
+      - react/coverage:
+          requires:
+            - react/install
+
+# orbs:
+#     heroku: circleci/heroku@0.0.10
+#     node: circleci/node@4.1.0
+# version: 2.1
+
+# # Define the jobs we want to run for this project
+# jobs:
+#   test:
+#     - node/test
+#   deploy:
+#     - heroku/deploy-via-git:
+
+# # Orchestrate our job run sequence
+# workflows:
+#   test-and-deploy:
+#     jobs:
+#       - node/test
+#       - heroku/deploy-via-git:
+#           filters:
+#             branches:
+#               only:
+#                 - main
+#           requires:
+#             - node/test
