@@ -2,7 +2,7 @@ orbs:
   react: thefrontside/react@0.2.0
 version: 2.1
 workflows:
-  push:
+  tests:
     jobs:
       - react/install
       - react/eslint:
@@ -14,6 +14,19 @@ workflows:
       - react/coverage:
           requires:
             - react/install
+  deploy:
+    jobs:
+      - react/install
+      - react/eslint:
+          requires:
+            - react/install
+      - react/test:
+          requires:
+            - react/install
+      - react/coverage:
+          requires:
+            - react/install
+
 
 # orbs:
 #     heroku: circleci/heroku@0.0.10
