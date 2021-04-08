@@ -5,6 +5,7 @@ import classes from './style.module.scss'
 
 const CourseComments = (props: { comments: any[] }): JSX.Element => {
 
+    const [newComment, setNewComment] = React.useState('')
     let commentList = [
         {
             author: "James",
@@ -26,21 +27,14 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
         },
     ]
     
-    let newComment = "";
-
     function addComment(commentBody) {
-        if (newComment) {
-            commentList.push({
-                author: "Me",
-                body: commentBody,
-            })
-            console.log(commentList);
-            
+        if (newComment.length>4) {
+            //TODO: add comment in database
         }
     }
 
     function onInputChange(event) {
-        newComment = event.target.value;
+        setNewComment(event.target.value);
         console.log(newComment);
         
     }
@@ -53,12 +47,19 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
                 </div>
                 <div className={classes.sectionBody}>
                 <TextField
+                    className={classes.input}
                     onChange={onInputChange}
-                    error={newComment.length<4}
-                     helperText={newComment?"":"Enter at least 3 characters"}
+                    error={newComment.length>0 && newComment.length<6}
+                    helperText={newComment.length>0 && newComment.length<5?"Enter at least 5 characters":""}
                     />
-                    <Button className={classes.button} onClick={() => {addComment(newComment)}}>Submit</Button>
-                </div>
+                <Button 
+                    className={classes.button} 
+                    onClick={() => {addComment(newComment)}}
+                    disabled={newComment.length<5}
+                    >
+                        Submit
+                    </Button>
+            </div>
             </div>
             <div className={classes.section}>
                 <div className={classes.sectionTitle}>
