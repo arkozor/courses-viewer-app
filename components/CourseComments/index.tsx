@@ -6,7 +6,10 @@ import classes from './style.module.scss'
 const CourseComments = (props: { comments: any[] }): JSX.Element => {
 
     const [newComment, setNewComment] = React.useState('')
-    let commentList = [
+    let commentList = props.comments
+
+    // Fake data
+    commentList = [
         {
             author: "James",
             body: "1er commentaire.",
@@ -27,16 +30,14 @@ const CourseComments = (props: { comments: any[] }): JSX.Element => {
         },
     ]
     
-    function addComment(commentBody) {
+    function addComment(commentBody): any{
         if (newComment.length>4) {
             //TODO: add comment in database
         }
     }
 
-    function onInputChange(event) {
+    function onInputChange(event): any {
         setNewComment(event.target.value);
-        console.log(newComment);
-        
     }
 
     return (
