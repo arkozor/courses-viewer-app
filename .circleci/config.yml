@@ -9,6 +9,12 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
+      filters:
+            branches:
+              only:
+                - main
+          requires:
+            - tests
   tests:
       - react/install
       - react/eslint:
@@ -22,25 +28,15 @@ jobs:
             - react/install
   deploy/dev:
       type: approval
-          
-
+      requires:
+        - react/eslint
+        - react/test
+        - react/coverage
 
 workflows:
   tests:
     jobs:
       - tests
       - deploy/dev
-          requires:
-                - react/eslint
-                - react/test
-                - react/coverage
-      - deploy:
-          filters:
-            branches:
-              only:
-                - main
-          requires:
-            - react/eslint
-            - react/test
-            - react/coverage
+      - deploy
         
