@@ -19,17 +19,17 @@ workflows:
     jobs:
       - react/eslint:
           requires:
-            - install
+            - react/install
       - react/test:
           requires:
-            - install
+            - react/install
       - react/coverage:
           requires:
-            - install
+            - react/install
       - deploy/dev:
           type: approval
           requires:
-            - install
+            - react/install
       - deploy:
           filters:
             branches:
