@@ -14,19 +14,15 @@ workflows:
   tests:
     jobs:
       - react/install
-      
       - react/eslint:
           requires:
             - react/install
-
       - react/test:
           requires:
             - react/install
-
       - react/coverage:
           requires:
             - react/install
-
       - deploy/dev:
           machine:
             enabled: true
@@ -39,7 +35,6 @@ workflows:
             - react/eslint
             - react/test
             - react/coverage
-
       - deploy:
           filters:
             branches:
