@@ -43,9 +43,9 @@ workflows:
     jobs:
       - deploy:
           filters:
-          branches:
-            only:
-              - main
+            branches:
+              only:
+               - main
           requires:
            - react/eslint
            - react/test
