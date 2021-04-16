@@ -24,11 +24,12 @@ workflows:
           requires:
             - react/install
       - deploy:
+          filters:
+            branches:
+              only:
+                - main
           requires:
             - react/eslint
             - react/test
             - react/coverage
-        filters:
-          branches:
-            only:
-              - main
+        
