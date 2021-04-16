@@ -11,22 +11,25 @@ jobs:
           command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
 
 workflows:
-  tests:
+  install:
     jobs:
       - react/install
+
+  tests:
+    jobs:
       - react/eslint:
           requires:
-            - react/install
+            - install
       - react/test:
           requires:
-            - react/install
+            - install
       - react/coverage:
           requires:
-            - react/install
+            - install
       - deploy/dev:
           type: approval
           requires:
-            - react/install
+            - install
       - deploy:
           filters:
             branches:
