@@ -11,7 +11,7 @@ jobs:
           command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
 
 workflows:
-  build_tests_and_deploy:
+  tests:
     jobs:
       - react/install
       - react/eslint:
@@ -23,18 +23,6 @@ workflows:
       - react/coverage:
           requires:
             - react/install
-      - deploy/dev:
-          type: approval
-          machine:
-            enabled: true
-          steps:
-            - run:
-                name: Deploy Over SSH
-                command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/dev/courses-viewer-app; git pull;"
-          requires:
-            - react/eslint
-            - react/test
-            - react/coverage
       - deploy:
           filters:
             branches:
