@@ -17,18 +17,22 @@ workflows:
   build:
     jobs:
       - install
-  build_tests_and_deploy:
+
+  test:
     jobs:
       - react/install
       - react/eslint:
           requires:
-            - react/install
+            -install
       - react/test:
           requires:
-            - react/install
+            -install
       - react/coverage:
           requires:
-            - react/install
+            -install
+
+  deploy_dev:
+    jobs:      
       - deploy/dev:
           type: approval
           machine:
@@ -37,17 +41,20 @@ workflows:
             - run:
                 name: Deploy Over SSH
                 command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/dev/courses-viewer-app; git pull;"
-          requires:
-            - react/eslint
-            - react/test
-            - react/coverage
-      - deploy:
           filters:
             branches:
-              only:
+              ignore:
                 - main
           requires:
-            - react/eslint
-            - react/test
-            - react/coverage
+            -tests
+    deploy:
+      jobs:
+        filters:
+          branches:
+            only:
+              - main
+        requires:
+          - react/eslint
+          - react/test
+          - react/coverage
         
