@@ -32,7 +32,9 @@ workflows:
                 name: Deploy Over SSH
                 command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
           requires:
-            - react/install
+            - react/eslint
+            - react/test
+            - react/coverage
       - deploy:
           filters:
             branches:
