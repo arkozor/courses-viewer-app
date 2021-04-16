@@ -2,9 +2,6 @@ orbs:
   react: thefrontside/react@0.2.0
 version: 2.1
 jobs:
-  install:
-    steps:
-      - react/install
   deploy:
     machine:
         enabled: true
@@ -14,25 +11,18 @@ jobs:
           command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
 
 workflows:
-  build:
-    jobs:
-      - install
-
-  test:
+  build_tests_and_deploy:
     jobs:
       - react/install
       - react/eslint:
           requires:
-            -install
+            - react/install
       - react/test:
           requires:
-            -install
+            - react/install
       - react/coverage:
           requires:
-            -install
-
-  deploy_dev:
-    jobs:      
+            - react/install
       - deploy/dev:
           type: approval
           machine:
@@ -41,20 +31,17 @@ workflows:
             - run:
                 name: Deploy Over SSH
                 command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/dev/courses-viewer-app; git pull;"
+          requires:
+            - react/eslint
+            - react/test
+            - react/coverage
+      - deploy:
           filters:
             branches:
-              ignore:
+              only:
                 - main
           requires:
-            -tests
-    deploy:
-      jobs:
-        filters:
-          branches:
-            only:
-              - main
-        requires:
-          - react/eslint
-          - react/test
-          - react/coverage
+            - react/eslint
+            - react/test
+            - react/coverage
         
