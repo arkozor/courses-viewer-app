@@ -30,7 +30,7 @@ workflows:
           steps:
             - run:
                 name: Deploy Over SSH
-                command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
+                command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/dev/courses-viewer-app; git pull;"
           requires:
             - react/eslint
             - react/test
