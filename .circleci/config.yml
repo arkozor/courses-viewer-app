@@ -1,15 +1,35 @@
 orbs:
-    heroku: circleci/heroku@0.0.10
-    node: circleci/node@4.1.0
+  react: thefrontside/react@0.2.0
 version: 2.1
+jobs:
+  deploy:
+    machine:
+        enabled: true
+    steps:
+      - run:
+          name: Deploy Over SSH
+          command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull;"
+
 workflows:
-  test-and-deploy:
+  tests:
     jobs:
-      - node/test
-      - heroku/deploy-via-git:
+      - react/install
+      - react/eslint:
+          requires:
+            - react/install
+      - react/test:
+          requires:
+            - react/install
+      - react/coverage:
+          requires:
+            - react/install
+      - deploy:
           filters:
             branches:
               only:
                 - main
           requires:
-            - node/test
+            - react/eslint
+            - react/test
+            - react/coverage
+        
