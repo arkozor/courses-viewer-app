@@ -28,3 +28,7 @@ workflows:
             - react/eslint
             - react/test
             - react/coverage
+        filters:
+          branches:
+            only:
+              - main
