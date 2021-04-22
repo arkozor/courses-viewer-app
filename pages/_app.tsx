@@ -4,7 +4,7 @@ import Layout from 'components/Layout'
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app'
 import Head from 'next/head'
-import './style.css'
+import './style.scss'
 
 const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     return (

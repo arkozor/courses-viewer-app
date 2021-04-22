@@ -23,7 +23,7 @@ const CourseCard = (props: Props): JSX.Element => {
             <Card raised classes={{ root: classes.card }}>
                 <CardMedia
                     className={classes.media}
-                    image="/images/JDG.png"
+                    image={url}
                     title="Vignette"
                 />
                 <CardContent className={classes.content}>

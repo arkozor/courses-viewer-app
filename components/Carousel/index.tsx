@@ -5,21 +5,34 @@ import { Course } from 'components/types'
 import CourseCard from '../CourseCard'
 
 import classes from './style.module.scss'
+import { Typography } from '@material-ui/core'
 
 type Props = {
     courseList: Course[]
+    title: string
 }
 
 const breakPoints = [
     { width: 1, itemsToShow: 1 },
-    { width: 550, itemsToShow: 2 },
-    { width: 768, itemsToShow: 3 },
-    { width: 1200, itemsToShow: 5 }
+    { width: 650, itemsToShow: 2 },
+    { width: 1000, itemsToShow: 3 },
+    { width: 1300, itemsToShow: 4 },
+    { width: 1650, itemsToShow: 5 }
 ]
 
-const Carousel = ({ courseList }: Props): JSX.Element => {
+const Carousel = ({ courseList, title }: Props): JSX.Element => {
     return (
         <div className={classes.container}>
+            <div className={classes.typo}>
+                <Typography
+                    gutterBottom
+                    variant="h4"
+                    style={{ fontWeight: 500 }}
+                >
+                    {title}
+                </Typography>
+            </div>
+
             <ElasticCarousel
                 itemPadding={[4, 4]}
                 isRTL={false}
