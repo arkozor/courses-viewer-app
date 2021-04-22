@@ -32,7 +32,7 @@ const Header = (): JSX.Element => {
                         <div className={classes.connectionContainer}>
                             <div className={classes.buttonsContainer}>
                                 <Button
-                                    href="/authentication/register"
+                                    href="/register"
                                     classes={{
                                         root: classes.connectionButton
                                     }}
@@ -40,7 +40,7 @@ const Header = (): JSX.Element => {
                                     {"S'enregistrer"}
                                 </Button>
                                 <Button
-                                    href="/authentication"
+                                    href="/login"
                                     classes={{
                                         root: classes.connectionButton
                                     }}
