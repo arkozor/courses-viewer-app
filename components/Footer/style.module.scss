@@ -1,4 +1,4 @@
-@import "theme/theme";
+@import 'theme/theme';
 
 .upperPart {
     display: flex;
@@ -7,13 +7,13 @@
 
     :first-child {
         justify-content: center;
-        background-color: $primary!important;
+        background-color: $primary !important;
     }
 }
 
 .lowerPart {
     display: flex;
-    justify-content: center!important;
+    justify-content: center !important;
     align-items: center;
     height: 50px;
     background-color: $primary-light;

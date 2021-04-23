@@ -35,7 +35,7 @@ const Avatar = (props: Props): JSX.Element => {
         : avatarBackgroundColors[0]
 
     return (
-        <>
+        <div className={classes.container}>
             <MUIAvatar
                 src={src}
                 className={withNickname ? classes.withNickname : undefined}
@@ -50,7 +50,7 @@ const Avatar = (props: Props): JSX.Element => {
             <Typography className={classes.nickname}>
                 {withNickname && nickname}
             </Typography>
-        </>
+        </div>
     )
 }
 
