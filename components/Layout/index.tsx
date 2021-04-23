@@ -21,7 +21,7 @@ const Layout = (props: Props): JSX.Element => {
         <div className={classes.container}>
             <Header />
             <MessageBanner message={message} />
-            {children}
+            <div className={classes.childrenContainer}>{children}</div>
             <Footer />
         </div>
     )

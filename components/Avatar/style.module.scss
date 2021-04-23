@@ -1,5 +1,9 @@
 @import 'theme/theme';
 
+.container {
+    display: flex;
+    align-items: center;
+}
 .withNickname {
     margin-right: $spacing_sm;
 }

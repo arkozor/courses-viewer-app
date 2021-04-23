@@ -9,7 +9,7 @@ import classes from './style.module.scss'
 
 const Header = (): JSX.Element => {
     // const [isLogged, setIsLogged] = React.useState(false)
-    const isLogged = true
+    const isLogged = false
     const nickname = '' // replace by real nickname
     return (
         <>
