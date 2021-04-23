@@ -85,10 +85,10 @@ const AddComment = (props: Props): JSX.Element => {
                                 try {
                                     addComment(comment)
                                     setIsFocused(false)
-                                    setComment(null)
                                     if (isAnswer && shouldCloseAnswer) {
                                         shouldCloseAnswer(true)
                                     }
+                                    setComment('')
                                 } catch (e) {
                                     setHasError(true)
                                 }
