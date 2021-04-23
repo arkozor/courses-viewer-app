@@ -1,3 +1,6 @@
+@import 'Theme/Theme';
+
 .childrenContainer {
     min-height: calc(100vh - 236px);
+    padding: 0px $spacing_xxl;
 }

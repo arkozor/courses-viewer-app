@@ -1,29 +1,52 @@
 @import 'theme/theme';
 
+$letterShadow: -1px 0 rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1),
+    1px 0 rgba(0, 0, 0, 0.1), 0 -1px rgba(0, 0, 0, 0.1);
+
 .chip {
     margin-right: $spacing_sm !important;
-    font-size: x-large !important;
-    width: 150px;
-}
-
-.selected {
-    border-style: solid !important;
 }
 
 .javaChip {
+    border-color: $java-color !important;
+    color: $java-color !important;
+    text-shadow: $letterShadow;
+}
+.javaChipSelected {
     background-color: $java-color !important;
+    color: white !important;
 }
 
 .cSharpChip {
+    border-color: $cSharp-color !important;
+    color: $cSharp-color !important;
+    text-shadow: $letterShadow;
+}
+.cSharpChipSelected {
     background-color: $cSharp-color !important;
+    color: white !important;
 }
 
 .jsChip {
+    border-color: $js-color !important;
+    color: $js-color !important;
+    text-shadow: $letterShadow;
+}
+
+.jsChipSelected {
     background-color: $js-color !important;
+    color: white !important;
 }
 
 .phpChip {
+    border-color: $php-color !important;
+    color: $php-color !important;
+    text-shadow: $letterShadow;
+}
+
+.phpChipSelected {
     background-color: $php-color !important;
+    color: white !important;
 }
 
 .searchButton {

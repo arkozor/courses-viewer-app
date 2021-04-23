@@ -1,15 +1,15 @@
 import React from 'react'
 import ElasticCarousel from 'react-elastic-carousel'
 
-import { Course } from 'components/types'
 import CourseCard from './CourseCard'
 
 import classes from './style.module.scss'
 import { Typography } from '@material-ui/core'
+import { CoursePreview } from '../types'
 
 type Props = {
-    courseList: Course[]
-    title: string
+    coursesPreviewList: CoursePreview[]
+    title?: string
 }
 
 const breakPoints = [
@@ -20,18 +20,18 @@ const breakPoints = [
     { width: 1650, itemsToShow: 5 }
 ]
 
-const Carousel = ({ courseList, title }: Props): JSX.Element => {
+const Carousel = (props: Props): JSX.Element => {
+    const { coursesPreviewList, title } = props
+
     return (
         <div className={classes.container}>
-            <div className={classes.typo}>
-                <Typography
-                    gutterBottom
-                    variant="h4"
-                    style={{ fontWeight: 500 }}
-                >
-                    {title}
-                </Typography>
-            </div>
+            {title && (
+                <div className={classes.titleContainer}>
+                    <Typography gutterBottom variant="h4">
+                        {title}
+                    </Typography>
+                </div>
+            )}
 
             <ElasticCarousel
                 itemPadding={[4, 4]}
@@ -41,12 +41,13 @@ const Carousel = ({ courseList, title }: Props): JSX.Element => {
                 pagination={true}
                 enableTilt={true}
             >
-                {courseList.map((course) => (
+                {coursesPreviewList.map((course) => (
                     <CourseCard
                         key={course.id}
-                        name={course.name}
+                        id={course.id}
+                        title={course.title}
                         description={course.description}
-                        url={course.url}
+                        thumbnail={course.thumbnail}
                     />
                 ))}
             </ElasticCarousel>

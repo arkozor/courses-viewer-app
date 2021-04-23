@@ -1,74 +1,74 @@
 [
     {
         "id": 1,
-        "name": "Java - Les bases",
+        "title": "Java - Les bases",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300"
+        "thumbnail": "https://picsum.photos/200/300"
     },
     {
         "id": 2,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 3,
-        "name": "PHP - Le framework symfony",
+        "title": "PHP - Le framework symfony",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 4,
-        "name": "Pearl - POO",
+        "title": "Pearl - POO",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300"
+        "thumbnail": "https://picsum.photos/200/300"
     },
     {
         "id": 5,
-        "name": "Node - MongoDB",
+        "title": "Node - MongoDB",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 6,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 7,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 8,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 9,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 10,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 11,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     },
     {
         "id": 12,
-        "name": "C# - Le pattern MVC",
+        "title": "C# - Le pattern MVC",
         "description": "lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas urna justo",
-        "url": "https://picsum.photos/200/300/?blur"      
+        "thumbnail": "https://picsum.photos/200/300/?blur"
     }
 ]
