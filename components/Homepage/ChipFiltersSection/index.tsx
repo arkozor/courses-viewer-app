@@ -1,6 +1,5 @@
-import React from 'react'
-
 import ChipFilters from 'components/ChipFilters'
+import React from 'react'
 
 import classes from './style.module.scss'
 

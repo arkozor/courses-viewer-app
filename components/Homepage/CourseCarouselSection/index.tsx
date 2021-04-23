@@ -2,7 +2,7 @@ import React from 'react'
 import coursesPreviewList from './CourseCarousel/CoursesProvider/courses.json'
 
 import CourseCarousel from './CourseCarousel'
-import Separation from 'components/Homepage/CourseCarouselSection/CarouselTitle'
+import CarouselTitle from './CarouselTitle'
 
 import classes from './style.module.scss'
 
@@ -28,7 +28,7 @@ const CourseCarouselSection = (): JSX.Element => {
                 const { coursesPreview, title } = sectionData
                 return (
                     <div key={title} className={classes.subSectionContainer}>
-                        <Separation title={title} />
+                        <CarouselTitle title={title} />
                         {/* @ts-expect-error  waiting for BE */}
                         <CourseCarousel coursesPreviewList={coursesPreview} />
                     </div>
