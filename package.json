@@ -50,6 +50,7 @@
         "redux-thunk": "^2.3.0",
         "sass": "^1.32.4",
         "styled-components": "^5.2.1",
+        "video-react": "^0.14.1",
         "yarn": "^1.22.10"
     },
     "devDependencies": {

@@ -9,7 +9,7 @@ import classes from './style.module.scss'
 
 const Header = (): JSX.Element => {
     // const [isLogged, setIsLogged] = React.useState(false)
-    const isLogged = true
+    const isLogged = false
     const nickname = '' // replace by real nickname
     return (
         <>
@@ -32,7 +32,7 @@ const Header = (): JSX.Element => {
                         <div className={classes.connectionContainer}>
                             <div className={classes.buttonsContainer}>
                                 <Button
-                                    href="/authentication/register"
+                                    href="/register"
                                     classes={{
                                         root: classes.connectionButton
                                     }}
@@ -40,7 +40,7 @@ const Header = (): JSX.Element => {
                                     {"S'enregistrer"}
                                 </Button>
                                 <Button
-                                    href="/authentication"
+                                    href="/login"
                                     classes={{
                                         root: classes.connectionButton
                                     }}

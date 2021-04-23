@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from 'components/Header'
+import Footer from 'components/Footer'
 import MessageBanner from 'components/Banners/MessageBanner'
 
 import classes from './style.module.scss'
@@ -20,7 +21,8 @@ const Layout = (props: Props): JSX.Element => {
         <div className={classes.container}>
             <Header />
             <MessageBanner message={message} />
-            {children}
+            <div className={classes.childrenContainer}>{children}</div>
+            <Footer />
         </div>
     )
 }
