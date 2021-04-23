@@ -6,7 +6,7 @@ type Props = {
     nickname: string
     withNickname?: boolean
     src?: string
-    sizes?: 'small' | 'large'
+    sizes?: 'sm' | 'md'
 }
 
 const avatarBackgroundColors = [
@@ -23,7 +23,7 @@ const avatarBackgroundColors = [
 ]
 
 const Avatar = (props: Props): JSX.Element => {
-    const { withNickname, src, nickname = 'Username' } = props
+    const { withNickname, src, nickname = 'Username', sizes = 'md' } = props
 
     const extractedColorFromUsername = nickname
         ? avatarBackgroundColors[
@@ -35,19 +35,22 @@ const Avatar = (props: Props): JSX.Element => {
         : avatarBackgroundColors[0]
 
     return (
-        <div className={classes.container}>
+        <>
             <MUIAvatar
                 src={src}
-                className={withNickname && classes.withNickname}
+                className={withNickname ? classes.withNickname : undefined}
                 style={{ backgroundColor: extractedColorFromUsername }}
-                classes={{ colorDefault: classes.avatarBackgroundColor }}
+                classes={{
+                    colorDefault: classes.avatarBackgroundColor,
+                    root: sizes === 'sm' && classes.small
+                }}
             >
                 {!src && nickname.charAt(0)}
             </MUIAvatar>
             <Typography className={classes.nickname}>
                 {withNickname && nickname}
             </Typography>
-        </div>
+        </>
     )
 }
 
