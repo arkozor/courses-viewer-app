@@ -29,6 +29,7 @@ const CourseCarouselSection = (): JSX.Element => {
                 return (
                     <div key={title} className={classes.subSectionContainer}>
                         <Separation title={title} />
+                        {/* @ts-expect-error  waiting for BE */}
                         <CourseCarousel coursesPreviewList={coursesPreview} />
                     </div>
                 )
