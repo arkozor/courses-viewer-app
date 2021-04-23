@@ -2,7 +2,7 @@ import React from 'react'
 import ElasticCarousel from 'react-elastic-carousel'
 
 import { Course } from 'components/types'
-import CourseCard from '../CourseCard'
+import CourseCard from './CourseCard'
 
 import classes from './style.module.scss'
 

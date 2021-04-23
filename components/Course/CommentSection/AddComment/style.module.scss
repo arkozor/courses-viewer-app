@@ -1,0 +1,32 @@
+@import 'theme/theme';
+
+.container {
+    margin: $spacing_xxl 0;
+}
+
+.avatarContainer {
+    display: flex;
+    vertical-align: center;
+    padding: 0 $spacing_md;
+}
+
+.textfieldContainer {
+    display: flex;
+}
+
+.input {
+    margin-bottom: $spacing-md;
+}
+
+.buttonsContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: $spacing_md;
+}
+
+.cancelButton {
+    margin-right: $spacing_md !important;
+}
+.sendIcon {
+    margin-left: $spacing_sm;
+}
