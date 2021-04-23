@@ -8,44 +8,44 @@ $letterShadow: -1px 0 rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1),
 }
 
 .javaChip {
-    border-color: $java-color !important;
-    color: $java-color !important;
+    border-color: $java_color !important;
+    color: $java_color !important;
     text-shadow: $letterShadow;
 }
 .javaChipSelected {
-    background-color: $java-color !important;
+    background-color: $java_color !important;
     color: white !important;
 }
 
 .cSharpChip {
-    border-color: $cSharp-color !important;
-    color: $cSharp-color !important;
+    border-color: $cSharp_color !important;
+    color: $cSharp_color !important;
     text-shadow: $letterShadow;
 }
 .cSharpChipSelected {
-    background-color: $cSharp-color !important;
+    background-color: $cSharp_color !important;
     color: white !important;
 }
 
 .jsChip {
-    border-color: $js-color !important;
-    color: $js-color !important;
+    border-color: $js_color !important;
+    color: $js_color !important;
     text-shadow: $letterShadow;
 }
 
 .jsChipSelected {
-    background-color: $js-color !important;
+    background-color: $js_color !important;
     color: white !important;
 }
 
 .phpChip {
-    border-color: $php-color !important;
-    color: $php-color !important;
+    border-color: $php_color !important;
+    color: $php_color !important;
     text-shadow: $letterShadow;
 }
 
 .phpChipSelected {
-    background-color: $php-color !important;
+    background-color: $php_color !important;
     color: white !important;
 }
 

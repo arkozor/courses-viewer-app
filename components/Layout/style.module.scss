@@ -1,6 +1,9 @@
 @import 'Theme/Theme';
 
 .childrenContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-height: calc(100vh - 236px);
     padding: 0px $spacing_xxl;
 }
