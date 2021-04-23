@@ -71,11 +71,17 @@ const course = {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut.'
 }
 
-const Course = (): JSX.Element => {
+type Props = {
+    id: string | string[]
+}
+
+const Course = (props: Props): JSX.Element => {
+    const { id } = props //axios.get(id)
+
     return (
         <div className={classes.container}>
             <div className={classes.videoAndCommentsContainer}>
-                <CourseTitle title="CSharp - les bases" />
+                <CourseTitle title={`${id} CSharp - les bases`} />
                 <VideoPlayer poster={'/images/JDG.png'} />
                 <CourseDescription course={course} />
                 <CommentSection comments={commentList} />

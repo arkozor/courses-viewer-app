@@ -1,41 +1,67 @@
 import React from 'react'
-import { Chip } from '@material-ui/core'
+import { Chip, Typography } from '@material-ui/core'
 import classes from './style.module.scss'
 import classnames from 'classnames'
 
 const ChipFilters = (): JSX.Element => {
-    const [isSelected, setIsSelected] = React.useState('')
+    const [selectedChip, setSelectedChip] = React.useState('')
     const chips = [
-        { className: classes.cSharpChip, label: 'CSharp' },
-        { className: classes.javaChip, label: 'Java' },
-        { className: classes.jsChip, label: 'JavaScript' },
-        { className: classes.phpChip, label: 'Php' }
+        {
+            className: classes.cSharpChip,
+            label: 'CSharp',
+            isSelected: classes.cSharpChipSelected
+        },
+        {
+            className: classes.javaChip,
+            label: 'Java',
+            isSelected: classes.javaChipSelected
+        },
+        {
+            className: classes.jsChip,
+            label: 'JavaScript',
+            isSelected: classes.jsChipSelected
+        },
+        {
+            className: classes.phpChip,
+            label: 'Php',
+            isSelected: classes.phpChipSelected
+        }
     ]
 
-    function resolveClick(event: React.MouseEvent<HTMLElement>) {
+    function select(event: React.MouseEvent<HTMLElement>) {
         const { innerText } = event.target as HTMLElement
-        setIsSelected(innerText)
+        if (innerText != selectedChip) {
+            setSelectedChip(innerText)
+        } else {
+            setSelectedChip('')
+        }
     }
 
     return (
         <div>
-            {chips.map((chip) => (
-                <Chip
-                    key={chip.label}
-                    classes={{
-                        root: classnames(
-                            chip.className,
-                            classes.chip,
-                            classes.selected && isSelected === chip.label
-                                ? classes.selected
-                                : ''
-                        )
-                    }}
-                    label={chip.label}
-                    clickable
-                    onClick={resolveClick}
-                />
-            ))}
+            {chips.map((chip) => {
+                return (
+                    <Chip
+                        key={chip.label}
+                        classes={{
+                            root: classnames(
+                                chip.className,
+                                classes.chip,
+                                selectedChip === chip.label
+                                    ? chip.isSelected
+                                    : ''
+                            ),
+                            outlined: chip.className
+                        }}
+                        label={
+                            <Typography variant="h5">{chip.label}</Typography>
+                        }
+                        variant="outlined"
+                        clickable
+                        onClick={select}
+                    />
+                )
+            })}
         </div>
     )
 }
