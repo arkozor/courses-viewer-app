@@ -1,0 +1,9 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    padding: $spacing_md 64px;
+}
+.videoAndCommentsContainer {
+    flex-grow: 1;
+}
