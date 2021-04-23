@@ -7,13 +7,21 @@ const Register = (): JSX.Element => {
         <Grid container justify="center">
             <Grid item xs={10} md={6} lg={4}>
                 <Box boxShadow={3}>
-                    <form className={classes.form} noValidate autoComplete="off">
+                    <form
+                        className={classes.form}
+                        noValidate
+                        autoComplete="off"
+                    >
                         <Grid container spacing={4}>
                             <Grid item xs={12}>
                                 <h1>{"S'ENREGISTER"}</h1>
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField id="email-input" fullWidth label="Email" />
+                                <TextField
+                                    id="email-input"
+                                    fullWidth
+                                    label="Email"
+                                />
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField
@@ -48,7 +56,6 @@ const Register = (): JSX.Element => {
                 </Box>
             </Grid>
         </Grid>
-        
     )
 }
 
