@@ -1,7 +1,9 @@
 @import 'theme/theme';
 
-.comment {
-    border-bottom: solid 2px grey;
-    margin-bottom: $spacing-md;
-    justify-content: space-around;
+.container {
+    display: flex;
+    padding: $spacing_md 64px;
+}
+.videoAndCommentsContainer {
+    flex-grow: 1;
 }

@@ -1,12 +1,14 @@
+import { Typography } from '@material-ui/core'
 import React from 'react'
-import classes from './style.module.scss'
 
-const CourseTitle = (props: { text: string }): JSX.Element => {
-    return (
-        <div className={classes.title}>
-            <span>{props.text}</span>
-        </div>
-    )
+type Props = {
+    title: string
+}
+
+const CourseTitle = (props: Props): JSX.Element => {
+    const { title } = props
+
+    return <Typography variant="h3">{title}</Typography>
 }
 
 export default CourseTitle
