@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@material-ui/core'
+import { Button, Menu, MenuItem } from '@material-ui/core'
 import Link from 'next/link'
 import HomeIcon from '@material-ui/icons/Home'
 import BreadCrumb from './BreadCrumb'
@@ -8,9 +8,25 @@ import Avatar from 'components/Avatar'
 import classes from './style.module.scss'
 
 const Header = (): JSX.Element => {
-    // const [isLogged, setIsLogged] = React.useState(false)
-    const isLogged = false
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+
+    const localStorage = typeof window !== 'undefined' && window.localStorage
+    const isLogged = localStorage && localStorage.getItem('token')
     const nickname = '' // replace by real nickname
+
+    const logout = () => {
+        localStorage.removeItem('token')
+        setAnchorEl(null)
+    }
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
     return (
         <>
             <div className={classes.header}>
@@ -23,10 +39,31 @@ const Header = (): JSX.Element => {
                     <SearchBar />
                     {isLogged ? (
                         <div className={classes.avatar}>
-                            <Avatar
-                                withNickname
-                                nickname={nickname || 'invité'}
-                            />
+                            <Button
+                                aria-controls="simple-menu"
+                                aria-haspopup="true"
+                                onClick={handleClick}
+                            >
+                                <Avatar
+                                    withNickname
+                                    nickname={nickname || 'invité'}
+                                />
+                            </Button>
+                            <Menu
+                                id="simple-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>
+                                    Profile
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    My account
+                                </MenuItem>
+                                <MenuItem onClick={logout}>Logout</MenuItem>
+                            </Menu>
                         </div>
                     ) : (
                         <div className={classes.connectionContainer}>

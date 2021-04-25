@@ -1,18 +1,13 @@
 import { Button, Typography, Divider } from '@material-ui/core'
+import useAxios from 'axios-hooks'
 import Avatar from 'components/Avatar'
 import React from 'react'
 
 import classes from './style.module.scss'
 
 type Props = {
-    course: {
-        author: {
-            nickname: string
-            avatarSrc?: string
-        }
-        title: string
-        description: string
-    }
+    authorId: number
+    description: string
 }
 
 const CourseDescription = (props: Props): JSX.Element => {
@@ -21,22 +16,30 @@ const CourseDescription = (props: Props): JSX.Element => {
         setShouldDisplayFullDescription
     ] = React.useState(false)
 
-    const { course } = props
+    const [author, setAuthor] = React.useState({ nickname: '', avatarSrc: '' })
+    const { authorId, description } = props
 
-    const { author } = course
+    const [{ data, loading }] = useAxios(
+        `https://pokeapi.co/api/v2/pokemon/${authorId}`
+    )
 
-    const descriptionPreview =
-        course.description.length >= 500
-            ? `${course.description.substring(0, 400)} ...`
-            : course.description
+    React.useEffect(() => {
+        if (data) {
+            setAuthor({
+                nickname: data.name,
+                avatarSrc: data.sprites.front_default
+            })
+        }
+    }, [data])
 
-    return (
+    const longDescription = description?.length >= 500
+
+    const descriptionPreview = longDescription
+        ? `${description.substring(0, 400)} ...`
+        : description
+
+    return !loading ? (
         <div className={classes.courseDescriptionContainer}>
-            <div className={classes.titleContainer}>
-                <Typography variant="h5">{course.title}</Typography>
-            </div>
-
-            <Divider />
             <div className={classes.container}>
                 <div className={classes.authorContainer}>
                     <Avatar
@@ -48,27 +51,29 @@ const CourseDescription = (props: Props): JSX.Element => {
                 <div className={classes.descriptionContainer}>
                     <Typography variant="body1">
                         {shouldDisplayFullDescription
-                            ? course.description
+                            ? description
                             : descriptionPreview}
                     </Typography>
-                    <Button
-                        size="small"
-                        classes={{ root: classes.showMoreButton }}
-                        onClick={() => {
-                            setShouldDisplayFullDescription(
-                                !shouldDisplayFullDescription
-                            )
-                        }}
-                    >
-                        {shouldDisplayFullDescription
-                            ? 'Voir moins'
-                            : 'Voir plus'}
-                    </Button>
+                    {longDescription && (
+                        <Button
+                            size="small"
+                            classes={{ root: classes.showMoreButton }}
+                            onClick={() => {
+                                setShouldDisplayFullDescription(
+                                    !shouldDisplayFullDescription
+                                )
+                            }}
+                        >
+                            {shouldDisplayFullDescription
+                                ? 'Voir moins'
+                                : 'Voir plus'}
+                        </Button>
+                    )}
                 </div>
             </div>
             <Divider />
         </div>
-    )
+    ) : null
 }
 
 export default CourseDescription

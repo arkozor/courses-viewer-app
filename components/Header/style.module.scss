@@ -40,7 +40,7 @@
     display: flex;
     justify-content: flex-end;
     margin-top: $spacing_sm;
-
+    padding: 0 16px;
     @media (min-width: $breakpoints_media_smMin) {
         margin-top: 0;
     }

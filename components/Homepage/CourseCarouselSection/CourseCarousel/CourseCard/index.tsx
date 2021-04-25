@@ -20,7 +20,11 @@ const CourseCard = (props: Props): JSX.Element => {
     const { title, description, thumbnail, id } = props
 
     return (
-        <Link href={`course/${id}`} underline="none" className={classes.link}>
+        <Link
+            href={`course/${id}/?chapter=0&subchapter=0`}
+            underline="none"
+            className={classes.link}
+        >
             <Card raised classes={{ root: classes.card }}>
                 <CardMedia
                     className={classes.media}

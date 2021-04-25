@@ -12,8 +12,21 @@
     }
 }
 
+.progress {
+    position: absolute;
+    color: $primary !important;
+    width: 30px !important;
+    height: 30px !important;
+}
+
 .button {
     background-color: $secondary_dark !important;
+}
+
+.buttonText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {

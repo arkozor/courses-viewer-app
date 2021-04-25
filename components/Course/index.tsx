@@ -1,9 +1,13 @@
 import CourseTitle from 'components/Course/CourseTitle'
 import VideoPlayer from 'components/Course/CourseVideo'
+import { useRouter } from 'next/router'
 import React from 'react'
 import CommentSection from './CommentSection'
+import CourseChapter from './CourseChapter'
+import ChapterTitle from './ChapterTitle'
 import CourseDescription from './CourseDescription'
 import classes from './style.module.scss'
+import { ChapterType, CourseType, SubChapterType } from './types'
 
 const commentList = [
     {
@@ -60,33 +64,54 @@ const commentList = [
     }
 ]
 
-const course = {
-    title: 'Les bases du C#',
-    author: {
-        nickname: 'Mario',
-        avatarSrc:
-            'http://mgt.stelabouras.com/super-mario-run/super-mario-run@128.jpg'
-    },
-    description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras volutpat id mauris vel fermentum. Aliquam et posuere est, et faucibus ante. Suspendisse potenti. Vestibulum fringilla nisl sit amet tellus faucibus mattis. Donec imperdiet risus ac mi tincidunt ullamcorper. Pellentesque condimentum dui in fringilla accumsan. Nulla sit amet magna vestibulum, ultrices odio a, tempor erat. Curabitur vestibulum ex mi, in elementum dolor egestas sit amet. Praesent imperdiet orci a urna placerat fermentum. Suspendisse vitae arcu eget ipsum cursus tristique. Sed quis sodales nibh. Fusce dapibus semper mauris, ullamcorper bibendum velit pulvinar ut.'
-}
-
 type Props = {
-    id: string | string[]
+    course?: CourseType
 }
 
 const Course = (props: Props): JSX.Element => {
-    const { id } = props //axios.get(id)
+    const { course } = props
+
+    const router = useRouter()
+
+    const {
+        chapter: chapterSearchParam,
+        subchapter: subchapterSearchParam
+    } = router.query
+
+    const chapterNumber = chapterSearchParam ? Number(chapterSearchParam) : 0
+
+    const subChapterNumber = subchapterSearchParam
+        ? Number(subchapterSearchParam)
+        : 0
+
+    const getCurrentChapter = (): ChapterType | SubChapterType => {
+        if (course?.chapters) {
+            if (subChapterNumber) {
+                return course?.chapters[chapterNumber]?.subchapters[
+                    subChapterNumber
+                ]
+            } else {
+                return course?.chapters[chapterNumber]
+            }
+        }
+        return null
+    }
+
+    const currentChapter = getCurrentChapter()
 
     return (
         <div className={classes.container}>
             <div className={classes.videoAndCommentsContainer}>
-                <CourseTitle title={`${id} CSharp - les bases`} />
-                <VideoPlayer poster={'/images/JDG.png'} />
-                <CourseDescription course={course} />
+                <CourseTitle title={course?.title} />
+                <VideoPlayer chapter={currentChapter} />
+                <ChapterTitle chapter={currentChapter} />
+                <CourseDescription
+                    description={currentChapter?.description}
+                    authorId={course?.publisher_id}
+                />
                 <CommentSection comments={commentList} />
             </div>
-            <div className={classes.chapterContainer}>Chapters</div>
+            <CourseChapter chapters={course?.chapters} />
         </div>
     )
 }
