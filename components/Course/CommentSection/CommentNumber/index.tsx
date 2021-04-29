@@ -21,7 +21,11 @@ const CommentNumber = (props: Props): JSX.Element => {
         setTotalComments(totalComments + totalAnswerLength)
     }, [])
 
-    return <Typography variant="h6">{totalComments} Commentaires</Typography>
+    return (
+        <Typography variant="h6" component="span">
+            {totalComments} Commentaires
+        </Typography>
+    )
 }
 
 export default CommentNumber

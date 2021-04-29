@@ -1,5 +1,5 @@
 import { Button, Typography, Divider } from '@material-ui/core'
-import useAxios from 'axios-hooks'
+import axios from 'axios'
 import Avatar from 'components/Avatar'
 import React from 'react'
 
@@ -17,21 +17,39 @@ const CourseDescription = (props: Props): JSX.Element => {
     ] = React.useState(false)
 
     const [author, setAuthor] = React.useState({ nickname: '', avatarSrc: '' })
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [hasError, setHasError] = React.useState(false)
+
     const { authorId, description } = props
 
-    const [{ data, loading }] = useAxios({
-        url: `https://pokeapi.co/api/v2/pokemon/${authorId}`,
-        timeout: 2000
-    })
+    const getAuthorInfos = () => {
+        setIsLoading(true)
+        axios
+            .get(`https://pokeapi.co/api/v2/pokemon/${authorId}`, {
+                timeout: 3000
+            })
+            .then((res) => {
+                setAuthor({
+                    nickname: res.data.name,
+                    avatarSrc: res.data.sprites.front_default
+                })
+            })
+            .catch(() => {
+                setIsLoading(false)
+                setHasError(true)
+            })
+    }
 
     React.useEffect(() => {
-        if (data) {
-            setAuthor({
-                nickname: data.name,
-                avatarSrc: data.sprites.front_default
-            })
+        if (authorId) {
+            getAuthorInfos()
         }
-    }, [data])
+        if (hasError) {
+            setTimeout(() => {
+                setHasError(false)
+            }, 3000)
+        }
+    }, [authorId])
 
     const longDescription = description?.length >= 500
 
@@ -39,7 +57,7 @@ const CourseDescription = (props: Props): JSX.Element => {
         ? `${description.substring(0, 400)} ...`
         : description
 
-    return !loading ? (
+    return !isLoading && !hasError ? (
         <div className={classes.courseDescriptionContainer}>
             <div className={classes.container}>
                 <div className={classes.authorContainer}>

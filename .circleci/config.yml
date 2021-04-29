@@ -8,7 +8,7 @@ jobs:
     steps:
       - run:
           name: Deploy Over SSH
-          command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull; npm install; npm run dev;"
+          command: ssh -p 43002 $SSH_USER@$SSH_HOST "cd /var/www/html/courses-viewer-app; git pull; npm install; npm build; npm start;"
 
 workflows:
   tests:
