@@ -4,6 +4,7 @@ import Course from 'components/Course'
 import { useRouter } from 'next/router'
 import { CircularProgress, Backdrop } from '@material-ui/core'
 import axios from 'axios'
+import ErrorComponent from 'components/ErrorComponent'
 
 const CoursePage = (): JSX.Element => {
     const router = useRouter()
@@ -37,7 +38,12 @@ const CoursePage = (): JSX.Element => {
     }, [])
 
     if (hasError) {
-        return <div>BOOOM</div>
+        return (
+            <ErrorComponent
+                errorNum="404"
+                errorText="Bah alors, on est perdu ?"
+            />
+        )
     }
 
     return isLoading ? (
