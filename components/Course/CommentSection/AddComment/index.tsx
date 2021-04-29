@@ -52,6 +52,7 @@ const AddComment = (props: Props): JSX.Element => {
                     onFocus={() => {
                         setIsFocused(true)
                     }}
+                    autoFocus={isAnswer}
                     value={comment}
                     error={hasError}
                     helperText={

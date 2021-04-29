@@ -1,6 +1,5 @@
 import React from 'react'
 import coursesPreviewList from './CourseCarousel/CoursesProvider/courses.json'
-
 import CourseCarousel from './CourseCarousel'
 import CarouselTitle from './CarouselTitle'
 
@@ -29,7 +28,7 @@ const CourseCarouselSection = (): JSX.Element => {
                 return (
                     <div key={title} className={classes.subSectionContainer}>
                         <CarouselTitle title={title} />
-                        {/* @ts-expect-error  waiting for BE */}
+                        {/* @ts-expect-error remove when we will have real data */}
                         <CourseCarousel coursesPreviewList={coursesPreview} />
                     </div>
                 )

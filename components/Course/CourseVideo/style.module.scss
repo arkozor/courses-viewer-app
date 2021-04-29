@@ -1,5 +1,15 @@
 @import 'theme/theme';
 
-.container {
+.videoContainer {
     padding: $spacing_lg 0;
+    height: 340px;
+    @media (min-width: $breakpoints_media_smMin) {
+        height: 340px;
+    }
+    @media (min-width: $breakpoints_media_mdMin) {
+        height: 500px;
+    }
+    @media (min-width: $breakpoints_media_lgMin) {
+        height: 620px;
+    }
 }

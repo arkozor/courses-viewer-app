@@ -1,8 +1,7 @@
 import React from 'react'
 
 import Layout from 'components/Layout'
-// import App from "next/app";
-import type { AppProps /*, AppContext */ } from 'next/app'
+import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import './style.scss'
 

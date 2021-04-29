@@ -7,3 +7,14 @@
 .videoAndCommentsContainer {
     flex-grow: 1;
 }
+
+.chapterContainer {
+    width: 600px;
+}
+
+.descriptionContainer {
+    padding: $spacing_sm;
+    margin: $spacing_md 0;
+    background-color: #faf9fa;
+    border-radius: 16px;
+}

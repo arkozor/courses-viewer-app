@@ -1,23 +1,25 @@
 import React from 'react'
-import { Player } from 'video-react'
-import 'video-react/dist/video-react.css'
+import ReactPlayer from 'react-player'
+import { ChapterType, SubChapterType } from '../types'
 
 import classes from './style.module.scss'
+
 type Props = {
-    poster: string
+    chapter: ChapterType | SubChapterType
 }
-
 const VideoPlayer = (props: Props): JSX.Element => {
-    const { poster } = props
+    const { chapter } = props
 
-    return (
-        <div className={classes.container}>
-            <Player poster={poster}>
-                <source src="http://peach.themazzone.com/durian/movies/sintel-1024-surround.mp4" />
-                <source src="http://mirrorblender.top-ix.org/movies/sintel-1024-surround.mp4" />
-            </Player>
+    return chapter ? (
+        <div className={classes.videoContainer}>
+            <ReactPlayer
+                url="https://www.youtube.com/watch?v=9Hb0A6NEXjY&t=644s"
+                height="100%"
+                width="100%"
+                controls
+            />
         </div>
-    )
+    ) : null
 }
 
 export default VideoPlayer
