@@ -1,5 +1,6 @@
 import React from 'react'
 import Course from 'components/Course'
+import Error from 'components/Error'
 import useAxios from 'axios-hooks'
 
 import { useRouter } from 'next/router'
@@ -15,18 +16,17 @@ const CoursePage = (): JSX.Element => {
 
     const [{ data, loading, error }] = useAxios({
         url: `http://idboard.net:43001/courses-viewer-api/public/index.php/api/courses/${id}`,
-        headers: { Authorization: `Bearer ${token}` },
-        timeout: 2000
+        headers: { Authorization: `Bearer ${token}` }
     })
 
     React.useEffect(() => {
         if (!loading) {
-            setCourse(JSON.parse(data?.data))
+            setCourse(data?.data)
         }
     }, [id, data])
 
     if (error) {
-        return <div>BOOOM</div>
+        return <Error errorNum="404" errorText="Bah alors, on est perdu ?" />
     }
     return loading ? (
         <Backdrop open={loading} invisible>
