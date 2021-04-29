@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core'
 
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import React from 'react'
 import classes from './style.module.scss'
 
@@ -16,6 +17,7 @@ type LoginPostParams = {
 }
 
 const Login = (): JSX.Element => {
+    const router = useRouter()
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const [hasError, setHasError] = React.useState(false)
@@ -43,27 +45,23 @@ const Login = (): JSX.Element => {
     }
 
     const signIn = async ({ email, password }: LoginPostParams) => {
-        try {
-            setIsLoading(true)
-            await axios
-                .post(
-                    'http://idboard.net:43001/courses-viewer-api/public/index.php/api/auth/login',
-                    {
-                        email,
-                        password
-                    }
-                )
-                .then((res) =>
-                    localStorage.setItem('token', res.data.data.token)
-                )
-            if (!hasError && localStorage.getItem('token')) {
-                window.location.pathname = '/'
-            }
-
+        setIsLoading(true)
+        await axios
+            .post(
+                'http://idboard.net:43001/courses-viewer-api/public/index.php/api/auth/login',
+                {
+                    email,
+                    password
+                }
+            )
+            .then((res) => localStorage.setItem('token', res.data.data.token))
+            .catch(() => {
+                setHasError(true)
+                setIsLoading(false)
+            })
+        if (!hasError && localStorage.getItem('token')) {
             setIsLoading(false)
-        } catch (e) {
-            setHasError(true)
-            setIsLoading(false)
+            router.push('/')
         }
     }
 
@@ -80,6 +78,11 @@ const Login = (): JSX.Element => {
                                 label="Email"
                                 onChange={(e) => handleEmail(e)}
                                 value={email}
+                                onKeyPress={(e) => {
+                                    if (e.key === 'Enter') {
+                                        signIn({ email, password })
+                                    }
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -98,21 +101,30 @@ const Login = (): JSX.Element => {
                                         </Typography>
                                     )
                                 }
+                                onKeyPress={(e) => {
+                                    if (e.key === 'Enter') {
+                                        signIn({ email, password })
+                                    }
+                                }}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <div>
                                 <Button
                                     classes={{
-                                        root: classes.button,
-                                        disabled: classes.disabledButton
+                                        root: classes.button
                                     }}
                                     variant="contained"
                                     color="primary"
                                     onClick={() => {
                                         signIn({ email, password })
                                     }}
-                                    disabled={isLoading || hasError}
+                                    disabled={
+                                        !email ||
+                                        !password ||
+                                        isLoading ||
+                                        hasError
+                                    }
                                 >
                                     <div className={classes.buttonText}>
                                         Se connecter
