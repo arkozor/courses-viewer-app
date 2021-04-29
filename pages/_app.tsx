@@ -33,11 +33,11 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 //
-// MyApp.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
+// CoursesViewerApp.getInitialProps = async (appContext: AppContext) => {
+//     // calls page's `getInitialProps` and fills `appProps.pageProps`
+//     const appProps = await App.getInitialProps(appContext)
 
-//   return { ...appProps }
+//     return { ...appProps }
 // }
 
 export default CoursesViewerApp

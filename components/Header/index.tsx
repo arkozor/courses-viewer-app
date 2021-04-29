@@ -6,10 +6,11 @@ import BreadCrumb from './BreadCrumb'
 import SearchBar from './SearchBar'
 import Avatar from 'components/Avatar'
 import classes from './style.module.scss'
+import { useRouter } from 'next/router'
 
 const Header = (): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-
+    const router = useRouter()
     const localStorage = typeof window !== 'undefined' && window.localStorage
     const isLogged = localStorage && localStorage.getItem('token')
     const nickname = '' // replace by real nickname
@@ -17,6 +18,7 @@ const Header = (): JSX.Element => {
     const logout = () => {
         localStorage.removeItem('token')
         setAnchorEl(null)
+        router.push('/')
     }
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

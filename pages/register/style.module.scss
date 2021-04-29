@@ -1,7 +1,7 @@
 @import 'theme/theme';
 
 .form {
-    margin-top: $spacing_xxl;
+    margin: $spacing_xxl 0;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -15,8 +15,23 @@
 .button {
     background-color: $secondary_dark !important;
 }
-
+.buttonText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container {
     display: flex;
     justify-content: center;
+}
+
+.textfield {
+    margin: $spacing_sm 0;
+}
+
+.progress {
+    position: absolute;
+    color: $primary !important;
+    width: 30px !important;
+    height: 30px !important;
 }
