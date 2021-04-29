@@ -13,9 +13,10 @@ const CoursePage = (): JSX.Element => {
         typeof window !== 'undefined' && window.localStorage.getItem('token')
     const [course, setCourse] = React.useState()
 
-    const [{ data, loading }] = useAxios({
+    const [{ data, loading, error }] = useAxios({
         url: `http://idboard.net:43001/courses-viewer-api/public/index.php/api/courses/${id}`,
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
+        timeout: 2000
     })
 
     React.useEffect(() => {
@@ -24,6 +25,9 @@ const CoursePage = (): JSX.Element => {
         }
     }, [id, data])
 
+    if (error) {
+        return <div>BOOOM</div>
+    }
     return loading ? (
         <Backdrop open={loading} invisible>
             <CircularProgress color="inherit" />

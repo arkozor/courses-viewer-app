@@ -21,7 +21,7 @@ const CourseCard = (props: Props): JSX.Element => {
 
     return (
         <Link
-            href={`course/${id}/?chapter=0&subchapter=0`}
+            href={`course/${id}/?chapter=0`}
             underline="none"
             className={classes.link}
         >

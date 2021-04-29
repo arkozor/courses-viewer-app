@@ -19,9 +19,10 @@ const CourseDescription = (props: Props): JSX.Element => {
     const [author, setAuthor] = React.useState({ nickname: '', avatarSrc: '' })
     const { authorId, description } = props
 
-    const [{ data, loading }] = useAxios(
-        `https://pokeapi.co/api/v2/pokemon/${authorId}`
-    )
+    const [{ data, loading }] = useAxios({
+        url: `https://pokeapi.co/api/v2/pokemon/${authorId}`,
+        timeout: 2000
+    })
 
     React.useEffect(() => {
         if (data) {
