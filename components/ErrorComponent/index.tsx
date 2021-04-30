@@ -25,7 +25,7 @@ const ErrorComponent = (props: props): JSX.Element => {
             <Typography variant="subtitle1" component="h2">
                 {errorText}
             </Typography>
-            <img className={classes.img} src={Error404} />
+            <Error404 />
         </div>
     )
 }
