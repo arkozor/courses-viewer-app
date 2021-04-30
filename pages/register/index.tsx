@@ -49,7 +49,7 @@ const Register = (): JSX.Element => {
                         router.push('/')
                     }
                 })
-                .catch(() => {
+                .catch((e) => {
                     setIsLoading(false)
                     throw new Error(e.message)
                 })
