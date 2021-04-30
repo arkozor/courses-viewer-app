@@ -12,20 +12,21 @@ const ErrorComponent = (props: props): JSX.Element => {
     const { errorNum, errorText } = props
     return (
         <div className={classes.container}>
-            <div className={classes.logoContainer}>
-                <img
-                    className={classes.logo}
-                    src="/images/error_logo_.png"
-                    alt="nul"
-                />
+            <div>
+                <Typography variant="h1" component="h2">
+                    {errorNum}
+                </Typography>
+                <Typography variant="subtitle1" component="h2">
+                    {errorText}
+                </Typography>
             </div>
-            <Typography variant="h1" component="h2">
-                {errorNum}
-            </Typography>
-            <Typography variant="subtitle1" component="h2">
-                {errorText}
-            </Typography>
-            <Error404 />
+
+            <img
+                className={classes.logo}
+                src="/images/error_logo_.png"
+                alt="nul"
+            />
+            <Error404 className={classes.wave} />
         </div>
     )
 }

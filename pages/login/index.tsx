@@ -47,13 +47,10 @@ const Login = (): JSX.Element => {
     const signIn = async ({ email, password }: LoginPostParams) => {
         setIsLoading(true)
         await axios
-            .post(
-                'http://idboard.net:43001/courses-viewer-api/public/index.php/api/auth/login',
-                {
-                    email,
-                    password
-                }
-            )
+            .post(`${process.env.AUTH_API}/login`, {
+                email,
+                password
+            })
             .then((res) => localStorage.setItem('token', res.data.data.token))
             .catch(() => {
                 setHasError(true)

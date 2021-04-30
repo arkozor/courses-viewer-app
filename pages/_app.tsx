@@ -4,27 +4,38 @@ import Layout from 'components/Layout'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import './style.scss'
+import ErrorBoundary from 'components/ErrorComponent/ErrorBoundary'
+import ErrorComponent from 'components/ErrorComponent'
 
 const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     return (
-        <Layout>
-            <Head>
-                <link
-                    rel="preload"
-                    href="/fonts/Roboto/Roboto-Regular.ttf"
-                    as="font"
-                    crossOrigin=""
+        <ErrorBoundary
+            fallbackRender={({ error }) => (
+                <ErrorComponent
+                    errorNum={error.code}
+                    errorText={error.message}
                 />
-                <title>Courses Viewer App</title>
-                <link
-                    rel="preload"
-                    href="/fonts/Roboto/Roboto-Medium.ttf"
-                    as="font"
-                    crossOrigin=""
-                />
-            </Head>
-            <Component {...pageProps} />
-        </Layout>
+            )}
+        >
+            <Layout>
+                <Head>
+                    <link
+                        rel="preload"
+                        href="/fonts/Roboto/Roboto-Regular.ttf"
+                        as="font"
+                        crossOrigin=""
+                    />
+                    <title>Courses Viewer App</title>
+                    <link
+                        rel="preload"
+                        href="/fonts/Roboto/Roboto-Medium.ttf"
+                        as="font"
+                        crossOrigin=""
+                    />
+                </Head>
+                <Component {...pageProps} />
+            </Layout>
+        </ErrorBoundary>
     )
 }
 

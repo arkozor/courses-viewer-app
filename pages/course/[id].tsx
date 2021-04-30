@@ -18,25 +18,25 @@ const CoursePage = (): JSX.Element => {
     const [course, setCourse] = React.useState()
 
     React.useEffect(() => {
-        if (!course) {
+        if (!course && id) {
             setIsLoading(true)
             axios
-                .get(
-                    `http://idboard.net:43001/courses-viewer-api/public/index.php/api/courses/${id}`,
-                    {
-                        headers: { Authorization: `Bearer ${token}` },
-                        timeout: 6000
-                    }
-                )
-                .then((res) => setCourse(res.data.data))
-                .catch(() => {
+                .get(`${process.env.COURSE_API}/${id}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                })
+                .then((res) => {
+                    setCourse(res.data.data)
+                    setIsLoading(false)
+                })
+                .catch((e) => {
                     setIsLoading(false)
                     setHasError(true)
+                    throw new Error(e.message)
                 })
-            setIsLoading(false)
         }
-    }, [])
+    }, [course, id])
 
+    //User ErrorBoundary when it will be fully functional
     if (hasError) {
         return (
             <ErrorComponent
@@ -46,7 +46,7 @@ const CoursePage = (): JSX.Element => {
         )
     }
 
-    return isLoading ? (
+    return isLoading && !hasError ? (
         <Backdrop open={isLoading} invisible>
             <CircularProgress color="inherit" />
         </Backdrop>
