@@ -1,5 +1,6 @@
 import { Typography } from '@material-ui/core'
 import React from 'react'
+import Error404 from './ErrorImg/404.svg'
 import classes from './style.module.scss'
 
 type props = {
@@ -24,7 +25,7 @@ const ErrorComponent = (props: props): JSX.Element => {
             <Typography variant="subtitle1" component="h2">
                 {errorText}
             </Typography>
-            <img className={classes.img} src="./ErrorImg/404.svg" />
+            <img className={classes.img} src={Error404} />
         </div>
     )
 }
