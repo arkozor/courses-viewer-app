@@ -28,6 +28,7 @@
         "**/*.tsx",
         "next.config.js",
         "pages/_app.js",
-        "./jest-setup.ts"
+        "./jest-setup.ts",
+        "components/ErrorComponent/ErrorBoundary/index.jsx"
     ]
 }

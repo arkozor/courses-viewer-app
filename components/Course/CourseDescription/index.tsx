@@ -34,9 +34,9 @@ const CourseDescription = (props: Props): JSX.Element => {
                     avatarSrc: res.data.sprites.front_default
                 })
             })
-            .catch(() => {
+            .catch((e) => {
                 setIsLoading(false)
-                setHasError(true)
+                throw new Error(e.message)
             })
     }
 

@@ -34,17 +34,14 @@ const Register = (): JSX.Element => {
         if (canSendData) {
             setIsLoading(true)
             axios
-                .post(
-                    'http://idboard.net:43001/courses-viewer-api/public/index.php/api/auth/register',
-                    {
-                        name: lastname,
-                        firstname,
-                        nickname,
-                        password: password.value,
-                        email: email.value,
-                        password_confirmation: passwordConfirmation
-                    }
-                )
+                .post(`${process.env.AUTH_API}/register`, {
+                    name: lastname,
+                    firstname,
+                    nickname,
+                    password: password.value,
+                    email: email.value,
+                    password_confirmation: passwordConfirmation
+                })
                 .then((res) => {
                     window.localStorage.setItem('token', res?.data?.data.token)
                     setIsLoading(false)
@@ -54,7 +51,7 @@ const Register = (): JSX.Element => {
                 })
                 .catch(() => {
                     setIsLoading(false)
-                    setHasError(true)
+                    throw new Error(e.message)
                 })
         }
     }
