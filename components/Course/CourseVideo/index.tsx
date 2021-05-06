@@ -1,3 +1,4 @@
+import ErrorComponent from 'components/ErrorComponent'
 import React from 'react'
 import ReactPlayer from 'react-player'
 import { ChapterType, SubChapterType } from '../types'
@@ -10,16 +11,20 @@ type Props = {
 const VideoPlayer = (props: Props): JSX.Element => {
     const { chapter } = props
 
-    return chapter ? (
+    return (
         <div className={classes.videoContainer}>
-            <ReactPlayer
-                url="https://www.youtube.com/watch?v=9Hb0A6NEXjY&t=644s"
-                height="100%"
-                width="100%"
-                controls
-            />
+            {chapter ? (
+                <ReactPlayer
+                    url="https://www.youtube.com/watch?v=9Hb0A6NEXjY"
+                    height="100%"
+                    width="100%"
+                    controls
+                />
+            ) : (
+                <ErrorComponent errorText="La vidéo a disparu !" />
+            )}
         </div>
-    ) : null
+    )
 }
 
 export default VideoPlayer

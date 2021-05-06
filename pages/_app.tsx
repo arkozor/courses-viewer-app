@@ -4,38 +4,45 @@ import Layout from 'components/Layout'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import './style.scss'
-import ErrorBoundary from 'components/ErrorComponent/ErrorBoundary'
-import ErrorComponent from 'components/ErrorComponent'
+import { ErrorBoundary } from 'react-error-boundary'
 
 const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+    function ErrorFallback({ error, resetErrorBoundary }) {
+        return (
+            <div role="alert">
+                <p>Something went wrong:</p>
+                <pre>{error.message}</pre>
+                <button onClick={resetErrorBoundary}>Try again</button>
+            </div>
+        )
+    }
+
     return (
-        <ErrorBoundary
-            fallbackRender={({ error }) => (
-                <ErrorComponent
-                    errorNum={error.code}
-                    errorText={error.message}
+        <Layout>
+            <Head>
+                <link
+                    rel="preload"
+                    href="/fonts/Roboto/Roboto-Regular.ttf"
+                    as="font"
+                    crossOrigin=""
                 />
-            )}
-        >
-            <Layout>
-                <Head>
-                    <link
-                        rel="preload"
-                        href="/fonts/Roboto/Roboto-Regular.ttf"
-                        as="font"
-                        crossOrigin=""
-                    />
-                    <title>Courses Viewer App</title>
-                    <link
-                        rel="preload"
-                        href="/fonts/Roboto/Roboto-Medium.ttf"
-                        as="font"
-                        crossOrigin=""
-                    />
-                </Head>
+                <title>Courses Viewer App</title>
+                <link
+                    rel="preload"
+                    href="/fonts/Roboto/Roboto-Medium.ttf"
+                    as="font"
+                    crossOrigin=""
+                />
+            </Head>
+            <ErrorBoundary
+                FallbackComponent={ErrorFallback}
+                onReset={() => {
+                    // reset the state of your app so the error doesn't happen again
+                }}
+            >
                 <Component {...pageProps} />
-            </Layout>
-        </ErrorBoundary>
+            </ErrorBoundary>
+        </Layout>
     )
 }
 

@@ -101,17 +101,17 @@ const Course = (props: Props): JSX.Element => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.videoAndCommentsContainer}>
-                <CourseTitle title={course?.title} />
+            <CourseTitle title={course?.title} />
+            <div className={classes.navigationContainer}>
                 <VideoPlayer chapter={currentChapter} />
-                <ChapterTitle chapter={currentChapter} />
-                <CourseDescription
-                    description={currentChapter?.description}
-                    authorId={course?.publisher_id}
-                />
-                <CommentSection comments={commentList} />
+                <CourseChapter chapters={course?.chapters} />
             </div>
-            <CourseChapter chapters={course?.chapters} />
+            <ChapterTitle chapter={currentChapter} />
+            <CourseDescription
+                description={currentChapter?.description}
+                authorId={course?.publisher_id}
+            />
+            <CommentSection comments={commentList} />
         </div>
     )
 }

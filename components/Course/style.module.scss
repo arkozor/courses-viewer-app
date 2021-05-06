@@ -1,20 +1,22 @@
 @import 'theme/theme';
 
 .container {
-    display: flex;
-    padding: $spacing_md 64px;
-}
-.videoAndCommentsContainer {
-    flex-grow: 1;
-}
-
-.chapterContainer {
-    width: 600px;
+    margin: $spacing_lg 0;
 }
 
 .descriptionContainer {
     padding: $spacing_sm;
     margin: $spacing_md 0;
     background-color: #faf9fa;
+}
+
+.navigationContainer {
+    overflow: hidden;
+    background-color: $pageBackground_light;
     border-radius: 16px;
+    margin: $spacing_lg 0;
+    padding: $spacing_lg;
+    @media (min-width: $breakpoints_media_mdMin) {
+        display: flex;
+    }
 }

@@ -1,8 +1,7 @@
 @import 'theme/theme';
 
 .videoContainer {
-    padding: $spacing_lg 0;
-    height: 340px;
+    width: 100%;
     @media (min-width: $breakpoints_media_smMin) {
         height: 340px;
     }

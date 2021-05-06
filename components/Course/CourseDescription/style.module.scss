@@ -13,9 +13,12 @@ $avatarWidth: 40 + $spacing_sm;
     background-color: #faf9fa;
     border-radius: 16px;
 }
+
 .authorContainer {
     display: flex;
     align-items: center;
+    min-width: 50px;
+    min-height: 50px;
 }
 
 .descriptionContainer {
@@ -25,4 +28,11 @@ $avatarWidth: 40 + $spacing_sm;
 .showMoreButton {
     margin-top: $spacing_sm !important;
     padding: 0 !important;
+}
+
+.progress {
+    position: absolute;
+    color: $primary !important;
+    width: 50px !important;
+    height: 50px !important;
 }

@@ -1,4 +1,9 @@
-import { Button, Typography, Divider } from '@material-ui/core'
+import {
+    Button,
+    Typography,
+    Divider,
+    CircularProgress
+} from '@material-ui/core'
 import axios from 'axios'
 import Avatar from 'components/Avatar'
 import React from 'react'
@@ -17,25 +22,24 @@ const CourseDescription = (props: Props): JSX.Element => {
     ] = React.useState(false)
 
     const [author, setAuthor] = React.useState({ nickname: '', avatarSrc: '' })
-    const [isLoading, setIsLoading] = React.useState(false)
+    const [isLoadingAvatar, setIsLoadingAvatar] = React.useState(false)
     const [hasError, setHasError] = React.useState(false)
 
     const { authorId, description } = props
 
     const getAuthorInfos = () => {
-        setIsLoading(true)
+        setIsLoadingAvatar(true)
         axios
-            .get(`https://pokeapi.co/api/v2/pokemon/${authorId}`, {
-                timeout: 3000
-            })
+            .get(`https://pokeapi.co/api/v2/pokemon/${authorId}`)
             .then((res) => {
                 setAuthor({
                     nickname: res.data.name,
                     avatarSrc: res.data.sprites.front_default
                 })
+                setIsLoadingAvatar(false)
             })
             .catch((e) => {
-                setIsLoading(false)
+                setIsLoadingAvatar(false)
                 throw new Error(e.message)
             })
     }
@@ -57,15 +61,23 @@ const CourseDescription = (props: Props): JSX.Element => {
         ? `${description.substring(0, 400)} ...`
         : description
 
-    return !isLoading && !hasError ? (
+    return (
         <div className={classes.courseDescriptionContainer}>
             <div className={classes.container}>
                 <div className={classes.authorContainer}>
-                    <Avatar
-                        nickname={author.nickname}
-                        src={author.avatarSrc}
-                        withNickname
-                    />
+                    {isLoadingAvatar ? (
+                        <CircularProgress
+                            classes={{
+                                root: classes.progress
+                            }}
+                        />
+                    ) : (
+                        <Avatar
+                            nickname={author.nickname}
+                            src={author.avatarSrc}
+                            withNickname
+                        />
+                    )}
                 </div>
                 <div className={classes.descriptionContainer}>
                     <Typography variant="body1">
@@ -92,7 +104,7 @@ const CourseDescription = (props: Props): JSX.Element => {
             </div>
             <Divider />
         </div>
-    ) : null
+    )
 }
 
 export default CourseDescription
