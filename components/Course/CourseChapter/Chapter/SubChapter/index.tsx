@@ -7,9 +7,11 @@ import {
     IconButton
 } from '@material-ui/core'
 import { SubChapterType } from 'components/Course/types'
-import { ExpandLess, ExpandMore, PlayArrow } from '@material-ui/icons'
+import { ExpandLess, ExpandMore, VideoLibrary } from '@material-ui/icons'
 import SubChapterResources from './SubChapterResources'
 import { useRouter } from 'next/router'
+
+import classes from './style.module.scss'
 
 type Props = {
     subchapter: SubChapterType
@@ -27,7 +29,12 @@ const SubChapter = (props: Props): JSX.Element => {
     const { subchapter, show } = props
     return (
         <Collapse in={show} key={subchapter.id}>
-            <ListItem button onClick={handleClick} disableGutters>
+            <ListItem
+                button
+                onClick={handleClick}
+                disableGutters
+                className={classes.listItem}
+            >
                 <ListItemIcon>
                     <IconButton
                         onClick={(e) => {
@@ -39,16 +46,19 @@ const SubChapter = (props: Props): JSX.Element => {
                                 }
                             })
                         }}
+                        className={classes.iconButton}
                     >
-                        <PlayArrow />
+                        <VideoLibrary />
                     </IconButton>
                 </ListItemIcon>
                 <ListItemText primary={subchapter.title} />
-                {subchapter.resources.length && open ? (
-                    <ExpandLess />
-                ) : (
-                    <ExpandMore />
-                )}
+                {subchapter.resources.length ? (
+                    open ? (
+                        <ExpandLess />
+                    ) : (
+                        <ExpandMore />
+                    )
+                ) : null}
             </ListItem>
             {subchapter.resources.map((resource) => (
                 <SubChapterResources

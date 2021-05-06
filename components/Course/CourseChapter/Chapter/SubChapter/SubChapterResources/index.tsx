@@ -3,10 +3,11 @@ import {
     Collapse,
     ListItem,
     ListItemText,
-    ListItemIcon
+    ListItemIcon,
+    IconButton
 } from '@material-ui/core'
 import { ResourceType } from 'components/Course/types'
-import { ExpandLess, ExpandMore } from '@material-ui/icons'
+
 import FolderIcon from '@material-ui/icons/Folder'
 
 import classes from './style.module.scss'
@@ -27,15 +28,27 @@ const SubChapterRessources = (props: Props): JSX.Element => {
 
     return (
         <Collapse in={show} key={resource.id}>
-            <ListItem button onClick={handleClick} disableGutters disableRipple>
+            <ListItem
+                button
+                onClick={handleClick}
+                disableGutters
+                disableRipple
+                className={classes.listItem}
+            >
                 <ListItemIcon>
-                    <FolderIcon />
+                    <IconButton
+                        className={classes.iconButton}
+                        onClick={() => {
+                            /*Todo open ressource*/
+                        }}
+                    >
+                        <FolderIcon />
+                    </IconButton>
                 </ListItemIcon>
                 <ListItemText
                     primary={resource.title}
                     className={classes.listItemText}
                 />
-                {resource && open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
         </Collapse>
     )
