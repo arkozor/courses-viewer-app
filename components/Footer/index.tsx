@@ -1,7 +1,9 @@
-import classes from './style.module.scss'
-import Breadcrumbs from 'components/Header/BreadCrumb'
 import React from 'react'
+
 import { Typography } from '@material-ui/core'
+import Breadcrumbs from 'components/Header/BreadCrumb'
+
+import classes from './style.module.scss'
 
 const Footer = (): JSX.Element => {
     return (

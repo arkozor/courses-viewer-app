@@ -1,5 +1,7 @@
-import Avatar from 'components/Avatar'
 import React from 'react'
+
+import Avatar from 'components/Avatar'
+
 import classes from './style.module.scss'
 
 type Props = {

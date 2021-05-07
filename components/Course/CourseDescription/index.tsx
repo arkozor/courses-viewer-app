@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
     Button,
     Typography,
@@ -6,7 +8,6 @@ import {
 } from '@material-ui/core'
 import axios from 'axios'
 import Avatar from 'components/Avatar'
-import React from 'react'
 
 import classes from './style.module.scss'
 

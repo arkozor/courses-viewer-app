@@ -1,5 +1,7 @@
-import { Divider, Typography } from '@material-ui/core'
 import React from 'react'
+
+import { Divider, Typography } from '@material-ui/core'
+
 import classes from './style.module.scss'
 
 type props = {

@@ -1,0 +1,33 @@
+@import 'theme/theme';
+
+.listItem {
+    padding: 0 !important;
+    padding-left: $spacing_lg !important;
+    background-color: $secondary_dark !important;
+    border-radius: 8px !important;
+    color: white !important;
+    margin-bottom: $spacing_sm !important;
+}
+
+.descriptionContainer {
+    margin-top: $spacing_md;
+    padding: $spacing_md;
+    margin-left: 30px;
+    border-radius: 8px;
+    background: $pageBackground;
+    word-break: break-all;
+    max-width: 400px;
+}
+
+.showMoreButton {
+    color: $secondary_dark !important;
+    margin: $spacing_sm 0 !important;
+}
+
+.iconButton {
+    color: white !important;
+}
+
+.resourcesContainer {
+    margin-top: $spacing_md;
+}

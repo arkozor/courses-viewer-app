@@ -1,9 +1,10 @@
-import { Typography, Divider } from '@material-ui/core'
 import React from 'react'
+
+import { Typography, Divider } from '@material-ui/core'
+import { ChapterType, SubChapterType } from 'components/Course/types'
 import moment from 'moment'
 
 import classes from './style.module.scss'
-import { ChapterType, SubChapterType } from 'components/Course/types'
 
 type Props = {
     chapter: ChapterType | SubChapterType

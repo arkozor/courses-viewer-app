@@ -1,7 +1,9 @@
 import React from 'react'
+
 import { Chip, Typography } from '@material-ui/core'
-import classes from './style.module.scss'
 import classnames from 'classnames'
+
+import classes from './style.module.scss'
 
 const ChipFilters = (): JSX.Element => {
     const [selectedChip, setSelectedChip] = React.useState('')

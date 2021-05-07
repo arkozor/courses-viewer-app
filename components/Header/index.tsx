@@ -1,12 +1,14 @@
 import React from 'react'
+
 import { Button, Menu, MenuItem } from '@material-ui/core'
-import Link from 'next/link'
 import HomeIcon from '@material-ui/icons/Home'
+import Avatar from 'components/Avatar'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 import BreadCrumb from './BreadCrumb'
 import SearchBar from './SearchBar'
-import Avatar from 'components/Avatar'
 import classes from './style.module.scss'
-import { useRouter } from 'next/router'
 
 const Header = (): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)

@@ -1,9 +1,10 @@
 import React from 'react'
+
 import { Button, TextField } from '@material-ui/core'
 import SendIcon from '@material-ui/icons/Send'
+import Avatar from 'components/Avatar'
 
 import classes from './style.module.scss'
-import Avatar from 'components/Avatar'
 
 type Props = {
     isAnswer?: boolean

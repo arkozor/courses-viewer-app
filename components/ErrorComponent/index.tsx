@@ -1,5 +1,7 @@
-import { Typography } from '@material-ui/core'
 import React from 'react'
+
+import { Typography } from '@material-ui/core'
+
 import Error404 from './ErrorImg/404.svg'
 import classes from './style.module.scss'
 

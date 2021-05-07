@@ -1,7 +1,7 @@
 import React from 'react'
+
 import { ChapterType } from '../types'
 import Chapter from './Chapter'
-
 import classes from './style.module.scss'
 
 type Props = {

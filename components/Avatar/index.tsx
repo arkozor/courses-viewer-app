@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Avatar as MUIAvatar, Typography } from '@material-ui/core'
 
 import classes from './style.module.scss'

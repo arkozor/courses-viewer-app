@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { Typography } from '@material-ui/core'
+
 import { CommentType } from '../types'
 
 type Props = {

@@ -1,21 +1,23 @@
-import ErrorComponent from 'components/ErrorComponent'
 import React from 'react'
-import ReactPlayer from 'react-player'
-import { ChapterType, SubChapterType } from '../types'
 
+import ErrorComponent from 'components/ErrorComponent'
+import ReactPlayer from 'react-player'
+
+import { SubChapterType } from '../types'
 import classes from './style.module.scss'
 
 type Props = {
-    chapter: ChapterType | SubChapterType
+    subChapter: SubChapterType
 }
 const VideoPlayer = (props: Props): JSX.Element => {
-    const { chapter } = props
+    const { subChapter } = props
+    const videoLocation = subChapter?.video_location
 
     return (
         <div className={classes.videoContainer}>
-            {chapter ? (
+            {videoLocation ? (
                 <ReactPlayer
-                    url="https://www.youtube.com/watch?v=9Hb0A6NEXjY"
+                    url={videoLocation}
                     height="100%"
                     width="100%"
                     controls

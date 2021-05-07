@@ -1,12 +1,14 @@
 {
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint", "import"],
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
         "plugin:@typescript-eslint/recommended",
         "prettier",
-        "prettier/@typescript-eslint"
+        "prettier/@typescript-eslint",
+        "plugin:import/errors",
+        "plugin:import/warnings"
     ],
     "env": {
         "es6": true,
@@ -15,6 +17,7 @@
         "node": true
     },
     "rules": {
+        "import/no-unresolved": [0, { "caseSensitive": false }],
         "react/react-in-jsx-scope": 0,
         "react/display-name": 0,
         "react/prop-types": 0,
@@ -35,6 +38,25 @@
             2,
             {
                 "allow": ["warn", "error"]
+            }
+        ],
+        "import/order": [
+            2,
+            {
+                "groups": ["builtin", "external", "internal"],
+                "pathGroups": [
+                    {
+                        "pattern": "react",
+                        "group": "external",
+                        "position": "before"
+                    }
+                ],
+                "pathGroupsExcludedImportTypes": ["react"],
+                "newlines-between": "always",
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                }
             }
         ]
     }

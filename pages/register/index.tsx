@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
     Box,
     Button,
@@ -8,7 +10,7 @@ import {
 } from '@material-ui/core'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import React from 'react'
+
 import classes from './style.module.scss'
 
 const Register = (): JSX.Element => {

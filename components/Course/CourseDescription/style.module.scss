@@ -10,7 +10,7 @@ $avatarWidth: 40 + $spacing_sm;
 .container {
     padding: $spacing_sm;
     margin: $spacing_md 0;
-    background-color: #faf9fa;
+    background-color: $pageBackground_light;
     border-radius: 16px;
 }
 

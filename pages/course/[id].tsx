@@ -1,9 +1,9 @@
 import React from 'react'
-import Course from 'components/Course'
 
-import { useRouter } from 'next/router'
 import { CircularProgress, Backdrop } from '@material-ui/core'
 import axios from 'axios'
+import Course from 'components/Course'
+import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
