@@ -1,12 +1,13 @@
 import React from 'react'
+
 import {
     OutlinedInput,
     Button,
     InputAdornment,
     IconButton
 } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
 import CloseIcon from '@material-ui/icons/Close'
+import SearchIcon from '@material-ui/icons/Search'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'

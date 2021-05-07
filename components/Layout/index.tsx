@@ -1,7 +1,8 @@
 import React from 'react'
-import Header from 'components/Header'
-import Footer from 'components/Footer'
+
 import MessageBanner from 'components/Banners/MessageBanner'
+import Footer from 'components/Footer'
+import Header from 'components/Header'
 
 import classes from './style.module.scss'
 

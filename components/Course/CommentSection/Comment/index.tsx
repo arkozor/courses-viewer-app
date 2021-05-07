@@ -1,13 +1,13 @@
-import { Button, Typography } from '@material-ui/core'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ExpandLessIcon from '@material-ui/icons/ExpandLess'
-import Avatar from 'components/Avatar'
 import React from 'react'
 
-import { CommentType } from '../types'
+import { Button, Typography } from '@material-ui/core'
+import ExpandLessIcon from '@material-ui/icons/ExpandLess'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import Avatar from 'components/Avatar'
 
-import classes from './style.module.scss'
 import AddComment from '../AddComment'
+import { CommentType } from '../types'
+import classes from './style.module.scss'
 
 type Props = {
     comment: CommentType

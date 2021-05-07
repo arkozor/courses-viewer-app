@@ -1,13 +1,15 @@
+import React from 'react'
+
 import CourseTitle from 'components/Course/CourseTitle'
 import VideoPlayer from 'components/Course/CourseVideo'
 import { useRouter } from 'next/router'
-import React from 'react'
+
+import ChapterTitle from './ChapterTitle'
 import CommentSection from './CommentSection'
 import CourseChapter from './CourseChapter'
-import ChapterTitle from './ChapterTitle'
 import CourseDescription from './CourseDescription'
 import classes from './style.module.scss'
-import { ChapterType, CourseType, SubChapterType } from './types'
+import { CourseType } from './types'
 
 const commentList = [
     {
@@ -84,26 +86,31 @@ const Course = (props: Props): JSX.Element => {
         ? Number(subchapterSearchParam)
         : 0
 
-    const getCurrentChapter = (): ChapterType | SubChapterType => {
+    const getCurrentChapter = () => {
         if (course?.chapters) {
-            if (subChapterNumber) {
-                return course?.chapters[chapterNumber]?.subchapters[
-                    subChapterNumber
-                ]
-            } else {
-                return course?.chapters[chapterNumber]
-            }
+            return course.chapters.filter(
+                (chapter) => chapter.number === chapterNumber
+            )[0]
+        }
+        return null
+    }
+    const getCurrentSubChapter = () => {
+        if (subChapterNumber) {
+            return currentChapter?.subchapters.filter(
+                (subchapter) => subchapter.number === subChapterNumber
+            )[0]
         }
         return null
     }
 
     const currentChapter = getCurrentChapter()
+    const currentSubChapter = getCurrentSubChapter()
 
     return (
         <div className={classes.container}>
             <CourseTitle title={course?.title} />
             <div className={classes.navigationContainer}>
-                <VideoPlayer chapter={currentChapter} />
+                <VideoPlayer subChapter={currentSubChapter} />
                 <CourseChapter chapters={course?.chapters} />
             </div>
             <ChapterTitle chapter={currentChapter} />

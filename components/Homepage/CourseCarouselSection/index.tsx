@@ -1,8 +1,8 @@
 import React from 'react'
-import coursesPreviewList from './CourseCarousel/CoursesProvider/courses.json'
-import CourseCarousel from './CourseCarousel'
-import CarouselTitle from './CarouselTitle'
 
+import CarouselTitle from './CarouselTitle'
+import CourseCarousel from './CourseCarousel'
+import coursesPreviewList from './CourseCarousel/CoursesProvider/courses.json'
 import classes from './style.module.scss'
 
 const carouselSectionData = [

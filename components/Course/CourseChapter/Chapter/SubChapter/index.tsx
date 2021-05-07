@@ -1,4 +1,5 @@
 import React from 'react'
+
 import {
     Collapse,
     ListItem,
@@ -6,14 +7,15 @@ import {
     ListItemIcon,
     IconButton
 } from '@material-ui/core'
-import { SubChapterType } from 'components/Course/types'
 import { ExpandLess, ExpandMore, VideoLibrary } from '@material-ui/icons'
-import SubChapterResources from './SubChapterResources'
+import { SubChapterType } from 'components/Course/types'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
+import SubChapterDescriptionAndRessources from './SubChapterDescriptionAndRessources'
 
 type Props = {
+    chapterNumber: number
     subchapter: SubChapterType
     show: boolean
 }
@@ -26,7 +28,7 @@ const SubChapter = (props: Props): JSX.Element => {
         setOpen(!open)
     }
 
-    const { subchapter, show } = props
+    const { subchapter, show, chapterNumber } = props
     return (
         <Collapse in={show} key={subchapter.id}>
             <ListItem
@@ -42,7 +44,8 @@ const SubChapter = (props: Props): JSX.Element => {
                             router.push({
                                 query: {
                                     ...router.query,
-                                    subchapter: subchapter.id
+                                    chapter: chapterNumber,
+                                    subchapter: subchapter.number
                                 }
                             })
                         }}
@@ -52,7 +55,7 @@ const SubChapter = (props: Props): JSX.Element => {
                     </IconButton>
                 </ListItemIcon>
                 <ListItemText primary={subchapter.title} />
-                {subchapter.resources.length ? (
+                {subchapter.resources.length || subchapter.description ? (
                     open ? (
                         <ExpandLess />
                     ) : (
@@ -60,13 +63,11 @@ const SubChapter = (props: Props): JSX.Element => {
                     )
                 ) : null}
             </ListItem>
-            {subchapter.resources.map((resource) => (
-                <SubChapterResources
-                    key={resource.id}
-                    resource={resource}
-                    show={open}
-                />
-            ))}
+            <SubChapterDescriptionAndRessources
+                resources={subchapter.resources}
+                description={subchapter.description}
+                show={open}
+            />
         </Collapse>
     )
 }

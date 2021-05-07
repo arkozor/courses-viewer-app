@@ -1,10 +1,10 @@
 import React from 'react'
+
 import AddComment from './AddComment'
 import CommentNumber from './CommentNumber'
 import CourseComments from './CourseComments'
-import { CommentType } from './types'
-
 import classes from './style.module.scss'
+import { CommentType } from './types'
 
 type Props = {
     comments: CommentType[]

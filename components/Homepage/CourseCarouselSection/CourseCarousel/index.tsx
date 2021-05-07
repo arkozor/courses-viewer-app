@@ -1,11 +1,11 @@
 import React from 'react'
+
+import { Typography } from '@material-ui/core'
 import ElasticCarousel from 'react-elastic-carousel'
 
-import CourseCard from './CourseCard'
-
-import classes from './style.module.scss'
-import { Typography } from '@material-ui/core'
 import { CoursePreview } from '../types'
+import CourseCard from './CourseCard'
+import classes from './style.module.scss'
 
 type Props = {
     coursesPreviewList: CoursePreview[]

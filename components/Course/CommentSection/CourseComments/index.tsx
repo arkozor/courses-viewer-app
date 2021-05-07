@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Comment from '../Comment'
 import { CommentType } from '../types'
 

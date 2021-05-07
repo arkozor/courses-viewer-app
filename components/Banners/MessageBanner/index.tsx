@@ -1,7 +1,7 @@
+import React from 'react'
+
 import { Typography, IconButton, Paper } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
-
-import React from 'react'
 
 import classes from './style.module.scss'
 

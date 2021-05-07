@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {
     Typography,
     Button,
@@ -5,10 +7,9 @@ import {
     CircularProgress,
     Grid
 } from '@material-ui/core'
-
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import React from 'react'
+
 import classes from './style.module.scss'
 
 type LoginPostParams = {

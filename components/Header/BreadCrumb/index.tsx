@@ -1,6 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
+
 import { Typography, Breadcrumbs } from '@material-ui/core'
+import Link from 'next/link'
 
 import classes from './style.module.scss'
 

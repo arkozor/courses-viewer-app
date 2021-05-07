@@ -1,7 +1,8 @@
-import { Skeleton } from '@material-ui/lab'
-import { Paper, Link } from '@material-ui/core'
-
 import React from 'react'
+
+import { Paper, Link } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
+
 import classes from './style.module.scss'
 
 //this component should load the img and the link from the server
