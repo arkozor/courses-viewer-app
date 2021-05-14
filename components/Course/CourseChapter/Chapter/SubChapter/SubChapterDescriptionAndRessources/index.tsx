@@ -54,7 +54,7 @@ const SubChapterDescriptionAndRessources = (props: Props): JSX.Element => {
                     >
                         {shouldDisplayFullDescription
                             ? 'Voir moins'
-                            : 'Voir plus'}
+                            : 'Voir plusdzqdzqdqz'}
                     </Button>
                 )}
                 {!!resources.length && (
