@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Grid } from '@material-ui/core'
 import CourseTitle from 'components/Course/CourseTitle'
 import VideoPlayer from 'components/Course/CourseVideo'
 import { useRouter } from 'next/router'
@@ -109,10 +110,17 @@ const Course = (props: Props): JSX.Element => {
     return (
         <div className={classes.container}>
             <CourseTitle title={course?.title} />
-            <div className={classes.navigationContainer}>
-                <VideoPlayer subChapter={currentSubChapter} />
-                <CourseChapter chapters={course?.chapters} />
-            </div>
+            <Grid container className={classes.navigationContainer}>
+                <Grid item xs={12} md={8}>
+                    <VideoPlayer
+                        subChapter={currentSubChapter}
+                        thumbnail={currentChapter?.thumbnail}
+                    />
+                </Grid>
+                <Grid item xs={12} md={4}>
+                    <CourseChapter chapters={course?.chapters} />
+                </Grid>
+            </Grid>
             <ChapterTitle chapter={currentChapter} />
             <CourseDescription
                 description={currentChapter?.description}

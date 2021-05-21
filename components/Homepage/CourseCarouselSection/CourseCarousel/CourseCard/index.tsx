@@ -1,12 +1,7 @@
 import React from 'react'
 
-import {
-    Card,
-    CardContent,
-    CardMedia,
-    Typography,
-    Link
-} from '@material-ui/core'
+import { Card, CardContent, Typography, Link } from '@material-ui/core'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import classes from './style.module.scss'
 
@@ -27,10 +22,11 @@ const CourseCard = (props: Props): JSX.Element => {
             className={classes.link}
         >
             <Card raised classes={{ root: classes.card }}>
-                <CardMedia
-                    className={classes.media}
-                    image={thumbnail}
-                    title="Vignette"
+                <LazyLoadImage
+                    height={180}
+                    src={thumbnail} // use normal <img> attributes as props
+                    width="100%"
+                    useIntersectionObserver
                 />
                 <CardContent className={classes.content}>
                     <Typography gutterBottom variant="h5">

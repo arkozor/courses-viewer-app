@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { Button, Menu, MenuItem } from '@material-ui/core'
-import HomeIcon from '@material-ui/icons/Home'
+import { Button, Menu, MenuItem, Typography, Link } from '@material-ui/core'
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
 import Avatar from 'components/Avatar'
-import Link from 'next/link'
+import { UserContext } from 'context'
 import { useRouter } from 'next/router'
 
 import BreadCrumb from './BreadCrumb'
@@ -12,12 +12,20 @@ import classes from './style.module.scss'
 
 const Header = (): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const [isLogged, setIsLogged] = React.useState(false)
+
     const router = useRouter()
+    const currentUser = useContext(UserContext)
+
+    const userInfos = isLogged ? currentUser : null
     const localStorage = typeof window !== 'undefined' && window.localStorage
-    const isLogged = localStorage && localStorage.getItem('token')
-    const nickname = '' // replace by real nickname
+
+    React.useEffect(() => {
+        setIsLogged(!!localStorage.getItem('token'))
+    })
 
     const logout = () => {
+        localStorage.removeItem('user')
         localStorage.removeItem('token')
         setAnchorEl(null)
         router.push('/')
@@ -34,11 +42,12 @@ const Header = (): JSX.Element => {
     return (
         <>
             <div className={classes.header}>
-                <div className={classes.homeIconContainer}>
-                    <Link href="/">
-                        <HomeIcon className={classes.homeIcon} />
-                    </Link>
-                </div>
+                <Link href="/" underline="none">
+                    <div className={classes.homeLink}>
+                        <VideoLibraryIcon className={classes.logo} />
+                        <Typography variant="h5">Courses Viewer App</Typography>
+                    </div>
+                </Link>
                 <div className={classes.search}>
                     <SearchBar />
                     {isLogged ? (
@@ -50,7 +59,8 @@ const Header = (): JSX.Element => {
                             >
                                 <Avatar
                                     withNickname
-                                    nickname={nickname || 'invité'}
+                                    nickname={userInfos?.username || 'invité'}
+                                    src={userInfos?.avatarSrc || ''}
                                 />
                             </Button>
                             <Menu

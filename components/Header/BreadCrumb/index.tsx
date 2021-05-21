@@ -17,7 +17,11 @@ const BreadCrumb = (): JSX.Element => {
         <Breadcrumbs
             separator="|"
             aria-label="category-navigation"
-            className={classes.breadcrumb}
+            classes={{
+                root: classes.breadcrumb,
+                li: classes.item,
+                ol: classes.itemsContainer
+            }}
         >
             {categories.map((category, id) => (
                 <span key={id} className={classes.link}>

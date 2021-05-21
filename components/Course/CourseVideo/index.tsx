@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ErrorComponent from 'components/ErrorComponent'
+import Image from 'next/image'
 import ReactPlayer from 'react-player'
 
 import { SubChapterType } from '../types'
@@ -8,9 +8,10 @@ import classes from './style.module.scss'
 
 type Props = {
     subChapter: SubChapterType
+    thumbnail: string
 }
 const VideoPlayer = (props: Props): JSX.Element => {
-    const { subChapter } = props
+    const { subChapter, thumbnail } = props
     const videoLocation = subChapter?.video_location
 
     return (
@@ -23,7 +24,12 @@ const VideoPlayer = (props: Props): JSX.Element => {
                     controls
                 />
             ) : (
-                <ErrorComponent errorText="La vidéo a disparu !" />
+                <Image
+                    src={thumbnail ? thumbnail : '/images/notFound.png'}
+                    alt="thumbnail"
+                    width="100%"
+                    height="100%"
+                />
             )}
         </div>
     )
