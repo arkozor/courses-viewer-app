@@ -1,12 +1,16 @@
 import React from 'react'
 
 import Layout from 'components/Layout'
+import { UserContext } from 'context'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import './style.scss'
 import { ErrorBoundary } from 'react-error-boundary'
+import { User } from 'types/types'
 
 const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+    const [currentUser, setCurrentUser] = React.useState<User>(null)
+
     function ErrorFallback({ error, resetErrorBoundary }) {
         return (
             <div role="alert">
@@ -17,8 +21,16 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
         )
     }
 
+    React.useEffect(() => {
+        const localStorageUser = localStorage.getItem('user')
+        if (localStorageUser && currentUser === null) {
+            const parsedLocalStorageUser: User = JSON.parse(localStorageUser)
+            setCurrentUser(parsedLocalStorageUser)
+        }
+    })
+
     return (
-        <Layout>
+        <UserContext.Provider value={currentUser}>
             <Head>
                 <link
                     rel="preload"
@@ -34,15 +46,17 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
                     crossOrigin=""
                 />
             </Head>
-            <ErrorBoundary
-                FallbackComponent={ErrorFallback}
-                onReset={() => {
-                    // reset the state of your app so the error doesn't happen again
-                }}
-            >
-                <Component {...pageProps} />
-            </ErrorBoundary>
-        </Layout>
+            <Layout>
+                <ErrorBoundary
+                    FallbackComponent={ErrorFallback}
+                    onReset={() => {
+                        // reset the state of your app so the error doesn't happen again
+                    }}
+                >
+                    <Component {...pageProps} />
+                </ErrorBoundary>
+            </Layout>
+        </UserContext.Provider>
     )
 }
 

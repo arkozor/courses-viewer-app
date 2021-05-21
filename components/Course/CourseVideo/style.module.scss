@@ -1,13 +1,10 @@
 @import 'theme/theme';
 
 .videoContainer {
-    width: 100%;
-    @media (min-width: $breakpoints_media_smMin) {
-        height: 340px;
-    }
-    @media (min-width: $breakpoints_media_mdMin) {
-        height: 500px;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
     @media (min-width: $breakpoints_media_lgMin) {
         height: 620px;
     }

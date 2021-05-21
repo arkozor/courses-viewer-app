@@ -44,4 +44,5 @@ export type ChapterType = {
     subchapters: SubChapterType[]
     title: string
     updated_at: string
+    thumbnail: string
 }
