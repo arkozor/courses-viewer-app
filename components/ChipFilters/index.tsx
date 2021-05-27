@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Chip, Typography } from '@material-ui/core'
 import classnames from 'classnames'
+import router from 'next/router'
 
 import classes from './style.module.scss'
 
@@ -30,12 +31,26 @@ const ChipFilters = (): JSX.Element => {
         }
     ]
 
-    function select(event: React.MouseEvent<HTMLElement>) {
+    function select(event: React.MouseEvent<HTMLElement>, value) {
         const { innerText } = event.target as HTMLElement
         if (innerText != selectedChip) {
             setSelectedChip(innerText)
+            router.push(
+                {
+                    query: { domain: value }
+                },
+                location.pathname,
+                { shallow: true }
+            )
         } else {
             setSelectedChip('')
+            router.push(
+                {
+                    query: {}
+                },
+                location.pathname,
+                { shallow: true }
+            )
         }
     }
 
@@ -60,7 +75,9 @@ const ChipFilters = (): JSX.Element => {
                         }
                         variant="outlined"
                         clickable
-                        onClick={select}
+                        onClick={(event) => {
+                            select(event, chip.label)
+                        }}
                     />
                 )
             })}
