@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 
-import { Button, Menu, MenuItem, Typography, Link } from '@material-ui/core'
+import { Button, Menu, MenuItem, Typography } from '@material-ui/core'
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
 import Avatar from 'components/Avatar'
 import { UserContext } from 'context'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import BreadCrumb from './BreadCrumb'
@@ -19,10 +20,11 @@ const Header = (): JSX.Element => {
 
     const userInfos = isLogged ? currentUser : null
     const localStorage = typeof window !== 'undefined' && window.localStorage
+    const isToken = localStorage && !!localStorage?.getItem('token')
 
     React.useEffect(() => {
-        setIsLogged(!!localStorage.getItem('token'))
-    })
+        setIsLogged(isToken)
+    }, [isToken])
 
     const logout = () => {
         localStorage.removeItem('user')
@@ -42,11 +44,11 @@ const Header = (): JSX.Element => {
     return (
         <>
             <div className={classes.header}>
-                <Link href="/" underline="none">
-                    <div className={classes.homeLink}>
+                <Link href="/">
+                    <a className={classes.homeLink}>
                         <VideoLibraryIcon className={classes.logo} />
                         <Typography variant="h5">Courses Viewer App</Typography>
-                    </div>
+                    </a>
                 </Link>
                 <div className={classes.search}>
                     <SearchBar />
