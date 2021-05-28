@@ -1,11 +1,6 @@
 import React from 'react'
 
-import {
-    OutlinedInput,
-    Button,
-    InputAdornment,
-    IconButton
-} from '@material-ui/core'
+import { Button, InputAdornment, IconButton, Input } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import SearchIcon from '@material-ui/icons/Search'
 import { useRouter } from 'next/router'
@@ -49,13 +44,13 @@ const SearchBar = (): JSX.Element => {
             >
                 <SearchIcon className={classes.searchIcon} />
             </Button>
-            <OutlinedInput
+            <Input
                 aria-label="search-input"
                 classes={{
                     root: classes.textFieldInput,
-                    notchedOutline: classes.notch,
                     focused: classes.focused
                 }}
+                disableUnderline
                 endAdornment={
                     searchValue && (
                         <InputAdornment position="end">
