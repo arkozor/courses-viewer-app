@@ -41,13 +41,17 @@ const SubChapter = (props: Props): JSX.Element => {
                     <IconButton
                         onClick={(e) => {
                             e.stopPropagation()
-                            router.push({
-                                query: {
-                                    ...router.query,
-                                    chapter: chapterNumber,
-                                    subchapter: subchapter.number
-                                }
-                            })
+                            router.push(
+                                {
+                                    query: {
+                                        ...router.query,
+                                        chapter: chapterNumber,
+                                        subchapter: subchapter.number
+                                    }
+                                },
+                                '',
+                                { shallow: true }
+                            )
                         }}
                         className={classes.iconButton}
                     >

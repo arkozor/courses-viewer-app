@@ -1,0 +1,10 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+.input {
+    width: 150px !important;
+    background-color: transparent !important;
+}

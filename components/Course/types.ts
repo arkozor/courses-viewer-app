@@ -4,12 +4,13 @@ export type CourseType = {
     updated_at: string
     deleted_at: string | null
     title: string
-    picture: string
+    thumbnail: string
     preview: string
     price: number
     chapters: ChapterType[]
     publisher_id: number
     theme_id: number
+    domain: string
     verified: number
 }
 
