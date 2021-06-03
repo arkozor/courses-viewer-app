@@ -3,12 +3,13 @@ import React from 'react'
 import classes from './style.module.scss'
 
 const ChapterEditor = (): JSX.Element => {
+    let chapNb: number = 0;
 
     const [state, setState] = React.useState({
-        title: "",
-        category: ""
+        chapterList: []
     })
     const [save, setSave] = React.useState("")
+
     const [newChapter, setNewChapter] = React.useState([])
 
     React.useEffect(() => {
@@ -24,6 +25,7 @@ const ChapterEditor = (): JSX.Element => {
         });
     }
 
+    console.log(newChapter)
     return (
         <div className={classes.courseEditor}>
             <Typography
@@ -32,17 +34,25 @@ const ChapterEditor = (): JSX.Element => {
                 Chapter 1
             </Typography>
 
+            <div>{newChapter.map(e => {
+                return <div>{e}</div>
+            })}</div>
+
             <Button onClick={() => {
-                setNewChapter([
+                chapNb+=1;
+                setNewChapter([...newChapter, 
                     <div>
                         <Typography
                             variant="h2"
                         >
-                            Chapter 1
+                            {"Chapter " + chapNb}
                         </Typography>
                     </div>
                 ])
-            }}>dsezv</Button>
+                
+            }}>
+                Add chapter
+            </Button>
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import classes from './style.module.scss';
 import { Button } from '@material-ui/core'
 import React from 'react'
-import TitleEditor from './TitleEditor';
 import ChapterEditor from './ChapterEditor';
 import ContentEditor from './ContentEditor';
+import TitleEditor from './TitleEditor';
 
 const CourseEditor = () => {
 const [step, setStep] = React.useState(0)

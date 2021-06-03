@@ -2,8 +2,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typograph
 import React from 'react'
 import classes from './style.module.scss'
 
-const ChapterEditor = (): JSX.Element => {
-
+const ContentEditor = (): JSX.Element => {
     let chapNb: number = 0;
 
     const [state, setState] = React.useState({
@@ -54,13 +53,8 @@ const ChapterEditor = (): JSX.Element => {
             }}>
                 Add chapter
             </Button>
-
-            <div className={classes.navigation}>
-                <Button className={classes.previous} href="courseEditor">Previous</Button>
-                <Button className={classes.next} href="preview">Next</Button>
-            </div>
         </div>
     )
 }
 
-export default ChapterEditor
+export default ContentEditor
