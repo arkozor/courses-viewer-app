@@ -1,5 +1,8 @@
 import React from 'react'
 
-import { User } from 'types/types'
+import { CourseEditor, User } from 'types/types'
 
 export const UserContext = React.createContext<User>(null)
+
+export const CourseEditorContext = React.createContext<CourseEditor>(null)
+

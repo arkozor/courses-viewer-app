@@ -1,5 +1,7 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 import React, { useEffect } from 'react'
+
+import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@material-ui/core'
+
 import classes from './style.module.scss'
 
 const TitleEditor = (): JSX.Element => {
@@ -76,10 +78,6 @@ const TitleEditor = (): JSX.Element => {
                     ))}
                 </Select>
             </FormControl>
-            <div className={classes.navigation}>
-                <Button className={classes.previous} href="chapterEditor">Next step</Button>
-            </div>
-            
         </div>
     )
 }

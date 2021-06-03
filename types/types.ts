@@ -1,3 +1,5 @@
+import { ChapterType } from "components/Course/types"
+
 export type User = {
     id: string
     username: string
@@ -5,3 +7,9 @@ export type User = {
     lastname: string
     avatarSrc?: string
 } | null
+
+export type CourseEditor = {
+    title: string
+    category: string
+    chapters: ChapterType[]
+}

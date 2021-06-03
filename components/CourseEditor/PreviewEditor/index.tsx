@@ -1,5 +1,7 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 import React from 'react'
+
+import { Typography } from '@material-ui/core'
+
 import classes from './style.module.scss'
 
 const PreviewEditor = (): JSX.Element => {
@@ -10,10 +12,6 @@ const PreviewEditor = (): JSX.Element => {
             >
                 Preview
             </Typography>
-            <div className={classes.navigation}>
-                <Button className={classes.previous} href="chapterEditor">Previous</Button>
-                <Button className={classes.next} disabled>Save</Button>
-            </div>
         </div>
     )
 }

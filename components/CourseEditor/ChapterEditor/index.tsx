@@ -1,9 +1,11 @@
-import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 import React from 'react'
+
+import { Button, Typography } from '@material-ui/core'
+
 import classes from './style.module.scss'
 
 const ChapterEditor = (): JSX.Element => {
-    let chapNb: number = 0;
+    let chapNb = 0;
 
     const [state, setState] = React.useState({
         chapterList: []
@@ -15,7 +17,6 @@ const ChapterEditor = (): JSX.Element => {
     React.useEffect(() => {
         setSave(window.localStorage.getItem('edit'))
     }, [])
-    console.log(save)
 
     const handleChange = (event: any) => {
         const value = event.target.value as string;
@@ -25,7 +26,6 @@ const ChapterEditor = (): JSX.Element => {
         });
     }
 
-    console.log(newChapter)
     return (
         <div className={classes.courseEditor}>
             <Typography
@@ -35,13 +35,13 @@ const ChapterEditor = (): JSX.Element => {
             </Typography>
 
             <div>{newChapter.map(e => {
-                return <div>{e}</div>
+                return <div key={e.name}>{e}</div>
             })}</div>
 
             <Button onClick={() => {
                 chapNb+=1;
                 setNewChapter([...newChapter, 
-                    <div>
+                    <div key={chapNb}>
                         <Typography
                             variant="h2"
                         >
