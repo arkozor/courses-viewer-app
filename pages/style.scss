@@ -1,0 +1,23 @@
+@import 'theme/theme';
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto/Roboto-Regular.ttf');
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto/Roboto-Medium.ttf');
+    font-style: medium;
+    font-weight: 500;
+    font-display: swap;
+}
+
+body {
+    font-family: 'roboto', 'ubuntu', 'Helvetica Neue', 'Helvetica', 'Arial',
+        sans-serif;
+    margin: 0 auto;
+    background-color: $pageBackground;
+}

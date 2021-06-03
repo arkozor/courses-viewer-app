@@ -1,0 +1,15 @@
+@import 'theme/theme';
+
+.card {
+    width: 290px;
+}
+
+.content {
+    height: 95px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.link {
+    cursor: pointer;
+}

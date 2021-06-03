@@ -1,38 +1,91 @@
-import React from 'react'
-import { Button } from '@material-ui/core'
+import React, { useContext } from 'react'
+
+import { Button, Menu, MenuItem, Typography } from '@material-ui/core'
+import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
+import Avatar from 'components/Avatar'
+import { UserContext } from 'context'
 import Link from 'next/link'
-import HomeIcon from '@material-ui/icons/Home'
+import { useRouter } from 'next/router'
+
 import BreadCrumb from './BreadCrumb'
 import SearchBar from './SearchBar'
-import Avatar from 'components/Avatar'
 import classes from './style.module.scss'
 
 const Header = (): JSX.Element => {
-    // const [isLogged, setIsLogged] = React.useState(false)
-    const isLogged = true
-    const nickname = '' // replace by real nickname
+    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+    const [isLogged, setIsLogged] = React.useState(false)
+
+    const router = useRouter()
+    const currentUser = useContext(UserContext)
+
+    const userInfos = isLogged ? currentUser : null
+    const localStorage = typeof window !== 'undefined' && window.localStorage
+    const isToken = localStorage && !!localStorage?.getItem('token')
+
+    React.useEffect(() => {
+        setIsLogged(isToken)
+    }, [isToken])
+
+    const logout = () => {
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
+        setAnchorEl(null)
+        router.push('/')
+    }
+
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
     return (
         <>
             <div className={classes.header}>
-                <div className={classes.homeIconContainer}>
-                    <Link href="/">
-                        <HomeIcon className={classes.homeIcon} />
-                    </Link>
-                </div>
+                <Link href="/">
+                    <a className={classes.homeLink}>
+                        <VideoLibraryIcon className={classes.logo} />
+                        <Typography variant="h5">Courses Viewer App</Typography>
+                    </a>
+                </Link>
                 <div className={classes.search}>
                     <SearchBar />
                     {isLogged ? (
                         <div className={classes.avatar}>
-                            <Avatar
-                                withNickname
-                                nickname={nickname || 'invité'}
-                            />
+                            <Button
+                                aria-controls="simple-menu"
+                                aria-haspopup="true"
+                                onClick={handleClick}
+                            >
+                                <Avatar
+                                    withNickname
+                                    nickname={userInfos?.username || 'invité'}
+                                    src={userInfos?.avatarSrc || ''}
+                                />
+                            </Button>
+                            <Menu
+                                id="simple-menu"
+                                anchorEl={anchorEl}
+                                keepMounted
+                                open={Boolean(anchorEl)}
+                                onClose={handleClose}
+                            >
+                                <MenuItem onClick={handleClose}>
+                                    Profile
+                                </MenuItem>
+                                <MenuItem onClick={handleClose}>
+                                    My account
+                                </MenuItem>
+                                <MenuItem onClick={logout}>Logout</MenuItem>
+                            </Menu>
                         </div>
                     ) : (
                         <div className={classes.connectionContainer}>
                             <div className={classes.buttonsContainer}>
                                 <Button
-                                    href="/authentication/register"
+                                    href="/register"
                                     classes={{
                                         root: classes.connectionButton
                                     }}
@@ -40,7 +93,7 @@ const Header = (): JSX.Element => {
                                     {"S'enregistrer"}
                                 </Button>
                                 <Button
-                                    href="/authentication"
+                                    href="/login"
                                     classes={{
                                         root: classes.connectionButton
                                     }}

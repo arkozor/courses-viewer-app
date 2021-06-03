@@ -5,10 +5,14 @@
     align-items: center;
     width: 100%;
     min-height: 30px;
-    background-color: $primary-light;
+    background-color: $primary_light;
 }
-.link {
+.itemsContainer {
+    padding: 0px $spacing_md !important;
+}
+.item {
     cursor: pointer;
+    padding: $spacing_sm;
     :hover {
         color: white !important;
     }

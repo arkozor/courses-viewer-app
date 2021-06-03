@@ -1,0 +1,18 @@
+@import 'theme/theme';
+
+.container {
+    margin: $spacing_lg 0;
+}
+
+.descriptionContainer {
+    padding: $spacing_sm;
+    margin: $spacing_md 0;
+    background-color: $pageBackground_light;
+}
+
+.navigationContainer {
+    background-color: $pageBackground_light;
+    border-radius: 16px;
+    margin: $spacing_lg 0;
+    padding: $spacing_lg;
+}

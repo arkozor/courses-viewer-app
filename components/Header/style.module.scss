@@ -4,7 +4,8 @@
     display: flex;
     align-items: baseline;
     background-color: $primary;
-    padding: $spacing_sm $spacing_md;
+    padding: 0 $spacing_md;
+    min-height: 52px;
     @media (min-width: $breakpoints_media_smMin) {
         justify-content: space-between;
         align-items: center;
@@ -13,15 +14,20 @@
 
 .search {
     display: block;
-    width: 100%;
     @media (min-width: $breakpoints_media_smMin) {
         display: flex;
         justify-content: flex-end;
     }
 }
 
-.homeIconContainer {
-    width: 50px;
+.homeLink {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    .logo {
+        margin-right: $spacing_sm;
+    }
 }
 
 .homeIcon {
@@ -40,7 +46,7 @@
     display: flex;
     justify-content: flex-end;
     margin-top: $spacing_sm;
-
+    padding: 0 16px;
     @media (min-width: $breakpoints_media_smMin) {
         margin-top: 0;
     }

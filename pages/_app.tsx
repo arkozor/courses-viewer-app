@@ -1,14 +1,36 @@
 import React from 'react'
 
 import Layout from 'components/Layout'
-// import App from "next/app";
-import type { AppProps /*, AppContext */ } from 'next/app'
+import { UserContext } from 'context'
+import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import './style.css'
+import './style.scss'
+import { ErrorBoundary } from 'react-error-boundary'
+import { User } from 'types/types'
 
 const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
+    const [currentUser, setCurrentUser] = React.useState<User>(null)
+
+    function ErrorFallback({ error, resetErrorBoundary }) {
+        return (
+            <div role="alert">
+                <p>Something went wrong:</p>
+                <pre>{error.message}</pre>
+                <button onClick={resetErrorBoundary}>Try again</button>
+            </div>
+        )
+    }
+
+    React.useEffect(() => {
+        const localStorageUser = localStorage.getItem('user')
+        if (localStorageUser && currentUser === null) {
+            const parsedLocalStorageUser: User = JSON.parse(localStorageUser)
+            setCurrentUser(parsedLocalStorageUser)
+        }
+    })
+
     return (
-        <Layout>
+        <UserContext.Provider value={currentUser}>
             <Head>
                 <link
                     rel="preload"
@@ -24,8 +46,17 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
                     crossOrigin=""
                 />
             </Head>
-            <Component {...pageProps} />
-        </Layout>
+            <Layout>
+                <ErrorBoundary
+                    FallbackComponent={ErrorFallback}
+                    onReset={() => {
+                        // reset the state of your app so the error doesn't happen again
+                    }}
+                >
+                    <Component {...pageProps} />
+                </ErrorBoundary>
+            </Layout>
+        </UserContext.Provider>
     )
 }
 
@@ -34,11 +65,11 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 //
-// MyApp.getInitialProps = async (appContext: AppContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
+// CoursesViewerApp.getInitialProps = async (appContext: AppContext) => {
+//     // calls page's `getInitialProps` and fills `appProps.pageProps`
+//     const appProps = await App.getInitialProps(appContext)
 
-//   return { ...appProps }
+//     return { ...appProps }
 // }
 
 export default CoursesViewerApp

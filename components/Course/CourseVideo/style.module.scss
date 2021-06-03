@@ -1,0 +1,11 @@
+@import 'theme/theme';
+
+.videoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    @media (min-width: $breakpoints_media_lgMin) {
+        height: 620px;
+    }
+}

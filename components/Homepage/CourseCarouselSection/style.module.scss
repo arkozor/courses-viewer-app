@@ -1,0 +1,11 @@
+@import 'theme/theme';
+
+.container {
+    margin: $spacing_md 0;
+}
+
+.subSectionContainer {
+    background: white;
+    border-radius: 16px;
+    margin: $spacing_xl 0;
+}

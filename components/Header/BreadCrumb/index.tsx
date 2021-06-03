@@ -1,6 +1,7 @@
 import React from 'react'
-import Link from 'next/link'
+
 import { Typography, Breadcrumbs } from '@material-ui/core'
+import Link from 'next/link'
 
 import classes from './style.module.scss'
 
@@ -16,7 +17,11 @@ const BreadCrumb = (): JSX.Element => {
         <Breadcrumbs
             separator="|"
             aria-label="category-navigation"
-            className={classes.breadcrumb}
+            classes={{
+                root: classes.breadcrumb,
+                li: classes.item,
+                ol: classes.itemsContainer
+            }}
         >
             {categories.map((category, id) => (
                 <span key={id} className={classes.link}>

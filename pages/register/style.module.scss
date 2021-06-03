@@ -1,0 +1,37 @@
+@import 'theme/theme';
+
+.form {
+    margin: $spacing_xxl 0;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    border: solid 4px $primary;
+    padding: $spacing_xxl;
+    h1 {
+        color: $secondary_dark;
+    }
+}
+
+.button {
+    background-color: $secondary_dark !important;
+}
+.buttonText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.textfield {
+    margin: $spacing_sm 0;
+}
+
+.progress {
+    position: absolute;
+    color: $primary !important;
+    width: 30px !important;
+    height: 30px !important;
+}

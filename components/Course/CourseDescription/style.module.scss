@@ -1,0 +1,38 @@
+@import 'theme/theme';
+
+// We want to have the description text starting at the same level as the author nickname
+$avatarWidth: 40 + $spacing_sm;
+
+.courseDescriptionContainer {
+    margin: $spacing_md 0;
+}
+
+.container {
+    padding: $spacing_sm;
+    margin: $spacing_md 0;
+    background-color: $pageBackground_light;
+    border-radius: 16px;
+}
+
+.authorContainer {
+    display: flex;
+    align-items: center;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.descriptionContainer {
+    margin: $spacing_sm $avatarWidth;
+}
+
+.showMoreButton {
+    margin-top: $spacing_sm !important;
+    padding: 0 !important;
+}
+
+.progress {
+    position: absolute;
+    color: $primary !important;
+    width: 50px !important;
+    height: 50px !important;
+}

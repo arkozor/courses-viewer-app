@@ -1,3 +1,6 @@
-.container {
-    overflow: hidden;
+@import 'theme/theme';
+
+.childrenContainer {
+    min-height: calc(100vh - 236px);
+    padding: 0px $spacing_xxl;
 }

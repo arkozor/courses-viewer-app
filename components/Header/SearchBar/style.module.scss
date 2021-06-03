@@ -14,22 +14,19 @@
     height: 40px;
     background-color: white;
     border-radius: 0px 4px 4px 0px !important;
+    padding: $spacing_sm;
     width: 100%;
 }
 
 .searchButton {
     height: 40px;
-    background-color: $primary-light !important;
+    background-color: $primary_light !important;
     border-radius: 4px 0px 0px 4px !important;
     padding: 0 !important;
 }
 
 .searchIcon {
     color: white;
-}
-
-.notch {
-    border: none !important;
 }
 
 .iconButton {
