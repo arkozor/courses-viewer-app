@@ -59,7 +59,7 @@ const LoginPage = (): JSX.Element => {
                     JSON.stringify({
                         token: res.data.data.token,
                         id: '123',
-                        username: 'toto',
+                        username: 'tantan',
                         firstname: 'tutu',
                         lastname: 'tata',
                         avatarSrc:

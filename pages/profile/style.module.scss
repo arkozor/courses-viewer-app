@@ -8,16 +8,35 @@
     justify-content: center;
 
     .nav  {
-        height: 600px;  
+        height: 100%;  
         width: 200px;
-        margin-right: 60px;
+        margin-right: 110px;
         text-align: center;
         align-items: center;
         justify-content: center;
 
         .avatar {
-            justify-content : center;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+
+            :first-child {
+                
+                width: 80px;
+                height: 80px;
+
+                .container {
+                    display: flex;
+                    flex-direction: column;
+
+                }
             }
+            
+        }
+
+        .tabLabel {
+            font-size: 20px;
+        }
     }
 
     .content {

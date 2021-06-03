@@ -61,7 +61,6 @@ const Profile = (): JSX.Element => {
                 <div className={classes.avatar}>
                     {currentUser ? (
                         <Avatar
-                            withNickname
                             src={currentUser.avatarSrc}
                             nickname={currentUser.username}
                         />
@@ -75,8 +74,16 @@ const Profile = (): JSX.Element => {
                     aria-label="Vertical tabs example"
                     className={classes.tabs}
                 >
-                    <Tab label="Avatar" {...a11yProps(0)} />
-                    <Tab label="profile" {...a11yProps(1)} />
+                    <Tab
+                        className={classes.tabLabel}
+                        label="Avatar"
+                        {...a11yProps(0)}
+                    />
+                    <Tab
+                        className={classes.tabLabel}
+                        label="profil"
+                        {...a11yProps(1)}
+                    />
                 </Tabs>
             </div>
             <div className={classes.content}>

@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
-const AvatarStyling = () => {
+const AvatarStyling = (): JSX.Element => {
     const currentUser = useContext(UserContext)
     const { query } = useRouter()
     return (
