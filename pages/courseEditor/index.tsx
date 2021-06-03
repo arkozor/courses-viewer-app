@@ -1,7 +1,6 @@
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
-import CourseEditor from 'components/CourseEditor';
 import React from 'react'
-import classes from './style.module.scss'
+
+import CourseEditor from 'components/CourseEditor';
 
 const categories = [
     'CSharp',
