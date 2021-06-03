@@ -1,34 +1,44 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import { Avatar } from '@material-ui/core'
+import { IconButton } from '@material-ui/core'
+import Avatar from 'components/Avatar'
+import { UserContext } from 'context'
+import { useRouter } from 'next/router'
+
+import classes from './style.module.scss'
 
 const AvatarSelector = (): JSX.Element => {
+    const currentUser = useContext(UserContext)
+    const router = useRouter()
+
+    const images = [
+        '/images/avatars/avatar-men-1.svg',
+        '/images/avatars/avatar-men-2.svg',
+        '/images/avatars/avatar-men-3.svg',
+        '/images/avatars/avatar-women-1.svg',
+        '/images/avatars/avatar-women-2.svg',
+        '/images/avatars/avatar-women-3.svg'
+    ]
+
     return (
-        <div>
-            <Avatar
-                alt="men"
-                src="\public\images\avatars\avatar-men-1.svg"
-            ></Avatar>
-            <Avatar
-                alt="men"
-                src="\public\images\avatars\avatar-men-2.svg"
-            ></Avatar>
-            <Avatar
-                alt="men"
-                src="\public\images\avatars\avatar-men-3.svg"
-            ></Avatar>
-            <Avatar
-                alt="women"
-                src="\public\images\avatars\avatar-women-1.svg"
-            ></Avatar>
-            <Avatar
-                alt="women"
-                src="\public\images\avatars\avatar-women-2.svg"
-            ></Avatar>
-            <Avatar
-                alt="women"
-                src="\public\images\avatars\avatar-womn-3.svg"
-            ></Avatar>
+        <div className={classes.container}>
+            {images.map((image) => (
+                <IconButton
+                    onClick={() => {
+                        router.push(
+                            { query: { label: image } },
+                            location.pathname,
+                            { shallow: true }
+                        )
+                    }}
+                    key={image}
+                >
+                    <Avatar
+                        nickname={currentUser.username}
+                        src={image}
+                    ></Avatar>
+                </IconButton>
+            ))}
         </div>
     )
 }

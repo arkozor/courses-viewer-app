@@ -7,7 +7,7 @@ type Props = {
     nickname: string
     withNickname?: boolean
     src?: string
-    sizes?: 'sm' | 'md'
+    sizes?: 'sm' | 'md' | 'lg'
 }
 
 const avatarBackgroundColors = [

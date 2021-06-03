@@ -1,0 +1,32 @@
+
+
+
+.container {
+}
+
+.title {
+    text-align : center
+       
+}
+
+.currentAvatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    height: 200px;
+
+    :first-child {  
+        width: 180px;
+        height: 180px;
+    }
+}
+
+.selectorTitle {
+    margin-bottom: 20px;
+    margin-top: 70px;
+}
+
+.selector {
+    margin-bottom: 30px;
+}

@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import Box from '@material-ui/core/Box'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import Typography from '@material-ui/core/Typography'
 import Avatar from 'components/Avatar'
-import AvatarSelector from 'components/Avatar/AvatarSelector'
+import AvatarStyling from 'components/UserProfile/AvatarStyling'
+import ProfileStyling from 'components/UserProfile/ProfileStyling'
+import { UserContext } from 'context'
 
 import classes from './style.module.scss'
 
@@ -43,6 +45,7 @@ function a11yProps(index: any) {
 }
 
 const Profile = (): JSX.Element => {
+    const currentUser = useContext(UserContext)
     const [value, setValue] = React.useState(0)
 
     const handleChange = (
@@ -55,6 +58,15 @@ const Profile = (): JSX.Element => {
     return (
         <div className={classes.root}>
             <div className={classes.nav}>
+                <div className={classes.avatar}>
+                    {currentUser ? (
+                        <Avatar
+                            withNickname
+                            src={currentUser.avatarSrc}
+                            nickname={currentUser.username}
+                        />
+                    ) : null}
+                </div>
                 <Tabs
                     orientation="vertical"
                     variant="scrollable"
@@ -63,24 +75,16 @@ const Profile = (): JSX.Element => {
                     aria-label="Vertical tabs example"
                     className={classes.tabs}
                 >
-                    <Avatar withNickname nickname="Invité" />
-
-                    <Tab label="Profile" {...a11yProps(1)} />
-                    <Tab label="Avatar" {...a11yProps(2)} />
+                    <Tab label="Avatar" {...a11yProps(0)} />
+                    <Tab label="profile" {...a11yProps(1)} />
                 </Tabs>
             </div>
             <div className={classes.content}>
-                <TabPanel value={value} index={1}>
-                    profil
+                <TabPanel value={value} index={0}>
+                    <AvatarStyling />
                 </TabPanel>
-                <TabPanel value={value} index={2}>
-                    <div className={classes.title}>
-                        <Typography variant="h4">Avatar actuel :</Typography>
-                    </div>
-                    <div className={classes.currentAvatar}>
-                        <Avatar nickname="Invité" />
-                    </div>
-                    <AvatarSelector />
+                <TabPanel value={value} index={1}>
+                    <ProfileStyling />
                 </TabPanel>
             </div>
         </div>

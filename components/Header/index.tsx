@@ -23,7 +23,7 @@ const Header = (): JSX.Element => {
     const isToken = localStorage && !!localStorage?.getItem('token')
 
     React.useEffect(() => {
-        setIsLogged(true)
+        setIsLogged(isToken)
     }, [isToken])
 
     const logout = () => {
@@ -72,9 +72,12 @@ const Header = (): JSX.Element => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
-                                <MenuItem href="/profile">
-                                    Modifier le profil
-                                </MenuItem>
+                                <Link href="/profile">
+                                    <MenuItem onClick={handleClose}>
+                                        Modifier le profil
+                                    </MenuItem>
+                                </Link>
+
                                 <MenuItem onClick={handleClose}>
                                     Paramètres du compte
                                 </MenuItem>
