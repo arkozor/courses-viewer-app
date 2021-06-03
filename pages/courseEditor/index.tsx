@@ -1,4 +1,5 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core'
+import CourseEditor from 'components/CourseEditor';
 import React from 'react'
 import classes from './style.module.scss'
 
@@ -9,7 +10,7 @@ const categories = [
     'Php',
 ];
 
-const CourseEditor = (): JSX.Element => {
+const CourseEditorPage = (): JSX.Element => {
 
     const [category, setCategory] = React.useState('')
 
@@ -19,30 +20,9 @@ const CourseEditor = (): JSX.Element => {
 
     return (
         <div>
-            <FormControl 
-                variant="outlined"
-                className={classes.formControl}
-            >
-                <InputLabel id="demo-controlled-open-select-label">Category</InputLabel>
-                <Select
-                    labelId="category-label"
-                    id="category"
-                    value={category}
-                    onChange={handleChange}
-                    label="category"
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    {categories.map((category) => (
-                        <MenuItem key={category} value={category}>
-                            {category}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
+            <CourseEditor/>
         </div>
     )
 }
 
-export default CourseEditor
+export default CourseEditorPage

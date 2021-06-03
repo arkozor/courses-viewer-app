@@ -1,0 +1,12 @@
+@import 'theme/theme';
+
+.courseEditor {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.formControl {
+    width: 120px !important;
+    max-width: 300px !important
+}

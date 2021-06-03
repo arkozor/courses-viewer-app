@@ -2,7 +2,7 @@ import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typograph
 import React from 'react'
 import classes from './style.module.scss'
 
-const CourseEditor = (): JSX.Element => {
+const TitleEditor = (): JSX.Element => {
 
     const categories = [
         'CSharp',
@@ -79,4 +79,4 @@ const CourseEditor = (): JSX.Element => {
     )
 }
 
-export default CourseEditor
+export default TitleEditor
