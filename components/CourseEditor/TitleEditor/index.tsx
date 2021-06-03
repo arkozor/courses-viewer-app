@@ -1,5 +1,5 @@
 import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@material-ui/core'
-import React from 'react'
+import React, { useEffect } from 'react'
 import classes from './style.module.scss'
 
 const TitleEditor = (): JSX.Element => {
@@ -15,6 +15,7 @@ const TitleEditor = (): JSX.Element => {
         title: "",
         category: ""
     })
+    
 
     const handleChange = (event: any) => {
         const value = event.target.value as string;
@@ -22,10 +23,11 @@ const TitleEditor = (): JSX.Element => {
             ...state,
             [event.target.name]: value
         })
-        console.log(state.category + " " + state.title);
-        
-        window.localStorage.setItem('edit', JSON.stringify(state))
     }
+
+    useEffect(() => {
+        window.localStorage.setItem('edit', JSON.stringify(state))
+    }, [state])
 
     return (
         <div className={classes.courseEditor}>
@@ -74,7 +76,10 @@ const TitleEditor = (): JSX.Element => {
                     ))}
                 </Select>
             </FormControl>
-            <Button href="chapterEditor">Next step</Button>
+            <div className={classes.navigation}>
+                <Button className={classes.previous} href="chapterEditor">Next step</Button>
+            </div>
+            
         </div>
     )
 }

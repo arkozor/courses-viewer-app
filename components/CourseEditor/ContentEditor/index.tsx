@@ -4,12 +4,14 @@ import classes from './style.module.scss'
 
 const ChapterEditor = (): JSX.Element => {
 
+    let chapNb: number = 0;
+
     const [state, setState] = React.useState({
-        title: "",
-        category: ""
+        chapterList: []
     })
     const [save, setSave] = React.useState("")
-    const [toto, setToto] = React.useState("")
+
+    const [newChapter, setNewChapter] = React.useState([])
 
     React.useEffect(() => {
         setSave(window.localStorage.getItem('edit'))
@@ -24,10 +26,7 @@ const ChapterEditor = (): JSX.Element => {
         });
     }
 
-    if (toto === 'tutu') {
-        return null
-    }
-
+    console.log(newChapter)
     return (
         <div className={classes.courseEditor}>
             <Typography
@@ -35,9 +34,31 @@ const ChapterEditor = (): JSX.Element => {
             >
                 Chapter 1
             </Typography>
+
+            <div>{newChapter.map(e => {
+                return <div>{e}</div>
+            })}</div>
+
             <Button onClick={() => {
-                setToto("tutu")
-            }}>dsezv</Button>
+                chapNb+=1;
+                setNewChapter([...newChapter, 
+                    <div>
+                        <Typography
+                            variant="h2"
+                        >
+                            {"Chapter " + chapNb}
+                        </Typography>
+                    </div>
+                ])
+                
+            }}>
+                Add chapter
+            </Button>
+
+            <div className={classes.navigation}>
+                <Button className={classes.previous} href="courseEditor">Previous</Button>
+                <Button className={classes.next} href="preview">Next</Button>
+            </div>
         </div>
     )
 }
