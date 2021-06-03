@@ -1,9 +1,13 @@
 @import 'theme/theme';
 
+.container {
+    padding: $spacing_xxl;
+}
+
 .progress {
     position: absolute;
 }
 
 .titleContainer {
-    padding: $spacing_xxl;
+    margin: $spacing_md 0;
 }

@@ -9,7 +9,6 @@ import classes from './style.module.scss'
 
 const SearchBar = (): JSX.Element => {
     const router = useRouter()
-
     const [searchValue, setSearchValue] = React.useState('')
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,21 +16,13 @@ const SearchBar = (): JSX.Element => {
     }
 
     const sendSearchRequest = () => {
-        if (searchValue) {
-            const param = 'ok'
-            router.push(
-                {
-                    pathname: `/search/[id]`,
-                    query: {
-                        searchValue,
-                        param
-                    }
-                },
-                `/search/${searchValue}`,
-                { shallow: true }
-            )
+        if (searchValue !== '') {
+            router.replace(`/search/${searchValue}`)
+        } else {
+            router.replace('/search')
         }
     }
+
     return (
         <div className={classes.searchBarContainer}>
             <Button

@@ -1,44 +1,21 @@
 import React from 'react'
 
-import DropdownFilter from './DropdownFilter'
-import classes from './style.module.scss'
-import { DomainFilter } from './type'
+import axios from 'axios'
 
-const mockedFilters: DomainFilter[] = [
-    {
-        value: 'javascript',
-        label: 'JavaScript'
-    },
-    {
-        value: 'php',
-        label: 'Php'
-    },
-    {
-        value: 'csharp',
-        label: 'C#'
-    },
-    {
-        value: 'clang',
-        label: 'C'
-    },
-    {
-        value: 'cpp',
-        label: 'C++'
-    },
-    {
-        value: 2,
-        label: 'Java'
-    },
-    {
-        value: 'all',
-        label: 'Tous les languages'
-    }
-]
+import DropdownFilter from './DropdownFilter'
 
 const SearchFilters = (): JSX.Element => {
+    const [domains, setDomains] = React.useState([])
+
+    React.useEffect(() => {
+        axios
+            .get(`${process.env.DOMAIN_API}`)
+            .then((res) => setDomains(res.data.data.data))
+    }, [])
+
     return (
-        <div className={classes.container}>
-            <DropdownFilter filters={mockedFilters} type="domain" />
+        <div>
+            <DropdownFilter filters={domains} />
         </div>
     )
 }

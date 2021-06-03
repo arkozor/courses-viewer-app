@@ -3,32 +3,29 @@ import React from 'react'
 import { Backdrop, CircularProgress, Typography } from '@material-ui/core'
 import axios from 'axios'
 import SearchList from 'components/Search/SearchList'
-import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
-const Search = (): JSX.Element => {
-    const router = useRouter()
-    const { search } = router.query
-
-    const [isLoading, setIsLoading] = React.useState(true)
+const SearchPage = (): JSX.Element => {
     const [courses, setCourses] = React.useState([])
+    const [isLoading, setIsLoading] = React.useState(false)
 
     React.useEffect(() => {
+        setIsLoading(true)
         try {
             axios
-                .get(`${process.env.SEARCH_API}?search=${search}`, {
+                .get(`${process.env.COURSE_API}`, {
                     timeout: 60000
                 })
                 .then((res) => {
-                    setCourses(res.data.data)
+                    setCourses(res.data.data.data)
                     setIsLoading(false)
                 })
         } catch (e) {
             setIsLoading(false)
             throw new Error(e.message)
         }
-    }, [search])
+    }, [])
 
     const searchCourseList = {
         title: 'Les cours les plus suivis',
@@ -45,14 +42,11 @@ const Search = (): JSX.Element => {
     ) : (
         <div className={classes.container}>
             <div className={classes.titleContainer}>
-                <Typography variant="h5">
-                    {courses?.length ? 'Résultats pour' : 'Aucun résultat pour'}{' '}
-                    : &ldquo;{search}&ldquo;
-                </Typography>
+                <Typography variant="h5">Tous les cours:</Typography>
             </div>
             <SearchList searchCourseList={searchCourseList} />
         </div>
     )
 }
 
-export default Search
+export default SearchPage

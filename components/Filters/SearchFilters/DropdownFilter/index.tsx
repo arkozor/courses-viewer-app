@@ -8,20 +8,22 @@ import classes from './style.module.scss'
 
 type Props = {
     filters: DomainFilter[]
-    type: 'domain'
 }
 
-const DropdownFilter = ({ filters, type }: Props): JSX.Element => {
+const DropdownFilter = ({ filters }: Props): JSX.Element => {
     const router = useRouter()
+    const { domain } = router.query
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value === 'all') {
-            router.push(location.pathname)
+        if (event.target.value === '') {
+            router.push({
+                pathname: location.pathname
+            })
         } else {
             router.push({
+                pathname: location.pathname,
                 query: {
-                    ...router.query,
-                    [type]: event.target.value
+                    domain: event.target.value
                 }
             })
         }
@@ -31,23 +33,32 @@ const DropdownFilter = ({ filters, type }: Props): JSX.Element => {
         <div className={classes.container}>
             <Select
                 onChange={handleChange}
-                classes={{ root: classes.select }}
                 variant="outlined"
-                defaultValue={
-                    router.query?.domain ? router.query?.domain : 'all'
-                }
-                value={router.query?.domain ? router.query?.domain : 'all'}
+                defaultValue={domain ? domain : ''}
+                value={domain ? domain : ''}
                 inputProps={{
                     classes: {
                         root: classes.input
                     }
                 }}
+                MenuProps={{
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'center'
+                    },
+                    transformOrigin: {
+                        vertical: 'top',
+                        horizontal: 'center'
+                    },
+                    variant: 'menu'
+                }}
             >
                 {filters.map((filter) => (
-                    <MenuItem key={filter.value} value={filter.value}>
-                        {filter.label}
+                    <MenuItem key={filter.id} value={filter.name}>
+                        {filter.name}
                     </MenuItem>
                 ))}
+                <MenuItem value="">Tous</MenuItem>
             </Select>
         </div>
     )

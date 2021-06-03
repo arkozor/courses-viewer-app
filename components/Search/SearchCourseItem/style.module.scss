@@ -8,13 +8,19 @@
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
+.container:hover {
+    background: $primary_hover;
+}
 .imageContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     .image {
-        max-height: 220px;
+        max-height: 100px;
+        @media (min-width: $breakpoints_media_mdMin) {
+            max-height: 220px;
+        }
     }
 }
 .headerContainer {

@@ -16,20 +16,24 @@ type Props = {
 
 const SearchList = ({ searchCourseList }: Props): JSX.Element => {
     const router = useRouter()
-    const domainQuery = router.query.domain
-    const list = domainQuery
-        ? searchCourseList.courseItems.filter(
-              (item) => item.domain === domainQuery
-          )
+    const { domain } = router.query
+
+    const list = domain
+        ? searchCourseList.courseItems.filter((item) => item.domain === domain)
         : searchCourseList.courseItems
 
     return (
         <div className={classes.container}>
             <SearchFilters />
             <div className={classes.listContainer}>
-                {list.map((courseItem) => (
-                    <SearchCourseItem key={courseItem.id} course={courseItem} />
-                ))}
+                {list?.map((courseItem) => {
+                    return (
+                        <SearchCourseItem
+                            key={courseItem.id}
+                            course={courseItem}
+                        />
+                    )
+                })}
             </div>
         </div>
     )

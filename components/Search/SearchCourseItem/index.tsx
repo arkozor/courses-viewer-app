@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Typography, Button, Link } from '@material-ui/core'
+import { Typography, Button, Link, Paper } from '@material-ui/core'
 import InfoIcon from '@material-ui/icons/Info'
 import { CourseType } from 'components/Course/types'
 import Preview from 'components/Preview'
-import { formatPrice } from 'utils'
+// import { formatPrice } from 'utils'
 
 import classes from './style.module.scss'
 
@@ -13,24 +13,27 @@ type Props = {
 }
 
 const SearchCourseItem = ({ course }: Props): JSX.Element => {
-    const longPreview = course.preview.length >= 500
+    const longPreview = course.preview?.length >= 500
     const [displayTruncatedText, setDisplayTruncatedText] = React.useState(
         longPreview
     )
     return (
-        <Link href={`${location.origin}/course/${course.id}/?chapter=0`}>
-            <div className={classes.container}>
+        <Link
+            href={`${location.origin}/course/${course.id}/?chapter=0`}
+            underline="none"
+        >
+            <Paper elevation={3} className={classes.container}>
                 <div className={classes.imageContainer}>
                     <img
                         className={classes.image}
                         src={course.thumbnail}
                         alt="course-thumbnail"
                     />
-                    <div className={classes.price}>
+                    {/* <div className={classes.price}>
                         <Typography variant="body1">
                             {formatPrice(course.price)}
                         </Typography>
-                    </div>
+                    </div> */}
                 </div>
                 <div className={classes.detailsContainer}>
                     <div className={classes.headerContainer}>
@@ -40,10 +43,10 @@ const SearchCourseItem = ({ course }: Props): JSX.Element => {
                         <Preview
                             content={
                                 <div>
-                                    <Typography variant="subtitle1">
-                                        {course.chapters.map(
-                                            (chapter) => chapter.title
-                                        )}
+                                    <Typography variant="caption">
+                                        {
+                                            "Pour pouvoir suivre correctement ce cours vous devriez peut-être d'abord voir : <insérer cours> "
+                                        }
                                     </Typography>
                                 </div>
                             }
@@ -78,7 +81,7 @@ const SearchCourseItem = ({ course }: Props): JSX.Element => {
                         ) : null}
                     </div>
                 </div>
-            </div>
+            </Paper>
         </Link>
     )
 }
