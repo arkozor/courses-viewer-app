@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { Backdrop, CircularProgress } from '@material-ui/core'
 import { CourseType } from 'components/Course/types'
 import { useRouter } from 'next/router'
 
@@ -8,9 +9,10 @@ import classes from './style.module.scss'
 
 type Props = {
     courseItems: CourseType[]
+    isLoading: boolean
 }
 
-const SearchList = ({ courseItems }: Props): JSX.Element => {
+const SearchList = ({ courseItems, isLoading }: Props): JSX.Element => {
     const router = useRouter()
     const { domain } = router.query
 
@@ -20,16 +22,22 @@ const SearchList = ({ courseItems }: Props): JSX.Element => {
 
     return (
         <div className={classes.container}>
-            <div className={classes.listContainer}>
-                {list?.map((courseItem) => {
-                    return (
-                        <SearchCourseItem
-                            key={courseItem.id}
-                            course={courseItem}
-                        />
-                    )
-                })}
-            </div>
+            {isLoading ? (
+                <Backdrop open={isLoading} invisible>
+                    <CircularProgress color="primary" />
+                </Backdrop>
+            ) : (
+                <div className={classes.listContainer}>
+                    {list?.map((courseItem) => {
+                        return (
+                            <SearchCourseItem
+                                key={courseItem.id}
+                                course={courseItem}
+                            />
+                        )
+                    })}
+                </div>
+            )}
         </div>
     )
 }

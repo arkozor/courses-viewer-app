@@ -23,6 +23,7 @@ const CheckboxFilter = ({ filters }: Props): JSX.Element => {
             router.push({
                 pathname: location.pathname,
                 query: {
+                    ...router.query,
                     domain: event.target.value
                 }
             })

@@ -25,20 +25,24 @@ const SearchPage = ({
 }: StaticProps): JSX.Element => {
     const router = useRouter()
     const { keyword } = router.query
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const [searchResult, setSearchResult] = React.useState(courseItems)
 
     React.useEffect(() => {
         if (keyword) {
             try {
+                setIsLoading(true)
                 axios
                     .get(`${process.env.SEARCH_API}?search=${keyword}`, {
                         timeout: 60000
                     })
                     .then((res) => {
                         setSearchResult(res.data.data)
+                        setIsLoading(false)
                     })
             } catch (e) {
+                setIsLoading(false)
                 throw new Error(e.message)
             }
         }
@@ -49,14 +53,13 @@ const SearchPage = ({
             <div className={classes.titleContainer}>
                 <Typography variant="h5">
                     {searchResult?.length
-                        ? 'Résultats pour'
-                        : 'Aucun résultat pour'}{' '}
-                    : &ldquo;{keyword}&ldquo;
+                        ? `Résultats pour : "${keyword}"`
+                        : `Aucun résultat pour : "${keyword}"`}
                 </Typography>
             </div>
             <div className={classes.filtersAndListContainer}>
                 <SearchFilters filters={searchFilters.domains} />
-                <SearchList courseItems={searchResult} />
+                <SearchList courseItems={searchResult} isLoading={isLoading} />
             </div>
         </div>
     ) : (
@@ -66,7 +69,7 @@ const SearchPage = ({
             </div>
             <div className={classes.filtersAndListContainer}>
                 <SearchFilters filters={searchFilters.domains} />
-                <SearchList courseItems={searchResult} />
+                <SearchList courseItems={searchResult} isLoading={isLoading} />
             </div>
         </div>
     )
