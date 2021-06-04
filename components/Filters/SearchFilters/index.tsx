@@ -1,23 +1,14 @@
 import React from 'react'
 
-import axios from 'axios'
-
 import DropdownFilter from './DropdownFilter'
+import { DomainFilter } from './type'
 
-const SearchFilters = (): JSX.Element => {
-    const [domains, setDomains] = React.useState([])
+type Props = {
+    filters: DomainFilter[]
+}
 
-    React.useEffect(() => {
-        axios
-            .get(`${process.env.DOMAIN_API}`)
-            .then((res) => setDomains(res.data.data.data))
-    }, [])
-
-    return (
-        <div>
-            <DropdownFilter filters={domains} />
-        </div>
-    )
+const SearchFilters = ({ filters }: Props): JSX.Element => {
+    return <DropdownFilter filters={filters} />
 }
 
 export default SearchFilters

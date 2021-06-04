@@ -1,52 +1,100 @@
 import React from 'react'
 
-import { Backdrop, CircularProgress, Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 import axios from 'axios'
+import { CourseType } from 'components/Course/types'
+import SearchFilters from 'components/Filters/SearchFilters'
+import { DomainFilter } from 'components/Filters/SearchFilters/type'
 import SearchList from 'components/Search/SearchList'
+import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
-const SearchPage = (): JSX.Element => {
-    const [courses, setCourses] = React.useState([])
-    const [isLoading, setIsLoading] = React.useState(false)
+type StaticProps = {
+    courseItems: CourseType[]
+
+    searchFilters: {
+        domains: DomainFilter[]
+    }
+}
+
+const SearchPage = ({
+    courseItems,
+    searchFilters
+}: StaticProps): JSX.Element => {
+    const router = useRouter()
+    const { keyword } = router.query
+
+    const [searchResult, setSearchResult] = React.useState(courseItems)
 
     React.useEffect(() => {
-        setIsLoading(true)
-        try {
-            axios
-                .get(`${process.env.COURSE_API}`, {
-                    timeout: 60000
-                })
-                .then((res) => {
-                    setCourses(res.data.data.data)
-                    setIsLoading(false)
-                })
-        } catch (e) {
-            setIsLoading(false)
-            throw new Error(e.message)
+        if (keyword) {
+            try {
+                axios
+                    .get(`${process.env.SEARCH_API}?search=${keyword}`, {
+                        timeout: 60000
+                    })
+                    .then((res) => {
+                        setSearchResult(res.data.data)
+                    })
+            } catch (e) {
+                throw new Error(e.message)
+            }
         }
-    }, [])
+    }, [keyword])
 
-    const searchCourseList = {
-        title: 'Les cours les plus suivis',
-        courseItems: courses
-    }
-
-    return isLoading && !courses?.length ? (
-        <Backdrop open={isLoading} invisible>
-            <CircularProgress
-                color="primary"
-                classes={{ root: classes.progress }}
-            />
-        </Backdrop>
+    return keyword ? (
+        <div className={classes.container}>
+            <div className={classes.titleContainer}>
+                <Typography variant="h5">
+                    {searchResult?.length
+                        ? 'Résultats pour'
+                        : 'Aucun résultat pour'}{' '}
+                    : &ldquo;{keyword}&ldquo;
+                </Typography>
+            </div>
+            <div className={classes.filtersAndListContainer}>
+                <SearchFilters filters={searchFilters.domains} />
+                <SearchList courseItems={searchResult} />
+            </div>
+        </div>
     ) : (
         <div className={classes.container}>
             <div className={classes.titleContainer}>
                 <Typography variant="h5">Tous les cours:</Typography>
             </div>
-            <SearchList searchCourseList={searchCourseList} />
+            <div className={classes.filtersAndListContainer}>
+                <SearchFilters filters={searchFilters.domains} />
+                <SearchList courseItems={searchResult} />
+            </div>
         </div>
     )
 }
 
 export default SearchPage
+
+export const getStaticProps: GetStaticProps = async () => {
+    const searchCoursesRes = await fetch(`${process.env.COURSE_API}`)
+    const domainsFiltersRes = await fetch(`${process.env.DOMAIN_API}`)
+
+    const searchCoursesData = await searchCoursesRes.json()
+    const domainsFiltersData = await domainsFiltersRes.json()
+
+    const missingData = !searchCoursesData || !domainsFiltersData
+
+    if (missingData) {
+        return {
+            notFound: true
+        }
+    }
+
+    return {
+        props: {
+            courseItems: searchCoursesData.data.data,
+            searchFilters: {
+                domains: domainsFiltersData.data.data
+            }
+        }
+    }
+}

@@ -23,10 +23,23 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 
     React.useEffect(() => {
         const localStorageUser = localStorage.getItem('user')
-        if (localStorageUser && currentUser === null) {
-            const parsedLocalStorageUser: User = JSON.parse(localStorageUser)
+        const parsedLocalStorageUser: User = JSON.parse(localStorageUser)
+
+        const syncCurrentUserWithLocalStorage = () => {
             setCurrentUser(parsedLocalStorageUser)
         }
+
+        window.addEventListener('storage', syncCurrentUserWithLocalStorage)
+
+        if (localStorageUser && currentUser === null) {
+            syncCurrentUserWithLocalStorage()
+        }
+
+        return () =>
+            window.removeEventListener(
+                'storage',
+                syncCurrentUserWithLocalStorage
+            )
     })
 
     return (

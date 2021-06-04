@@ -17,7 +17,12 @@ const SearchBar = (): JSX.Element => {
 
     const sendSearchRequest = () => {
         if (searchValue !== '') {
-            router.replace(`/search/${searchValue}`)
+            router.replace({
+                pathname: '/search',
+                query: {
+                    keyword: searchValue
+                }
+            })
         } else {
             router.replace('/search')
         }
