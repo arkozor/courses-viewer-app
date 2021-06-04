@@ -1,10 +1,11 @@
 import React from 'react'
 
 import {
-    OutlinedInput,
     Button,
     InputAdornment,
-    IconButton
+    IconButton,
+    Input,
+    CircularProgress
 } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
 import SearchIcon from '@material-ui/icons/Search'
@@ -14,29 +15,35 @@ import classes from './style.module.scss'
 
 const SearchBar = (): JSX.Element => {
     const router = useRouter()
-
     const [searchValue, setSearchValue] = React.useState('')
-
+    const [isLoading, setIsLoading] = React.useState(false)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value)
     }
 
+    React.useEffect(() => {
+        const handleRouteChange = () => setIsLoading(false)
+        router.events.on('routeChangeComplete', handleRouteChange)
+        return () => {
+            router.events.off('routeChangeStart', handleRouteChange)
+        }
+    })
+
     const sendSearchRequest = () => {
-        if (searchValue) {
-            const param = 'ok'
-            router.push(
-                {
-                    pathname: `/search/[id]`,
-                    query: {
-                        searchValue,
-                        param
-                    }
-                },
-                `/search/${searchValue}`,
-                { shallow: true }
-            )
+        setIsLoading(true)
+
+        if (searchValue !== '') {
+            router.push({
+                pathname: '/search',
+                query: {
+                    keyword: searchValue
+                }
+            })
+        } else {
+            window.location.replace('/search')
         }
     }
+
     return (
         <div className={classes.searchBarContainer}>
             <Button
@@ -47,15 +54,22 @@ const SearchBar = (): JSX.Element => {
                 }}
                 aria-label="search-button"
             >
-                <SearchIcon className={classes.searchIcon} />
+                {isLoading ? (
+                    <CircularProgress
+                        color="primary"
+                        classes={{ root: classes.progress }}
+                    />
+                ) : (
+                    <SearchIcon className={classes.searchIcon} />
+                )}
             </Button>
-            <OutlinedInput
+            <Input
                 aria-label="search-input"
                 classes={{
                     root: classes.textFieldInput,
-                    notchedOutline: classes.notch,
                     focused: classes.focused
                 }}
+                disableUnderline
                 endAdornment={
                     searchValue && (
                         <InputAdornment position="end">

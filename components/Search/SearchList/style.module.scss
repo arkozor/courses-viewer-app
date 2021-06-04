@@ -1,0 +1,12 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+}
+.listContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 0 $spacing_md;
+}

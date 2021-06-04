@@ -40,10 +40,14 @@ const Chapter = (props: Props): JSX.Element => {
                     <IconButton
                         onClick={(e) => {
                             e.stopPropagation()
-                            router.push({
-                                pathname: location.pathname,
-                                query: { chapter: chapter.number }
-                            })
+                            router.push(
+                                {
+                                    pathname: location.pathname,
+                                    query: { chapter: chapter.number }
+                                },
+                                '',
+                                { shallow: true }
+                            )
                         }}
                         className={classes.iconButton}
                         color="inherit"

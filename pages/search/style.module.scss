@@ -1,0 +1,13 @@
+@import 'theme/theme';
+
+.container {
+    padding: $spacing_xxl;
+}
+
+.filtersAndListContainer {
+    display: flex;
+}
+
+.titleContainer {
+    margin: $spacing_md 0;
+}
