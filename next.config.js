@@ -3,6 +3,10 @@ module.exports = {
         COURSE_API: 'http://idboard.net:43001/api/courses',
         USER_API: 'http://idboard.net:43001/api/user/me',
         AUTH_API: 'http://idboard.net:43001/api/auth',
+        SEARCH_API: 'http://idboard.net:43001/api/search',
+        DOMAIN_API: 'http://idboard.net:43001/api/domains',
+        CATEGORY_API: 'http://idboard.net:43001/api/categories',
+        THEME_API: 'http://idboard.net:43001/api/themes',
         APP_ENV: 'local',
         FLAGSMITH_ENV_KEY: 'Jy7QznRFqoWmnBDW47Pi8c'
     },

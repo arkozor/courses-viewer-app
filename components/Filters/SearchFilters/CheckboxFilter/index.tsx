@@ -12,15 +12,19 @@ type Props = {
 
 const CheckboxFilter = ({ filters }: Props): JSX.Element => {
     const router = useRouter()
+    const { domain } = router.query
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (router.query.domain?.includes(e.target.value)) {
-            router.push(location.pathname)
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value === '') {
+            router.push({
+                pathname: location.pathname
+            })
         } else {
             router.push({
+                pathname: location.pathname,
                 query: {
                     ...router.query,
-                    domain: e.target.value
+                    domain: event.target.value
                 }
             })
         }
@@ -30,17 +34,15 @@ const CheckboxFilter = ({ filters }: Props): JSX.Element => {
         <div className={classes.container}>
             {filters.map((filter) => (
                 <FormControlLabel
-                    key={filter.value}
+                    key={filter.name}
                     control={
                         <Checkbox
-                            checked={router.query?.domain.includes(
-                                filter.value.toString()
-                            )}
+                            checked={domain === filter.name}
                             onChange={handleChange}
-                            value={filter.value.toString()}
+                            value={filter.name}
                         />
                     }
-                    label={filter.label}
+                    label={filter.name}
                 />
             ))}
         </div>

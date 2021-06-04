@@ -17,7 +17,7 @@ const Preview = (props: Props): JSX.Element => {
     const { content, children, className } = props
 
     return (
-        <>
+        <div className={classes.container}>
             <span
                 onMouseEnter={(event: React.MouseEvent) => {
                     event.stopPropagation()
@@ -55,7 +55,7 @@ const Preview = (props: Props): JSX.Element => {
                     {content}
                 </Paper>
             </Popper>
-        </>
+        </div>
     )
 }
 
