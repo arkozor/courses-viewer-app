@@ -4,13 +4,28 @@ import { Button, Typography } from '@material-ui/core'
 import Avatar from 'components/Avatar'
 import AvatarSelector from 'components/Avatar/AvatarSelector'
 import { UserContext } from 'context'
-import { useRouter } from 'next/router'
+import router, { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
 const AvatarStyling = (): JSX.Element => {
     const currentUser = useContext(UserContext)
     const { query } = useRouter()
+
+    const localStorage = typeof window !== 'undefined' && window.localStorage
+
+    const changeAvatar = (image) => {
+        localStorage.setItem(
+            'user',
+            JSON.stringify({
+                avatarSrc: image
+            })
+        )
+        if (localStorage.getItem('token')) {
+            router.replace('/')
+        }
+    }
+
     return (
         <div className={classes.container}>
             <div className={classes.title}>
@@ -35,7 +50,13 @@ const AvatarStyling = (): JSX.Element => {
                 </div>
                 <AvatarSelector />
             </div>
-            <Button variant="contained" color="primary">
+            <Button
+                variant="contained"
+                onClick={() => {
+                    changeAvatar(query.label)
+                }}
+                color="secondary"
+            >
                 Sauvegarder
             </Button>
         </div>

@@ -67,6 +67,7 @@ const Profile = (): JSX.Element => {
                     ) : null}
                 </div>
                 <Tabs
+                    //TabIndicatorProps={{ style: { background: '#6dcebb' } }}
                     orientation="vertical"
                     variant="scrollable"
                     value={value}
@@ -81,6 +82,7 @@ const Profile = (): JSX.Element => {
                     />
                     <Tab
                         className={classes.tabLabel}
+                        disabled={true}
                         label="profil"
                         {...a11yProps(1)}
                     />
