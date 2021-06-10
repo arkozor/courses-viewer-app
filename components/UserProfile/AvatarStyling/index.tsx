@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 
 import { Button, Typography } from '@material-ui/core'
+import axios from 'axios'
 import Avatar from 'components/Avatar'
 import AvatarSelector from 'components/Avatar/AvatarSelector'
 import { UserContext } from 'context'
@@ -10,19 +11,35 @@ import classes from './style.module.scss'
 
 const AvatarStyling = (): JSX.Element => {
     const currentUser = useContext(UserContext)
+    const [hasError, setHasError] = React.useState(false)
     const { query } = useRouter()
-
     const localStorage = typeof window !== 'undefined' && window.localStorage
+    const token =
+        typeof window !== 'undefined' && window.localStorage.getItem('token')
 
-    const changeAvatar = (image) => {
-        localStorage.setItem(
-            'user',
-            JSON.stringify({
-                avatarSrc: image
+    const changeAvatar = async (image: string) => {
+        await axios
+            .post(`${process.env.AVATAR_API}`, {
+                headers: { Authorization: `Bearer ${token}` },
+                body: {
+                    avatar: image
+                }
             })
-        )
-        if (localStorage.getItem('token')) {
-            router.replace('/')
+
+            .then((res) => {
+                localStorage.setItem(
+                    'user',
+                    JSON.stringify({
+                        token: res.data.data.token,
+                        avatarSrc: image
+                    })
+                )
+            })
+            .catch(() => {
+                setHasError(true)
+            })
+        if (!hasError && localStorage.getItem('token')) {
+            router.push('/')
         }
     }
 
@@ -36,8 +53,8 @@ const AvatarStyling = (): JSX.Element => {
                 <div className={classes.currentAvatar}>
                     <Avatar
                         src={
-                            query.label
-                                ? String(query.label)
+                            query.avatar
+                                ? String(query.avatar)
                                 : currentUser.avatarSrc
                         }
                         nickname={currentUser.username}
@@ -53,7 +70,7 @@ const AvatarStyling = (): JSX.Element => {
             <Button
                 variant="contained"
                 onClick={() => {
-                    changeAvatar(query.label)
+                    changeAvatar(String(query.avatar))
                 }}
                 color="secondary"
             >
