@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import Box from '@material-ui/core/Box'
 import Tab from '@material-ui/core/Tab'
 import Tabs from '@material-ui/core/Tabs'
 import Typography from '@material-ui/core/Typography'
-import Avatar from 'components/Avatar'
+// import Avatar from 'components/Avatar'
 import AvatarStyling from 'components/UserProfile/AvatarStyling'
 import ProfileStyling from 'components/UserProfile/ProfileStyling'
-import { UserContext } from 'context'
+// import { UserContext } from 'context'
 
 import classes from './style.module.scss'
 
@@ -45,7 +45,7 @@ function a11yProps(index: any) {
 }
 
 const Profile = (): JSX.Element => {
-    const currentUser = useContext(UserContext)
+    // const currentUser = useContext(UserContext)
     const [value, setValue] = React.useState(0)
 
     const handleChange = (
@@ -58,14 +58,14 @@ const Profile = (): JSX.Element => {
     return (
         <div className={classes.root}>
             <div className={classes.nav}>
-                <div className={classes.avatar}>
+                {/* <div className={classes.avatar}>
                     {currentUser ? (
                         <Avatar
                             src={currentUser.avatarSrc}
                             nickname={currentUser.username}
                         />
                     ) : null}
-                </div>
+                </div> */}
                 <Tabs
                     //TabIndicatorProps={{ style: { background: '#6dcebb' } }}
                     orientation="vertical"
@@ -82,7 +82,7 @@ const Profile = (): JSX.Element => {
                     />
                     <Tab
                         className={classes.tabLabel}
-                        disabled={true}
+                        disabled={false}
                         label="profil"
                         {...a11yProps(1)}
                     />

@@ -1,0 +1,33 @@
+.title {
+    text-align : center;
+}
+
+.infos {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.info {
+    padding-bottom:  20px;
+}
+
+.perso {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 150px;
+}
+
+.avatar {
+
+    margin-left: 100px;
+
+    :first-child {  
+        
+        width: 160px;
+        height: 160px;
+    }
+    
+}
+    
