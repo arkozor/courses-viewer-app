@@ -1,9 +1,13 @@
 @import 'theme/theme';
 
-.progress {
-    position: absolute;
+.container {
+    padding: $spacing_xxl;
+}
+
+.filtersAndListContainer {
+    display: flex;
 }
 
 .titleContainer {
-    padding: $spacing_xxl;
+    margin: $spacing_md 0;
 }

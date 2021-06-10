@@ -8,13 +8,23 @@
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
+.container:hover {
+    background: $primary_hover;
+    .image {
+        transform: scale(1.05);
+        transition: transform 350ms ease-out;
+    }
+}
 .imageContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     .image {
-        max-height: 220px;
+        max-height: 100px;
+        @media (min-width: $breakpoints_media_mdMin) {
+            max-height: 220px;
+        }
     }
 }
 .headerContainer {
@@ -47,4 +57,8 @@
     display: flex;
     justify-content: center;
     padding: $spacing_md;
+}
+
+.link {
+    text-decoration: none;
 }

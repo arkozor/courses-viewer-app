@@ -142,6 +142,7 @@ const LoginPage = (): JSX.Element => {
                                         Se connecter
                                         {isLoading && (
                                             <CircularProgress
+                                                color="primary"
                                                 classes={{
                                                     root: classes.progress
                                                 }}

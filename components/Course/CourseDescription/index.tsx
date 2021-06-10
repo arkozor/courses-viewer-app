@@ -68,6 +68,7 @@ const CourseDescription = (props: Props): JSX.Element => {
                 <div className={classes.authorContainer}>
                     {isLoadingAvatar ? (
                         <CircularProgress
+                            color="primary"
                             classes={{
                                 root: classes.progress
                             }}
