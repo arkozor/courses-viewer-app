@@ -214,6 +214,7 @@ const Register = (): JSX.Element => {
                                         : 'Envoyer'}
                                     {isLoading && (
                                         <CircularProgress
+                                            color="primary"
                                             classes={{
                                                 root: classes.progress
                                             }}

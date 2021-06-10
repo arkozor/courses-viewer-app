@@ -10,6 +10,7 @@ type Props = {
     title: string
     description: string
     thumbnail: string
+    domain?: string
 }
 
 const CourseCard = (props: Props): JSX.Element => {

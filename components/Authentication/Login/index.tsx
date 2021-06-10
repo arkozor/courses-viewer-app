@@ -127,11 +127,7 @@ const Login = (): JSX.Element => {
                                     <div className={classes.buttonText}>
                                         Se connecter
                                         {isLoading && (
-                                            <CircularProgress
-                                                classes={{
-                                                    root: classes.progress
-                                                }}
-                                            />
+                                            <CircularProgress color="primary" />
                                         )}
                                     </div>
                                 </Button>
