@@ -1,62 +1,109 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
-import { Button, TextField, Typography } from '@material-ui/core'
+import { Button, FormControl, TextField, Typography } from '@material-ui/core'
+import { ChapterType } from 'components/Course/types'
 
-import classes from './style.module.scss'
+import classes from '../style.module.scss'
+
+const NewChapter = (props: {chapter: ChapterType}) => {
+    const [newChapter, setNewChapter] = React.useState({
+        course_id: props.chapter.course_id,
+        created_at: "",
+        deleted_at: null,
+        description: "",
+        id: props.chapter.id,
+        number: props.chapter.number,
+        subchapters: [],
+        title: "",
+        updated_at: "",
+        thumbnail: "",
+    })
+
+    const handleChange = (event: any) => {
+        const {value} = event.target
+        setNewChapter({...newChapter, [event.target.name]: value})
+    }
+
+    console.log("title: " + newChapter.title);
+    console.log("description: " + newChapter.description);
+    
+    
+    return (
+        <div>
+            <Typography
+                variant="h2"
+            >
+                {"Chapter " + newChapter.number}
+            </Typography>
+            <FormControl 
+                variant="outlined"
+                className={classes.formControl}
+            >
+                <TextField
+                    variant="outlined"
+                    className={classes.input}
+                    name="title"
+                    onChange={handleChange}
+                    label="Title"
+                ></TextField>
+            </FormControl>
+            <FormControl 
+                variant="outlined"
+                className={classes.formControl}
+            >
+                <TextField
+                    variant="outlined"
+                    className={classes.input}
+                    name="description"
+                    onChange={handleChange}
+                    label="Description"
+                ></TextField>
+            </FormControl>
+        </div>
+    )
+}
 
 const ChapterEditor = (): JSX.Element => {
 
-    const [state, setState] = React.useState({
-        chapterList: []
-    })
+    const [chapters, setChapters] = React.useState([])
 
-    let existingStorage: string = localStorage.getItem('edit');
+    /* let existingStorage: string = localStorage.getItem('edit'); */
 
-    const [newChapter, setNewChapter] = React.useState([])
-
-    useEffect(() => {
+    /* useEffect(() => {
         existingStorage? existingStorage += window.localStorage.setItem('edit', JSON.stringify(state)): window.localStorage.setItem('edit', JSON.stringify(state))
-    }, [state])
+    }, [state]) */
 
-    const handleChange = (event: any) => {
-        const value = event.target.value as string;
-        setState({
-            ...state,
-            chapterList: [value]
-        });
-        console.log(state.chapterList[0], event.target.name);
-        
-    }
+    
 
     return (
         <div className={classes.courseEditor}>
-            <div>{newChapter.map(e => {
-                return <div key={e.name}>{e}</div>
+            <Typography
+                variant="h2"
+            >
+                Chapters
+            </Typography>
+
+            <div>{chapters.map((chapter: ChapterType) => {
+                return <div key={chapter.id}>
+                        <NewChapter chapter={chapter}/>
+                    </div>
             })}</div>
 
             <Button onClick={() => {
-                state.chapterList.push({
-                    name: ""
-                })
-                setNewChapter([...newChapter, 
-                    <div key={state.chapterList.length}>
-                        <Typography
-                            variant="h2"
-                        >
-                            {"Chapter " + state.chapterList.length}
-                        </Typography>
-                        <TextField
-                            variant="outlined"
-                            className={classes.input}
-                            name={state.chapterList.length.toString()}
-                            value={state.chapterList[0]}
-                            onChange={handleChange}
-                            label="Title"
-                        >
-                        </TextField>
-                    </div>
+                setChapters([...chapters,
+                    {
+                        course_id: chapters.length,
+                        created_at: "",
+                        deleted_at: null,
+                        description: "string",
+                        id: chapters.length,
+                        number: 0,
+                        subchapters: [],
+                        title: "string",
+                        updated_at: "string",
+                        thumbnail: "string",
+                    }
                 ])
-                
             }}>
                 Add chapter
             </Button>

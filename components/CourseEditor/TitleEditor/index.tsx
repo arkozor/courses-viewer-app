@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@material-ui/core'
 
-import classes from './style.module.scss'
+import classes from '../style.module.scss'
 
 const TitleEditor = (): JSX.Element => {
 
@@ -38,15 +38,20 @@ const TitleEditor = (): JSX.Element => {
             >
                 Titre du cours
             </Typography>
-            <TextField
+            <FormControl 
                 variant="outlined"
-                className={classes.input}
-                name="title"
-                value={state.title}
-                onChange={handleChange}
-                label="Title"
+                className={classes.formControl}
             >
-            </TextField>
+                <TextField
+                    variant="outlined"
+                    className={classes.input}
+                    name="title"
+                    value={state.title}
+                    onChange={handleChange}
+                    label="Title"
+                >
+                </TextField>
+            </FormControl>
             <Typography
                 variant="h2"
             >
