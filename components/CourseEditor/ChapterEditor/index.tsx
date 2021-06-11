@@ -5,14 +5,23 @@ import { ChapterType } from 'components/Course/types'
 
 import classes from '../style.module.scss'
 
-const NewChapter = (props: {chapter: ChapterType}) => {
+type NewChapterProps = {
+    chapter: ChapterType
+    getNewChapter: (chapter : ChapterType) => void
+}
+
+type ChapterEditorProps = {
+    callback: (chaptersData: ChapterType[]) => void
+}
+
+const NewChapter = ({chapter, getNewChapter}: NewChapterProps) => {
     const [newChapter, setNewChapter] = React.useState({
-        course_id: props.chapter.course_id,
+        course_id: chapter.course_id,
         created_at: "",
         deleted_at: null,
         description: "",
-        id: props.chapter.id,
-        number: props.chapter.number,
+        id: chapter.id,
+        number: chapter.number,
         subchapters: [],
         title: "",
         updated_at: "",
@@ -22,12 +31,14 @@ const NewChapter = (props: {chapter: ChapterType}) => {
     const handleChange = (event: any) => {
         const {value} = event.target
         setNewChapter({...newChapter, [event.target.name]: value})
+        if (getNewChapter) {
+            getNewChapter(newChapter)
+        } 
     }
 
     console.log("title: " + newChapter.title);
     console.log("description: " + newChapter.description);
-    
-    
+
     return (
         <div>
             <Typography
@@ -63,18 +74,26 @@ const NewChapter = (props: {chapter: ChapterType}) => {
     )
 }
 
-const ChapterEditor = (): JSX.Element => {
+const ChapterEditor = ({callback}: ChapterEditorProps): JSX.Element => {
 
     const [chapters, setChapters] = React.useState([])
 
-    /* let existingStorage: string = localStorage.getItem('edit'); */
+    const [newChapter, setNewChapter] = React.useState([])
 
-    /* useEffect(() => {
-        existingStorage? existingStorage += window.localStorage.setItem('edit', JSON.stringify(state)): window.localStorage.setItem('edit', JSON.stringify(state))
-    }, [state]) */
+    const getNewChapter = (newChapter) => {
+        setNewChapter(newChapter);
+        chapters[newChapter.number]=newChapter
+        console.log(newChapter);
+    }
 
+    React.useEffect(() => {
+        if (callback){
+            callback(chapters)
+        }
+    }, [chapters])
+
+    console.log(newChapter);
     
-
     return (
         <div className={classes.courseEditor}>
             <Typography
@@ -85,7 +104,7 @@ const ChapterEditor = (): JSX.Element => {
 
             <div>{chapters.map((chapter: ChapterType) => {
                 return <div key={chapter.id}>
-                        <NewChapter chapter={chapter}/>
+                        <NewChapter chapter={chapter} getNewChapter={getNewChapter}/>
                     </div>
             })}</div>
 
@@ -97,7 +116,7 @@ const ChapterEditor = (): JSX.Element => {
                         deleted_at: null,
                         description: "string",
                         id: chapters.length,
-                        number: 0,
+                        number: chapters.length,
                         subchapters: [],
                         title: "string",
                         updated_at: "string",
