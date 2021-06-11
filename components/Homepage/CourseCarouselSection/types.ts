@@ -1,6 +1,5 @@
 export type CoursePreview = {
-    id: string
-    domain: string
+    id: number
     title: string
     thumbnail: string
     description: string

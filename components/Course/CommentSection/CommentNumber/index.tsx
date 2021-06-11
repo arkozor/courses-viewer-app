@@ -10,22 +10,18 @@ type Props = {
 
 const CommentNumber = (props: Props): JSX.Element => {
     const { comments } = props
-    const [totalComments, setTotalComments] = React.useState(comments.length)
-
-    let totalAnswerLength = 0
+    const [totalComments, setTotalComments] = React.useState(0)
+    const [totalReplies, setTotalReplies] = React.useState(0)
 
     React.useEffect(() => {
-        comments.forEach((comment) => {
-            if (comment.answers?.length) {
-                totalAnswerLength += comment.answers?.length
-            }
-        })
-        setTotalComments(totalComments + totalAnswerLength)
+        const repliesLengths = comments.map((comment) => comment.replies.length)
+        setTotalReplies(repliesLengths?.reduce((a, b) => a + b))
+        setTotalComments(comments.length)
     }, [])
 
     return (
         <Typography variant="h6" component="span">
-            {totalComments} Commentaires
+            {totalComments + totalReplies} Commentaires
         </Typography>
     )
 }
