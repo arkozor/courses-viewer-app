@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { useRouter } from 'next/router'
+
 import CarouselTitle from './CarouselTitle'
 import CourseCarousel from './CourseCarousel'
 import coursesPreviewList from './CourseCarousel/CoursesProvider/courses.json'
@@ -25,10 +27,17 @@ const CourseCarouselSection = (): JSX.Element => {
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
+                const { query } = useRouter()
+                const courses = query.domain
+                    ? coursesPreview.filter(
+                          (coursePreview) =>
+                              coursePreview.domain === query.domain
+                      )
+                    : coursesPreview
                 return (
                     <div key={title} className={classes.subSectionContainer}>
                         <CarouselTitle title={title} />
-                        <CourseCarousel coursesPreviewList={coursesPreview} />
+                        <CourseCarousel coursesPreviewList={courses} />
                     </div>
                 )
             })}
