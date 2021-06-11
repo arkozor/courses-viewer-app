@@ -6,7 +6,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component'
 import classes from './style.module.scss'
 
 type Props = {
-    id: string
+    id: number
     title: string
     description: string
     thumbnail: string

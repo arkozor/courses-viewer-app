@@ -6,15 +6,15 @@ import { CourseType } from 'components/Course/types'
 import SearchFilters from 'components/Filters/SearchFilters'
 import { DomainFilter } from 'components/Filters/SearchFilters/type'
 import SearchList from 'components/Search/SearchList'
+import NoResult from 'components/Search/SearchList/NoResult'
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
 type StaticProps = {
-    courseItems: CourseType[]
-
-    searchFilters: {
+    courseItems?: CourseType[]
+    searchFilters?: {
         domains: DomainFilter[]
     }
 }
@@ -52,14 +52,19 @@ const SearchPage = ({
         <div className={classes.container}>
             <div className={classes.titleContainer}>
                 <Typography variant="h5">
-                    {searchResult?.length
-                        ? `Résultats pour : "${keyword}"`
-                        : `Aucun résultat pour : "${keyword}"`}
+                    {`Résultats pour : "${keyword}"`}
                 </Typography>
             </div>
             <div className={classes.filtersAndListContainer}>
                 <SearchFilters filters={searchFilters.domains} />
-                <SearchList courseItems={searchResult} isLoading={isLoading} />
+                {searchResult?.length ? (
+                    <SearchList
+                        courseItems={searchResult}
+                        isLoading={isLoading}
+                    />
+                ) : (
+                    <NoResult />
+                )}
             </div>
         </div>
     ) : (
@@ -69,7 +74,14 @@ const SearchPage = ({
             </div>
             <div className={classes.filtersAndListContainer}>
                 <SearchFilters filters={searchFilters.domains} />
-                <SearchList courseItems={searchResult} isLoading={isLoading} />
+                {searchResult?.length ? (
+                    <SearchList
+                        courseItems={searchResult}
+                        isLoading={isLoading}
+                    />
+                ) : (
+                    <NoResult />
+                )}
             </div>
         </div>
     )
