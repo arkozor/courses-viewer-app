@@ -29,18 +29,20 @@ const AvatarStyling = (): JSX.Element => {
     const changeAvatar = async (image: string) => {
         setIsLoading(true)
         await axios
-            .post(
+            .patch(
                 `${process.env.AVATAR_API}`,
                 { avatar: image },
                 {
-                    headers: { Authorization: `Bearer ${token}` }
+                    headers: { Authorization: `Bearer ${token}` },
+                    timeout: 60000
                 }
             )
 
-            .then(() => {
+            .then((res) => {
                 localStorage.setItem(
                     'user',
                     JSON.stringify({
+                        token: res.data.data.token,
                         avatarSrc: image
                     })
                 )

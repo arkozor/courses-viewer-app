@@ -37,7 +37,7 @@ const Carousel = (props: Props): JSX.Element => {
                 itemPadding={[4, 4]}
                 isRTL={false}
                 breakPoints={breakPoints}
-                disableArrowsOnEnd={false}
+                disableArrowsOnEnd={true}
                 pagination={true}
                 enableTilt={true}
             >
