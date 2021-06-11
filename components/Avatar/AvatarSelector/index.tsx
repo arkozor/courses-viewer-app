@@ -27,8 +27,8 @@ const AvatarSelector = (): JSX.Element => {
                     onClick={() => {
                         router.push(
                             { query: { avatar: image } },
-                            location.pathname
-                            // { shallow: true }
+                            location.pathname,
+                            { shallow: true }
                         )
                     }}
                     key={image}
