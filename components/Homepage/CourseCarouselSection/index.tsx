@@ -28,7 +28,6 @@ const CourseCarouselSection = (): JSX.Element => {
                 return (
                     <div key={title} className={classes.subSectionContainer}>
                         <CarouselTitle title={title} />
-                        {/* @ts-expect-error remove when we will have real data */}
                         <CourseCarousel coursesPreviewList={coursesPreview} />
                     </div>
                 )
