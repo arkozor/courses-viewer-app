@@ -14,7 +14,6 @@ const CourseEditor = (): JSX.Element => {
 
     const getData = (data: any[]) => {
         if(data) {
-            console.log(data[0]?.description + " " + data[1]);
             window.localStorage.setItem("editData", JSON.stringify(data))
         }
     }
@@ -22,7 +21,7 @@ const CourseEditor = (): JSX.Element => {
     return (
         <div id="courseEditor">
             {step === 0? <TitleEditor/>:null}
-            {step === 1? <ChapterEditor callback = {getData}/>:null}
+            {step === 1? <ChapterEditor getData = {getData}/>:null}
             {step === 2? <PreviewEditor/>:null}
             <div className={classes.navigation}>
                 <Button onClick={() => { if(step>0) setStep(step-1)}}>Previous step</Button>

@@ -1,0 +1,29 @@
+@import 'theme/theme';
+
+.chapter {
+    background-color: $primary_light;
+    display: flex;
+    padding: $spacing_xl;
+    margin: $spacing_xl;
+    border-radius: 25px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formControl {
+    display: flex !important;
+    min-width: 120px !important;
+    max-width: 300px !important;
+    margin: $spacing_md 0 $spacing_md 0 !important;
+}
+
+.input {
+    width: 250px;
+    display: flex;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
