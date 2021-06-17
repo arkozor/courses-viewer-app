@@ -12,6 +12,7 @@ type Props = {
 }
 
 const NewSubChapter = ({subChapter, getNewSubChapter}: Props): JSX.Element => {
+    
     const [newSubChapter, setNewSubChapter] = React.useState({
         chapter_id: subChapter.chapter_id,
         created_at: "string",

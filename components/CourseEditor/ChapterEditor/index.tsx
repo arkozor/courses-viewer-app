@@ -12,15 +12,15 @@ type Props = {
 
 const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
+    
     const [chapters, setChapters] = React.useState([])
 
     const [newChapter, setNewChapter] = React.useState([])
 
-
+    // get modified chapter object from a chapter component
     const getNewChapter = (newChapter: any) => {
         setNewChapter(newChapter);
         chapters[newChapter.number]=newChapter
-        
     }
 
     // send chapters to parent page when new chapter is modified
