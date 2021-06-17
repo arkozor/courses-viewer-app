@@ -12,7 +12,7 @@ type Props = {
     getNewChapter: (chapter : ChapterType) => void
 }
 
-const NewChapter = ({chapter, getNewChapter: callbackNewChapter}: Props): JSX.Element => {
+const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element => {
 
     const [newChapter, setNewChapter] = React.useState({
         course_id: chapter.course_id,
@@ -36,19 +36,19 @@ const NewChapter = ({chapter, getNewChapter: callbackNewChapter}: Props): JSX.El
         subChapters[newSubChapter.number]=newSubChapter
     }
 
-    // send sub chapters to parent page when new sub chapter is modified
+    // send new chapter to parent page when new sub chapter is modified
     React.useEffect(() => {
-        if (callbackNewChapter){
-            callbackNewChapter(subChapters)
-            console.log(chapters);
+        if (getNewChapter){
+            getNewChapter(newChapter)
+            console.log(newChapter);
         }
     }, [newSubChapter])
 
     const handleChange = (event: any) => {
         const {value} = event.target
         setNewChapter({...newChapter, [event.target.name]: value})
-        if (callbackNewChapter) {
-            callbackNewChapter(newChapter)
+        if (getNewChapter) {
+            getNewChapter(newChapter)
         } 
     }
 
