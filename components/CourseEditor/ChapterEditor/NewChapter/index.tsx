@@ -41,7 +41,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
     React.useEffect(() => {
         if (getNewChapter){
             getNewChapter(newChapter)
-            console.log(newChapter);
+            // console.log(newChapter);
         }
     }, [newSubChapter])
 
@@ -53,7 +53,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
         } 
     }
 
-    console.log(newSubChapter)
+    // console.log(newSubChapter)
 
     return (
         <div className={classes.chapter}>

@@ -12,7 +12,7 @@ type Props = {
 
 const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
-
+    
     const [chapters, setChapters] = React.useState([])
 
     const [newChapter, setNewChapter] = React.useState([])
@@ -26,8 +26,8 @@ const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
     // send chapters to parent page when new chapter is modified
     React.useEffect(() => {
         if (getChapters){
-            getChapters(chapters) 
-            console.log(chapters);
+            getChapters(chapters)
+            // console.log(chapters);
         }
     }, [newChapter])
 
@@ -41,7 +41,7 @@ const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
             <div>{chapters.map((chapter: ChapterType) => {
                 return <div key={chapter.id}>
-                        <NewChapter chapter={chapter} getNewChapter={getNewChapter} getSubChapters={getSubChapters}/>
+                        <NewChapter chapter={chapter} getNewChapter={getNewChapter}/>
                     </div>
             })}</div>
 
