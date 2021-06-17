@@ -1,45 +1,69 @@
 import React from 'react'
 
-import { useRouter } from 'next/router'
+import axios from 'axios'
 
 import CarouselTitle from './CarouselTitle'
 import CourseCarousel from './CourseCarousel'
-import coursesPreviewList from './CourseCarousel/CoursesProvider/courses.json'
 import classes from './style.module.scss'
 
-const carouselSectionData = [
-    {
-        title: 'Vidéos du moment',
-        coursesPreview: coursesPreviewList
-    },
-    {
-        title: 'Dernières vidéos mises en ligne',
-        coursesPreview: coursesPreviewList
-    },
-    {
-        title: 'Vidéos les plus vues',
-        coursesPreview: coursesPreviewList
-    }
-]
-
 const CourseCarouselSection = (): JSX.Element => {
+    const [mostClickedCourses, setMostClickedCourses] = React.useState([])
+    const [courses, setCourses] = React.useState([])
+
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`${process.env.COURSE_API}/mostClicked`, {
+                    timeout: 60000
+                })
+                .then((res) => {
+                    setMostClickedCourses(res.data.data)
+                })
+            axios
+                .get(`${process.env.COURSE_API}`, {
+                    timeout: 60000
+                })
+                .then((res) => {
+                    setCourses(res.data.data)
+                })
+        } catch (e) {
+            throw new Error("Impossible d'afficher les cours")
+        }
+    }, [])
+
+    const carouselSectionData = [
+        {
+            title: 'Vidéos du moment',
+            coursesPreview: courses
+        },
+        {
+            title: 'Dernières vidéos mises en ligne',
+            coursesPreview: courses
+        },
+        {
+            title: 'Vidéos les plus vues',
+            coursesPreview: mostClickedCourses
+        }
+    ]
+
     return (
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
-                const { query } = useRouter()
-                const courses = query.domain
-                    ? coursesPreview.filter(
-                          (coursePreview) =>
-                              coursePreview.domain === query.domain
-                      )
-                    : coursesPreview
-                return (
-                    <div key={title} className={classes.subSectionContainer}>
-                        <CarouselTitle title={title} />
-                        <CourseCarousel coursesPreviewList={courses} />
-                    </div>
-                )
+                if (coursesPreview.length) {
+                    return (
+                        <div
+                            key={title}
+                            className={classes.subSectionContainer}
+                        >
+                            <CarouselTitle title={title} />
+                            <CourseCarousel
+                                coursesPreviewList={coursesPreview}
+                            />
+                        </div>
+                    )
+                }
+                return null
             })}
         </div>
     )
