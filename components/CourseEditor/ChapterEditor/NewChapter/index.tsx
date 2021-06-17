@@ -29,12 +29,10 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
 
     const [subChapters, setSubChapters] = React.useState([])
 
-    const [newSubChapter, setNewSubChapter] = React.useState([])
-
     // get modified sub chapter object from a sub chapter component
     const getNewSubChapter = (newSubChapter: any) => {
-        setNewSubChapter(newSubChapter);
         subChapters[newSubChapter.number]=newSubChapter
+        setNewChapter({...newChapter, subchapters: subChapters})
         console.log(subChapters)
         
     }
@@ -45,7 +43,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
             getNewChapter(newChapter)
             // console.log(newChapter);
         }
-    }, [newSubChapter])
+    }, [subChapters])
 
     // to explain
     const handleChange = (event: any) => {
