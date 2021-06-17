@@ -11,32 +11,35 @@ import classes from './style.module.scss'
 
 type Props = {
     comment: CommentType
+    getIsNewComment: (isNewComment: boolean) => void
 }
 
 const Comment = (props: Props): JSX.Element => {
-    const { comment } = props
-    const [shouldDisplayAnswers, setShouldDisplayAnswers] = React.useState(
+    const { comment, getIsNewComment } = props
+
+    const [shouldDisplayReplies, setShouldDisplayReplies] = React.useState(
         false
     )
-    const [isAnswering, setIsAnswering] = React.useState(false)
+
+    const [isReplying, setIsReplying] = React.useState(false)
 
     const displayMoreText =
-        comment.answers?.length === 1
-            ? shouldDisplayAnswers
+        comment.replies?.length === 1
+            ? shouldDisplayReplies
                 ? `Masquer la réponse`
                 : `Afficher la réponse`
-            : shouldDisplayAnswers
-            ? `Masquer les ${comment.answers?.length} réponses`
-            : `Afficher les ${comment.answers?.length} réponses`
+            : shouldDisplayReplies
+            ? `Masquer les ${comment.replies?.length} réponses`
+            : `Afficher les ${comment.replies?.length} réponses`
 
     return (
         <div className={classes.container}>
             <div className={classes.comment}>
                 <div className={classes.authorContainer}>
-                    <Avatar nickname={comment.author} withNickname />
+                    <Avatar nickname={comment.user.nickname} withNickname />
                 </div>
                 <div className={classes.commentContainer}>
-                    <Typography variant="body2">{comment.body}</Typography>
+                    <Typography variant="body2">{comment.content}</Typography>
                 </div>
             </div>
             <div className={classes.showMoreContainer}>
@@ -44,53 +47,57 @@ const Comment = (props: Props): JSX.Element => {
                     size="small"
                     classes={{ root: classes.showMoreButton }}
                     onClick={() => {
-                        setIsAnswering(true)
+                        setIsReplying(true)
                     }}
                     variant="text"
                     color="primary"
                 >
                     Répondre
                 </Button>
-                {isAnswering && (
+
+                {isReplying && (
                     <AddComment
-                        isAnswer
-                        shouldCloseAnswer={(isAnswering) => {
-                            setIsAnswering(!isAnswering)
+                        commentId={comment.id}
+                        shouldCloseAnswer={(isReplying) => {
+                            setIsReplying(!isReplying)
                         }}
+                        author={comment.user.nickname}
+                        getIsNewComment={getIsNewComment}
                     />
                 )}
             </div>
-            {comment.answers && (
+            {comment.replies.length ? (
                 <Button
                     size="small"
                     classes={{ root: classes.showMoreButton }}
                     onClick={() => {
-                        setShouldDisplayAnswers(!shouldDisplayAnswers)
+                        setShouldDisplayReplies(!shouldDisplayReplies)
                     }}
                     variant="text"
                     color="primary"
                 >
-                    {shouldDisplayAnswers ? (
+                    {shouldDisplayReplies ? (
                         <ExpandLessIcon />
                     ) : (
                         <ExpandMoreIcon />
                     )}
                     {displayMoreText}
                 </Button>
-            )}
-            {shouldDisplayAnswers
-                ? comment.answers?.map((answer, i) => (
+            ) : null}
+            {shouldDisplayReplies
+                ? comment.replies?.map((reply, i) => (
                       <div className={classes.answer} key={i}>
                           <div className={classes.authorContainer}>
                               <Avatar
-                                  nickname={answer.author}
+                                  nickname={reply.user.nickname}
+                                  src={reply.user.avatar}
                                   withNickname
                                   sizes="sm"
                               />
                           </div>
                           <div className={classes.answerContainer}>
                               <Typography variant="body2">
-                                  {answer?.body}
+                                  {reply.content}
                               </Typography>
                           </div>
                       </div>

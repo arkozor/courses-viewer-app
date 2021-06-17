@@ -8,10 +8,22 @@ import {
     TextField,
     CircularProgress
 } from '@material-ui/core'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
+
+type RegistrationRes = {
+    data: {
+        token: string
+        user_avatar: string | null
+        user_email: string
+        user_firstname: string
+        user_id: number
+        user_name: string
+        user_nickname: string
+    }
+}
 
 const Register = (): JSX.Element => {
     const router = useRouter()
@@ -44,10 +56,20 @@ const Register = (): JSX.Element => {
                     email: email.value,
                     password_confirmation: passwordConfirmation
                 })
-                .then((res) => {
-                    window.localStorage.setItem('token', res?.data?.data.token)
+                .then((res: AxiosResponse<RegistrationRes>) => {
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify({
+                            token: res.data.data.token,
+                            id: res.data.data.user_id,
+                            username: res.data.data.user_nickname,
+                            firstname: res.data.data.user_firstname,
+                            lastname: res.data.data.user_name,
+                            avatarSrc: res.data.data.user_avatar
+                        })
+                    )
                     setIsLoading(false)
-                    if (!hasError && localStorage.getItem('token')) {
+                    if (!hasError && localStorage.getItem('user')) {
                         router.push('/')
                     }
                 })

@@ -8,14 +8,18 @@ import { CommentType } from './types'
 
 type Props = {
     comments: CommentType[]
+    getIsNewComment: (isNewComment: boolean) => void
 }
 
-const CommentSection = ({ comments }: Props): JSX.Element => {
+const CommentSection = ({ comments, getIsNewComment }: Props): JSX.Element => {
     return (
         <div className={classes.container}>
             <CommentNumber comments={comments} />
-            <AddComment />
-            <CourseComments comments={comments} />
+            <AddComment getIsNewComment={getIsNewComment} />
+            <CourseComments
+                comments={comments}
+                getIsNewComment={getIsNewComment}
+            />
         </div>
     )
 }

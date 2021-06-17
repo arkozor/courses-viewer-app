@@ -1,8 +1,10 @@
 import React from 'react'
 
 import { Grid } from '@material-ui/core'
+import axios from 'axios'
 import CourseTitle from 'components/Course/CourseTitle'
 import VideoPlayer from 'components/Course/CourseVideo'
+import { UserContext } from 'context'
 import { useRouter } from 'next/router'
 
 import ChapterTitle from './ChapterTitle'
@@ -12,74 +14,41 @@ import CourseDescription from './CourseDescription'
 import classes from './style.module.scss'
 import { CourseType } from './types'
 
-const commentList = [
-    {
-        author: 'James',
-        body: 'FIRST',
-        answers: [
-            {
-                author: 'Johanna',
-                body: 'On peut éviter ce genre de commentaires sur les cours ?'
-            }
-        ]
-    },
-    {
-        author: 'Mark',
-        body: 'Merci'
-    },
-    {
-        author: 'Phil',
-        body: 'Génial !'
-    },
-    {
-        author: 'Roger',
-        body: 'Toujours au top !'
-    },
-    {
-        author: 'Benoit',
-        body: 'Super cours, merci!'
-    },
-    {
-        author: 'John',
-        body: "Super cours, j'adore !"
-    },
-    {
-        author: 'Jackie',
-        body: 'Comment ça se fait que le cours ne soit pas disponible ?',
-        answers: [
-            {
-                author: 'Johanna',
-                body: 'Les serveurs de vidéos sont down pour le moment ...'
-            },
-            {
-                author: 'Mathieu',
-                body: 'La lose :/'
-            },
-            {
-                author: 'Benoit',
-                body: "C'est dispo !"
-            },
-            {
-                author: 'Johanna',
-                body: 'Super !'
-            }
-        ]
-    }
-]
-
 type Props = {
     course?: CourseType
 }
 
 const Course = (props: Props): JSX.Element => {
     const { course } = props
+    const [comments, setComments] = React.useState([])
+    const [isNewComment, setIsNewComment] = React.useState(false)
 
     const router = useRouter()
-
+    const currentUser = React.useContext(UserContext)
     const {
         chapter: chapterSearchParam,
-        subchapter: subchapterSearchParam
+        subchapter: subchapterSearchParam,
+        id
     } = router.query
+
+    if (!currentUser) {
+        throw new Error('Accès refusé')
+    }
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`${process.env.COMMENT_API}/course/${id}`, {
+                    headers: { Authorization: `Bearer ${currentUser.token}` },
+                    timeout: 60000
+                })
+                .then((res) => {
+                    setComments(res.data.data)
+                })
+            setIsNewComment(false)
+        } catch (e) {
+            throw new Error('Impossible de récupérer les commentaires')
+        }
+    }, [isNewComment])
 
     const chapterNumber = chapterSearchParam ? Number(chapterSearchParam) : 0
 
@@ -107,6 +76,8 @@ const Course = (props: Props): JSX.Element => {
     const currentChapter = getCurrentChapter()
     const currentSubChapter = getCurrentSubChapter()
 
+    const getIsNewComment = () => setIsNewComment(true)
+
     return (
         <div className={classes.container}>
             <CourseTitle title={course?.title} />
@@ -126,7 +97,14 @@ const Course = (props: Props): JSX.Element => {
                 description={currentChapter?.description}
                 authorId={course?.publisher_id}
             />
-            <CommentSection comments={commentList} />
+            {comments.length ? (
+                <CommentSection
+                    comments={comments}
+                    getIsNewComment={getIsNewComment}
+                />
+            ) : (
+                'Aucun Commentaire'
+            )}
         </div>
     )
 }
