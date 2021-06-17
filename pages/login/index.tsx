@@ -38,6 +38,8 @@ const LoginPage = (): JSX.Element => {
 
     const localStorage = typeof window !== 'undefined' && window.localStorage
 
+    const { origin } = router.query
+
     React.useEffect(() => {
         if (hasError) {
             setTimeout(() => {
@@ -83,7 +85,7 @@ const LoginPage = (): JSX.Element => {
             })
         if (!hasError && localStorage.getItem('user')) {
             setIsLoading(false)
-            router.push('/')
+            window.location.href = String(origin)
         }
     }
 
