@@ -11,6 +11,7 @@ import ChapterTitle from './ChapterTitle'
 import CommentSection from './CommentSection'
 import CourseChapter from './CourseChapter'
 import CourseDescription from './CourseDescription'
+import CoursePreview from './CoursePreview'
 import classes from './style.module.scss'
 import { CourseType } from './types'
 
@@ -31,22 +32,23 @@ const Course = (props: Props): JSX.Element => {
         id
     } = router.query
 
-    if (!currentUser) {
-        throw new Error('Accès refusé')
-    }
     React.useEffect(() => {
-        try {
-            axios
-                .get(`${process.env.COMMENT_API}/course/${id}`, {
-                    headers: { Authorization: `Bearer ${currentUser.token}` },
-                    timeout: 60000
-                })
-                .then((res) => {
-                    setComments(res.data.data)
-                })
-            setIsNewComment(false)
-        } catch (e) {
-            throw new Error('Impossible de récupérer les commentaires')
+        if (currentUser) {
+            try {
+                axios
+                    .get(`${process.env.COMMENT_API}/course/${id}`, {
+                        headers: {
+                            Authorization: `Bearer ${currentUser.token}`
+                        },
+                        timeout: 60000
+                    })
+                    .then((res) => {
+                        setComments(res.data.data)
+                    })
+                setIsNewComment(false)
+            } catch (e) {
+                throw new Error('Impossible de récupérer les commentaires')
+            }
         }
     }, [isNewComment])
 
@@ -78,7 +80,7 @@ const Course = (props: Props): JSX.Element => {
 
     const getIsNewComment = () => setIsNewComment(true)
 
-    return (
+    return currentUser ? (
         <div className={classes.container}>
             <CourseTitle title={course?.title} />
             <Grid container className={classes.navigationContainer}>
@@ -97,15 +99,13 @@ const Course = (props: Props): JSX.Element => {
                 description={currentChapter?.description}
                 authorId={course?.publisher_id}
             />
-            {comments.length ? (
-                <CommentSection
-                    comments={comments}
-                    getIsNewComment={getIsNewComment}
-                />
-            ) : (
-                'Aucun Commentaire'
-            )}
+            <CommentSection
+                comments={comments}
+                getIsNewComment={getIsNewComment}
+            />
         </div>
+    ) : (
+        <CoursePreview />
     )
 }
 

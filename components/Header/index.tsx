@@ -31,7 +31,7 @@ const Header = (): JSX.Element => {
     const logout = () => {
         localStorage.removeItem('user')
         setAnchorEl(null)
-        router.push('/')
+        window.location.href = '/'
     }
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -102,7 +102,14 @@ const Header = (): JSX.Element => {
                                     {"S'enregistrer"}
                                 </Button>
                                 <Button
-                                    href="/login"
+                                    onClick={() =>
+                                        router.push({
+                                            pathname: '/login',
+                                            query: {
+                                                origin: window.location.href
+                                            }
+                                        })
+                                    }
                                     classes={{
                                         root: classes.connectionButton
                                     }}

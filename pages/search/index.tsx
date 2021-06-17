@@ -4,7 +4,11 @@ import { Typography } from '@material-ui/core'
 import axios from 'axios'
 import { CourseType } from 'components/Course/types'
 import SearchFilters from 'components/Filters/SearchFilters'
-import { DomainFilter } from 'components/Filters/SearchFilters/type'
+import {
+    DomainFilter,
+    ThemeFilter,
+    CategoryFilter
+} from 'components/Filters/SearchFilters/type'
 import SearchList from 'components/Search/SearchList'
 import NoResult from 'components/Search/SearchList/NoResult'
 import { GetStaticProps } from 'next'
@@ -16,6 +20,8 @@ type StaticProps = {
     courseItems?: CourseType[]
     searchFilters?: {
         domains: DomainFilter[]
+        themes: ThemeFilter[]
+        categories: CategoryFilter[]
     }
 }
 
@@ -56,7 +62,7 @@ const SearchPage = ({
                 </Typography>
             </div>
             <div className={classes.filtersAndListContainer}>
-                <SearchFilters filters={searchFilters.domains} />
+                <SearchFilters filters={searchFilters} />
                 {searchResult?.length ? (
                     <SearchList
                         courseItems={searchResult}
@@ -73,7 +79,7 @@ const SearchPage = ({
                 <Typography variant="h5">Tous les cours:</Typography>
             </div>
             <div className={classes.filtersAndListContainer}>
-                <SearchFilters filters={searchFilters.domains} />
+                <SearchFilters filters={searchFilters} />
                 {searchResult?.length ? (
                     <SearchList
                         courseItems={searchResult}
@@ -91,10 +97,15 @@ export default SearchPage
 
 export const getStaticProps: GetStaticProps = async () => {
     const searchCoursesRes = await fetch(`${process.env.COURSE_API}`)
-    const domainsFiltersRes = await fetch(`${process.env.DOMAIN_API}`)
-
     const searchCoursesData = await searchCoursesRes.json()
+
+    const domainsFiltersRes = await fetch(`${process.env.DOMAIN_API}`)
+    const themeFiltersRes = await fetch(`${process.env.THEME_API}`)
+    const categoryFiltersRes = await fetch(`${process.env.CATEGORY_API}`)
+
     const domainsFiltersData = await domainsFiltersRes.json()
+    const themesFiltersData = await themeFiltersRes.json()
+    const categoriesFiltersData = await categoryFiltersRes.json()
 
     const missingData = !searchCoursesData || !domainsFiltersData
 
@@ -108,7 +119,9 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             courseItems: searchCoursesData.data.data,
             searchFilters: {
-                domains: domainsFiltersData.data.data
+                domains: domainsFiltersData.data.data,
+                themes: themesFiltersData.data.data,
+                categories: categoriesFiltersData.data.data
             }
         }
     }
