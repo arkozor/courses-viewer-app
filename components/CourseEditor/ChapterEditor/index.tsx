@@ -7,27 +7,30 @@ import classes from '../style.module.scss'
 import NewChapter from './NewChapter'
 
 type Props = {
-    getData: (chaptersData: ChapterType[]) => void
+    getChapters: (chaptersData: ChapterType[]) => void
 }
 
-const ChapterEditor = ({getData: callback}: Props): JSX.Element => {
+const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
     const [chapters, setChapters] = React.useState([])
 
     const [newChapter, setNewChapter] = React.useState([])
 
-    const getNewChapter = (newChapter) => {
+
+    const getNewChapter = (newChapter: any) => {
         setNewChapter(newChapter);
         chapters[newChapter.number]=newChapter
+        
     }
 
+    // send chapters to parent page when new chapter is modified
     React.useEffect(() => {
-        if (callback){
-            callback(chapters)
+        if (getChapters){
+            getChapters(chapters) 
+            console.log(chapters);
         }
-    }, [chapters])
+    }, [newChapter])
 
-    
     return (
         <div className={classes.courseEditor}>
             <Typography

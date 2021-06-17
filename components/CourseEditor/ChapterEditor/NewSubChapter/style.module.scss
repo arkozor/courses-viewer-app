@@ -1,10 +1,10 @@
 @import 'theme/theme';
 
-.chapter {
-    background-color: $secondary;
+.subChapter {
+    background-color: $secondary_dark;
     display: flex;
     padding: $spacing_xl;
-    margin: $spacing_xl;
+    margin: $spacing_md;
     border-radius: 25px;
     flex-direction: column;
     align-items: center;
