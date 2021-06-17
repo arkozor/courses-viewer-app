@@ -35,6 +35,8 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
     const getNewSubChapter = (newSubChapter: any) => {
         setNewSubChapter(newSubChapter);
         subChapters[newSubChapter.number]=newSubChapter
+        console.log(subChapters)
+        
     }
 
     // send sub chapters to parent page when new sub chapter is modified
@@ -45,6 +47,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
         }
     }, [newSubChapter])
 
+    // to explain
     const handleChange = (event: any) => {
         const {value} = event.target
         setNewChapter({...newChapter, [event.target.name]: value})

@@ -14,9 +14,9 @@ const CourseEditor = (): JSX.Element => {
     // get chapters from chapter editor page
     const getChapters = (data: any[]) => {
         if(data) {
-            window.localStorage.setItem("editData.chapters", JSON.stringify(data))
+            window.localStorage.setItem("editData", JSON.stringify(data))
         }
-        //console.log(window.localStorage.getItem("editData"));
+        console.log(window.localStorage.getItem("editData"));
         
     }
 
