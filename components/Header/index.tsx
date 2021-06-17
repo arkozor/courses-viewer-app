@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
 import { Button, Menu, MenuItem, Typography } from '@material-ui/core'
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary'
@@ -14,21 +14,22 @@ import classes from './style.module.scss'
 const Header = (): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const [isLogged, setIsLogged] = React.useState(false)
-
+    const [userInfos, setUserInfos] = React.useState(null)
     const router = useRouter()
-    const currentUser = useContext(UserContext)
+    const currentUser = React.useContext(UserContext)
 
-    const userInfos = isLogged ? currentUser : null
     const localStorage = typeof window !== 'undefined' && window.localStorage
-    const isToken = localStorage && !!localStorage?.getItem('token')
+    const isToken = !!currentUser?.token
 
     React.useEffect(() => {
         setIsLogged(isToken)
-    }, [isToken])
+        if (isLogged) {
+            setUserInfos(currentUser)
+        }
+    }, [isToken, isLogged])
 
     const logout = () => {
         localStorage.removeItem('user')
-        localStorage.removeItem('token')
         setAnchorEl(null)
         router.push('/')
     }

@@ -7,7 +7,7 @@ import {
     CircularProgress,
     Grid
 } from '@material-ui/core'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
@@ -15,6 +15,18 @@ import classes from './style.module.scss'
 type LoginPostParams = {
     email: string
     password: string
+}
+
+type LoginRes = {
+    data: {
+        token: string
+        user_avatar: string | null
+        user_email: string
+        user_firstname: string
+        user_id: number
+        user_name: string
+        user_nickname: string
+    }
 }
 
 const LoginPage = (): JSX.Element => {
@@ -52,18 +64,16 @@ const LoginPage = (): JSX.Element => {
                 email,
                 password
             })
-            .then((res) => {
-                localStorage.setItem('token', res.data.data.token)
+            .then((res: AxiosResponse<LoginRes>) => {
                 localStorage.setItem(
                     'user',
                     JSON.stringify({
                         token: res.data.data.token,
-                        id: '123',
-                        username: 'tantan',
-                        firstname: 'tutu',
-                        lastname: 'tata',
-                        avatarSrc:
-                            'https://avatarfiles.alphacoders.com/103/103989.jpg'
+                        id: res.data.data.user_id,
+                        username: res.data.data.user_nickname,
+                        firstname: res.data.data.user_firstname,
+                        lastname: res.data.data.user_name,
+                        avatarSrc: res.data.data.user_avatar
                     })
                 )
             })
@@ -71,7 +81,7 @@ const LoginPage = (): JSX.Element => {
                 setHasError(true)
                 setIsLoading(false)
             })
-        if (!hasError && localStorage.getItem('token')) {
+        if (!hasError && localStorage.getItem('user')) {
             setIsLoading(false)
             router.push('/')
         }
