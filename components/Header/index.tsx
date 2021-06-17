@@ -73,13 +73,21 @@ const Header = (): JSX.Element => {
                                 open={Boolean(anchorEl)}
                                 onClose={handleClose}
                             >
+                                <Link href="/profile">
+                                    <MenuItem onClick={handleClose}>
+                                        Modifier le profil
+                                    </MenuItem>
+                                </Link>
+
                                 <MenuItem onClick={handleClose}>
-                                    Profile
+                                    Paramètres du compte
                                 </MenuItem>
                                 <MenuItem onClick={handleClose}>
-                                    My account
+                                    Mes cours
                                 </MenuItem>
-                                <MenuItem onClick={logout}>Logout</MenuItem>
+                                <MenuItem onClick={logout}>
+                                    Se déconnecter
+                                </MenuItem>
                             </Menu>
                         </div>
                     ) : (
