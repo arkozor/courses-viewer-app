@@ -3,16 +3,17 @@ import React from 'react'
 import { MenuItem, Select } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-import { DomainFilter } from '../type'
+import { DomainFilter, CategoryFilter, ThemeFilter } from '../type'
 import classes from './style.module.scss'
 
 type Props = {
-    filters: DomainFilter[]
+    filters: DomainFilter[] | CategoryFilter[] | ThemeFilter[]
+    type: 'domain' | 'category' | 'theme'
 }
 
-const DropdownFilter = ({ filters }: Props): JSX.Element => {
+const DropdownFilter = ({ filters, type }: Props): JSX.Element => {
     const router = useRouter()
-    const { domain } = router.query
+    const query = router.query[type]
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === '') {
@@ -24,7 +25,7 @@ const DropdownFilter = ({ filters }: Props): JSX.Element => {
                 pathname: location.pathname,
                 query: {
                     ...router.query,
-                    domain: event.target.value
+                    [type]: event.target.value
                 }
             })
         }
@@ -35,8 +36,8 @@ const DropdownFilter = ({ filters }: Props): JSX.Element => {
             <Select
                 onChange={handleChange}
                 variant="outlined"
-                defaultValue={domain ? domain : ''}
-                value={domain ? domain : ''}
+                defaultValue={query ? query : ''}
+                value={query ? query : ''}
                 inputProps={{
                     classes: {
                         root: classes.input
