@@ -12,7 +12,7 @@ type Props = {
 
 const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
-    
+
     const [chapters, setChapters] = React.useState([])
 
     const [newChapter, setNewChapter] = React.useState([])
@@ -41,7 +41,7 @@ const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
             <div>{chapters.map((chapter: ChapterType) => {
                 return <div key={chapter.id}>
-                        <NewChapter chapter={chapter} getNewChapter={getNewChapter}/>
+                        <NewChapter chapter={chapter} getNewChapter={getNewChapter} getSubChapters={getSubChapters}/>
                     </div>
             })}</div>
 

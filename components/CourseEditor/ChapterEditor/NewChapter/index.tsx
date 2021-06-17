@@ -37,7 +37,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
         subChapters[newSubChapter.number]=newSubChapter
     }
 
-    // send new chapter to parent page when new sub chapter is modified
+    // send sub chapters to parent page when new sub chapter is modified
     React.useEffect(() => {
         if (getNewChapter){
             getNewChapter(newChapter)
@@ -94,16 +94,16 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
             <Button onClick={() => {
                 setSubChapters([...subChapters,
                      {
-                        created_at: "",
-                        course_id: subChapters.length,
+                        chapter_id: subChapters.length,
+                        created_at: "string",
                         deleted_at: null,
                         description: "string",
                         id: subChapters.length,
                         number: subChapters.length,
-                        subchapters: [],
+                        resources: [],
                         title: "string",
                         updated_at: "string",
-                        thumbnail: "string",
+                        video_location: "string"
                      }
                  ])
             }}>
