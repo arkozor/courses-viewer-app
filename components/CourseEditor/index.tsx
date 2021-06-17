@@ -16,7 +16,7 @@ const CourseEditor = (): JSX.Element => {
         if(data) {
             window.localStorage.setItem("editData.chapters", JSON.stringify(data))
         }
-        console.log(window.localStorage.getItem("editData"));
+        //console.log(window.localStorage.getItem("editData"));
         
     }
 
