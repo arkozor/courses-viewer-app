@@ -17,14 +17,13 @@
 }
 .imageContainer {
     display: flex;
+    padding: $spacing_md;
     flex-direction: column;
     justify-content: space-between;
-
     .image {
-        max-height: 100px;
-        @media (min-width: $breakpoints_media_mdMin) {
-            max-height: 220px;
-        }
+        object-fit: cover;
+        width: 300px;
+        height: 200px;
     }
 }
 .headerContainer {
@@ -35,7 +34,7 @@
 .detailsContainer {
     display: flex;
     flex-direction: column;
-    margin-left: $spacing_md;
+    padding: $spacing_md;
 }
 
 .previewContainer {
