@@ -9,6 +9,7 @@ import {
     CircularProgress
 } from '@material-ui/core'
 import axios, { AxiosResponse } from 'axios'
+import { UserContext } from 'context'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
@@ -26,7 +27,12 @@ type RegistrationRes = {
 }
 
 const Register = (): JSX.Element => {
+    const currentUser = React.useContext(UserContext)
     const router = useRouter()
+
+    if (currentUser) {
+        router.push('/')
+    }
 
     const [email, setEmail] = React.useState({
         value: '',
@@ -115,7 +121,7 @@ const Register = (): JSX.Element => {
         validEmail &&
         passwordConfirmation === password.value
 
-    return (
+    return !currentUser ? (
         <Grid container justify="center">
             <Grid item xs={10} md={6} lg={4}>
                 <Box boxShadow={3} className={classes.form}>
@@ -249,7 +255,7 @@ const Register = (): JSX.Element => {
                 </Box>
             </Grid>
         </Grid>
-    )
+    ) : null
 }
 
 export default Register

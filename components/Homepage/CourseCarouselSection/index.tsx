@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { CircularProgress } from '@material-ui/core'
 import axios from 'axios'
 
 import CarouselTitle from './CarouselTitle'
@@ -9,8 +10,10 @@ import classes from './style.module.scss'
 const CourseCarouselSection = (): JSX.Element => {
     const [mostClickedCourses, setMostClickedCourses] = React.useState([])
     const [courses, setCourses] = React.useState([])
+    const [isLoading, setIsLoading] = React.useState(false)
 
     React.useEffect(() => {
+        setIsLoading(true)
         try {
             axios
                 .get(`${process.env.COURSE_API}/mostClicked`, {
@@ -26,7 +29,9 @@ const CourseCarouselSection = (): JSX.Element => {
                 .then((res) => {
                     setCourses(res.data.data.data)
                 })
+            setIsLoading(false)
         } catch (e) {
+            setIsLoading(false)
             throw new Error("Impossible d'afficher les cours")
         }
     }, [])
@@ -46,7 +51,7 @@ const CourseCarouselSection = (): JSX.Element => {
         }
     ]
 
-    return (
+    return !isLoading ? (
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
@@ -66,6 +71,8 @@ const CourseCarouselSection = (): JSX.Element => {
                 return null
             })}
         </div>
+    ) : (
+        <CircularProgress color="primary" />
     )
 }
 

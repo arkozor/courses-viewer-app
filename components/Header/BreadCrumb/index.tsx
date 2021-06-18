@@ -6,10 +6,10 @@ import Link from 'next/link'
 import classes from './style.module.scss'
 
 const categories = [
-    { name: 'Développement Web', href: '/categorie/web' },
-    { name: 'Développement Logiciel', href: '/categorie/logiciel' },
-    { name: 'Développement Mobile', href: '/categorie/mobile' },
-    { name: 'Développement jeux vidéo', href: '/categorie/jeux-vidéo' }
+    { name: 'Développement Web', href: '/search?category=WEB' },
+    { name: 'Développement Logiciel', href: '/search?category=LOGICIEL' },
+    { name: 'Développement Mobile', href: '/search?category=MOBILE' },
+    { name: 'Développement jeux vidéo', href: '/search?category=JEUX VIDEO' }
 ] // TODO: when this data will be available BE side, fetch it and remove the array
 
 const BreadCrumb = (): JSX.Element => {
