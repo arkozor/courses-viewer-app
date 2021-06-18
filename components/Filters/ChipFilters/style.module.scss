@@ -7,44 +7,44 @@ $letterShadow: -1px 0 rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1),
     margin-right: $spacing_sm !important;
 }
 
-.javaChip {
+.JAVA {
     border-color: $java_color !important;
     color: $java_color !important;
     text-shadow: $letterShadow;
 }
-.javaChipSelected {
+.JAVA-outlined {
     background-color: $java_color !important;
     color: white !important;
 }
 
-.cSharpChip {
+.C\# {
     border-color: $cSharp_color !important;
     color: $cSharp_color !important;
     text-shadow: $letterShadow;
 }
-.cSharpChipSelected {
+.C\#-outlined {
     background-color: $cSharp_color !important;
     color: white !important;
 }
 
-.jsChip {
+.JAVASCRIPT {
     border-color: $js_color !important;
     color: $js_color !important;
     text-shadow: $letterShadow;
 }
 
-.jsChipSelected {
+.JAVASCRIPT-outlined{
     background-color: $js_color !important;
     color: white !important;
 }
 
-.phpChip {
+.PHP {
     border-color: $php_color !important;
     color: $php_color !important;
     text-shadow: $letterShadow;
 }
 
-.phpChipSelected {
+.PHP-outlined {
     background-color: $php_color !important;
     color: white !important;
 }

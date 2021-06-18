@@ -1,6 +1,7 @@
 import React from 'react'
 
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 import CarouselTitle from './CarouselTitle'
 import CourseCarousel from './CourseCarousel'
@@ -24,7 +25,7 @@ const CourseCarouselSection = (): JSX.Element => {
                     timeout: 60000
                 })
                 .then((res) => {
-                    setCourses(res.data.data)
+                    setCourses(res.data.data.data)
                 })
         } catch (e) {
             throw new Error("Impossible d'afficher les cours")
@@ -50,16 +51,23 @@ const CourseCarouselSection = (): JSX.Element => {
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
-                if (coursesPreview.length) {
+                const { query } = useRouter()
+
+                const courses = query.domain
+                    ? coursesPreview.filter(
+                          (coursePreview) =>
+                              coursePreview.domain_id === query.domain
+                      )
+                    : coursesPreview
+
+                if (courses.length) {
                     return (
                         <div
                             key={title}
                             className={classes.subSectionContainer}
                         >
                             <CarouselTitle title={title} />
-                            <CourseCarousel
-                                coursesPreviewList={coursesPreview}
-                            />
+                            <CourseCarousel coursesPreviewList={courses} />
                         </div>
                     )
                 }
