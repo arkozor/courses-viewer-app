@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Typography } from '@material-ui/core'
+import { useRouter } from 'next/router'
 import ElasticCarousel from 'react-elastic-carousel'
 
 import { CoursePreview } from '../types'
@@ -23,16 +24,26 @@ const breakPoints = [
 const Carousel = (props: Props): JSX.Element => {
     const { coursesPreviewList, title } = props
 
-    return (
-        <div className={classes.container}>
-            {title && (
-                <div className={classes.titleContainer}>
-                    <Typography gutterBottom variant="h4">
-                        {title}
-                    </Typography>
-                </div>
-            )}
+    const [carouselCourses, setCarouselCourses] = React.useState(
+        coursesPreviewList
+    )
+    const router = useRouter()
 
+    React.useEffect(() => {
+        if (router.query[title]) {
+            setCarouselCourses(
+                coursesPreviewList.filter(
+                    (coursePreview) =>
+                        coursePreview.domain_id === Number(router.query[title])
+                )
+            )
+        }
+    }, [router.query[title]])
+
+    const courses = router.query[title] ? carouselCourses : coursesPreviewList
+
+    return carouselCourses.length ? (
+        <div className={classes.container}>
             <ElasticCarousel
                 itemPadding={[4, 4]}
                 isRTL={false}
@@ -41,16 +52,16 @@ const Carousel = (props: Props): JSX.Element => {
                 pagination={true}
                 enableTilt={true}
             >
-                {coursesPreviewList.map((course) => (
-                    <CourseCard
-                        key={course.id}
-                        id={course.id}
-                        title={course.title}
-                        description={course.description}
-                        thumbnail={course.thumbnail}
-                    />
+                {courses.map((course) => (
+                    <CourseCard course={course} key={course.id} />
                 ))}
             </ElasticCarousel>
+        </div>
+    ) : (
+        <div className={classes.empty}>
+            <Typography variant="h4">
+                Aucun cours ne correspond au filtre sélectionné
+            </Typography>
         </div>
     )
 }

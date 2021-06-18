@@ -9,9 +9,22 @@ export type CourseType = {
     price: number
     chapters: ChapterType[]
     publisher_id: number
-    theme_id: number
-    domain: string
     verified: number
+    category_id: number
+    domain_id: number
+    theme_id: number
+    category: {
+        id: number
+        name: string
+    }
+    domain: {
+        id: number
+        name: string
+    }
+    theme: {
+        id: number
+        name: string
+    }
 }
 
 export type ResourceType = {

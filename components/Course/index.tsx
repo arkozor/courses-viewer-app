@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Grid } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core'
 import axios from 'axios'
 import CourseTitle from 'components/Course/CourseTitle'
 import VideoPlayer from 'components/Course/CourseVideo'
@@ -85,10 +85,24 @@ const Course = (props: Props): JSX.Element => {
             <CourseTitle title={course?.title} />
             <Grid container className={classes.navigationContainer}>
                 <Grid item xs={12} md={8}>
-                    <VideoPlayer
-                        subChapter={currentSubChapter}
-                        thumbnail={currentChapter?.thumbnail}
-                    />
+                    {currentSubChapter ? (
+                        <VideoPlayer
+                            subChapter={currentSubChapter}
+                            thumbnail={currentChapter?.thumbnail}
+                        />
+                    ) : (
+                        <div className={classes.chapterDescription}>
+                            <img
+                                src={
+                                    currentSubChapter?.title ||
+                                    currentChapter?.thumbnail
+                                }
+                            />
+                            <Typography paragraph variant="body1">
+                                {currentChapter?.description}
+                            </Typography>
+                        </div>
+                    )}
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <CourseChapter chapters={course?.chapters} />

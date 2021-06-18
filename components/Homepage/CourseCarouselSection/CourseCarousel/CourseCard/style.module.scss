@@ -1,15 +1,28 @@
 @import 'theme/theme';
 
 .card {
-    width: 290px;
+    width: 320px;
+    position: relative;
 }
-
-.content {
-    height: 95px;
-    text-overflow: ellipsis;
-    overflow: hidden;
+.title {
+    height: 50px;
+    padding: $spacing_sm;
+}
+.preview {
+    height: 150px;
+    padding: $spacing_sm;
+    overflow: scroll;
 }
 
 .link {
     cursor: pointer;
+}
+
+.image {
+    object-fit: cover;
+}
+
+.bookmark {
+    position: absolute;
+    right: 0;
 }

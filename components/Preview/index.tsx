@@ -8,13 +8,26 @@ type Props = {
     content: React.ReactNode
     children: React.ReactNode
     className?: string
+    placement?:
+        | 'bottom-end'
+        | 'bottom-start'
+        | 'bottom'
+        | 'left-end'
+        | 'left-start'
+        | 'left'
+        | 'right-end'
+        | 'right-start'
+        | 'right'
+        | 'top-end'
+        | 'top-start'
+        | 'top'
 }
 
 const Preview = (props: Props): JSX.Element => {
     const [isOpen, setIsOpen] = React.useState(false)
     const [anchorEl, setAnchorEl] = React.useState(null)
 
-    const { content, children, className } = props
+    const { content, children, className, placement } = props
 
     return (
         <div className={classes.container}>
@@ -32,6 +45,7 @@ const Preview = (props: Props): JSX.Element => {
                 {children}
             </span>
             <Popper
+                placement={placement}
                 open={isOpen}
                 anchorEl={anchorEl}
                 modifiers={{
@@ -41,9 +55,6 @@ const Preview = (props: Props): JSX.Element => {
                     preventOverflow: {
                         enabled: true,
                         boundariesElement: 'scrollParent'
-                    },
-                    arrow: {
-                        enabled: true
                     }
                 }}
             >

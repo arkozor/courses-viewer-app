@@ -4,3 +4,10 @@
     padding: $spacing_md;
     background-color: white;
 }
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

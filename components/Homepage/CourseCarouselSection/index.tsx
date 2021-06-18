@@ -1,17 +1,18 @@
 import React from 'react'
 
+import { CircularProgress } from '@material-ui/core'
 import axios from 'axios'
-import { useRouter } from 'next/router'
 
-import CarouselTitle from './CarouselTitle'
+import CarouselHeader from './CarouselTitle'
 import CourseCarousel from './CourseCarousel'
 import classes from './style.module.scss'
 
 const CourseCarouselSection = (): JSX.Element => {
     const [mostClickedCourses, setMostClickedCourses] = React.useState([])
     const [courses, setCourses] = React.useState([])
-
+    const [isLoading, setIsLoading] = React.useState(false)
     React.useEffect(() => {
+        setIsLoading(true)
         try {
             axios
                 .get(`${process.env.COURSE_API}/mostClicked`, {
@@ -27,7 +28,9 @@ const CourseCarouselSection = (): JSX.Element => {
                 .then((res) => {
                     setCourses(res.data.data.data)
                 })
+            setIsLoading(false)
         } catch (e) {
+            setIsLoading(false)
             throw new Error("Impossible d'afficher les cours")
         }
     }, [])
@@ -47,27 +50,25 @@ const CourseCarouselSection = (): JSX.Element => {
         }
     ]
 
-    return (
+    return isLoading ? (
+        <div className={classes.skeleton}>
+            <CircularProgress color="primary" />
+        </div>
+    ) : (
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
-                const { query } = useRouter()
-
-                const courses = query.domain
-                    ? coursesPreview.filter(
-                          (coursePreview) =>
-                              coursePreview.domain_id === query.domain
-                      )
-                    : coursesPreview
-
-                if (courses.length) {
+                if (coursesPreview.length) {
                     return (
                         <div
                             key={title}
                             className={classes.subSectionContainer}
                         >
-                            <CarouselTitle title={title} />
-                            <CourseCarousel coursesPreviewList={courses} />
+                            <CarouselHeader title={title} />
+                            <CourseCarousel
+                                coursesPreviewList={coursesPreview}
+                                title={title}
+                            />
                         </div>
                     )
                 }

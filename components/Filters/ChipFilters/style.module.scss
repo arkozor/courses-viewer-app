@@ -5,50 +5,14 @@ $letterShadow: -1px 0 rgba(0, 0, 0, 0.1), 0 1px rgba(0, 0, 0, 0.1),
 
 .chip {
     margin-right: $spacing_sm !important;
+    border-color: $primary_light !important;
 }
-
-.JAVA {
-    border-color: $java_color !important;
-    color: $java_color !important;
-    text-shadow: $letterShadow;
+.chipName {
+    color: $primary !important;
 }
-.JAVA-outlined {
-    background-color: $java_color !important;
+.selectedChipName {
     color: white !important;
 }
-
-.C\# {
-    border-color: $cSharp_color !important;
-    color: $cSharp_color !important;
-    text-shadow: $letterShadow;
-}
-.C\#-outlined {
-    background-color: $cSharp_color !important;
-    color: white !important;
-}
-
-.JAVASCRIPT {
-    border-color: $js_color !important;
-    color: $js_color !important;
-    text-shadow: $letterShadow;
-}
-
-.JAVASCRIPT-outlined{
-    background-color: $js_color !important;
-    color: white !important;
-}
-
-.PHP {
-    border-color: $php_color !important;
-    color: $php_color !important;
-    text-shadow: $letterShadow;
-}
-
-.PHP-outlined {
-    background-color: $php_color !important;
-    color: white !important;
-}
-
-.searchButton {
-    margin-right: $spacing_sm;
+.selected {
+    background-color: $primary_light !important;
 }
