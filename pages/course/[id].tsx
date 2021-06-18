@@ -11,29 +11,30 @@ import classes from './style.module.scss'
 const CoursePage = (): JSX.Element => {
     const router = useRouter()
     const { id } = router.query
-    const [isLoading, setIsLoading] = React.useState(true)
+    const [isLoading, setIsLoading] = React.useState(false)
     const currentUser = React.useContext(UserContext)
     const [course, setCourse] = React.useState()
 
     React.useEffect(() => {
         if (!course && id) {
-            setIsLoading(true)
-            try {
-                axios
-                    .get(`${process.env.COURSE_API}/${id}`, {
-                        headers: {
-                            Authorization: `Bearer ${currentUser.token}`
-                        },
-                        timeout: 60000
-                    })
-                    .then((res) => {
-                        setCourse(res.data.data)
-                        setIsLoading(false)
-                    })
-            } catch (e) {
-                setIsLoading(false)
-
-                throw new Error(e.message)
+            if (currentUser) {
+                setIsLoading(true)
+                try {
+                    axios
+                        .get(`${process.env.COURSE_API}/${id}`, {
+                            headers: {
+                                Authorization: `Bearer ${currentUser.token}`
+                            },
+                            timeout: 60000
+                        })
+                        .then((res) => {
+                            setCourse(res.data.data)
+                            setIsLoading(false)
+                        })
+                } catch (e) {
+                    setIsLoading(false)
+                    throw new Error(e.message)
+                }
             }
         }
     }, [id])

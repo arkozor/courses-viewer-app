@@ -8,8 +8,8 @@ module.exports = {
         CATEGORY_API: 'http://idboard.net:43001/api/categories',
         THEME_API: 'http://idboard.net:43001/api/themes',
         COMMENT_API: 'http://idboard.net:43001/api/comments',
-        APP_ENV: 'local',
-        FLAGSMITH_ENV_KEY: 'Jy7QznRFqoWmnBDW47Pi8c'
+        AVATAR_API: 'http://idboard.net:43001/api/users/avatar',
+        APP_ENV: 'local'
     },
     webpack(config) {
         config.module.rules.push({

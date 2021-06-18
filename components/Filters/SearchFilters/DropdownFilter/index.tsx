@@ -3,30 +3,49 @@ import React from 'react'
 import { MenuItem, Select } from '@material-ui/core'
 import { useRouter } from 'next/router'
 
-import { DomainFilter } from '../type'
+import { DomainFilter, CategoryFilter, ThemeFilter } from '../type'
 import classes from './style.module.scss'
 
 type Props = {
-    filters: DomainFilter[]
+    filters: DomainFilter[] | CategoryFilter[] | ThemeFilter[]
+    type: 'domain' | 'category' | 'theme'
 }
 
-const DropdownFilter = ({ filters }: Props): JSX.Element => {
+const DropdownFilter = ({ filters, type }: Props): JSX.Element => {
     const router = useRouter()
-    const { domain } = router.query
+    const query = router.query[type]
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.value === '') {
+        if (event.target.value === type) {
+            delete router.query[type]
             router.push({
-                pathname: location.pathname
+                pathname: location.pathname,
+                query: {
+                    ...router.query
+                }
             })
         } else {
             router.push({
                 pathname: location.pathname,
                 query: {
                     ...router.query,
-                    domain: event.target.value
+                    [type]: event.target.value
                 }
             })
+        }
+    }
+
+    const humanReadableTypes = () => {
+        switch (type) {
+            case 'domain':
+                return 'Tous les langages'
+            case 'category':
+                return 'Toutes les categories'
+            case 'theme':
+                return 'Tous les themes'
+
+            default:
+                break
         }
     }
 
@@ -35,8 +54,7 @@ const DropdownFilter = ({ filters }: Props): JSX.Element => {
             <Select
                 onChange={handleChange}
                 variant="outlined"
-                defaultValue={domain ? domain : ''}
-                value={domain ? domain : ''}
+                value={query ? query : type}
                 inputProps={{
                     classes: {
                         root: classes.input
@@ -59,7 +77,7 @@ const DropdownFilter = ({ filters }: Props): JSX.Element => {
                         {filter.name}
                     </MenuItem>
                 ))}
-                <MenuItem value="">Tous</MenuItem>
+                <MenuItem value={type}>{humanReadableTypes()}</MenuItem>
             </Select>
         </div>
     )
