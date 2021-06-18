@@ -5,6 +5,7 @@ import { CourseType } from 'components/Course/types'
 import { useRouter } from 'next/router'
 
 import SearchCourseItem from '../SearchCourseItem'
+import NoResult from './NoResult'
 import classes from './style.module.scss'
 
 type Props = {
@@ -41,6 +42,9 @@ const SearchList = ({ courseItems, isLoading }: Props): JSX.Element => {
         setFilteredList(filtered)
     }, [domain, theme, category])
 
+    if (!isLoading && !filteredList.length) {
+        return <NoResult />
+    }
     return (
         <div className={classes.container}>
             {isLoading ? (

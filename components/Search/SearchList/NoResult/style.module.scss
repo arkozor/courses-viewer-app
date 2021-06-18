@@ -4,10 +4,11 @@
     display: flex;
     flex-grow: 1;
     justify-content: center;
-    max-width: 1200px;
-}
-.listContainer {
-    display: flex;
+    align-items: center;
     flex-direction: column;
-    padding: 0 $spacing_md;
+    margin-left: $spacing_xl;
+}
+
+.buttonContainer {
+    margin-top: $spacing_md;
 }
