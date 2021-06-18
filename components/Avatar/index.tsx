@@ -48,9 +48,9 @@ const Avatar = (props: Props): JSX.Element => {
             >
                 {!src && nickname.charAt(0)}
             </MUIAvatar>
-            <Typography className={classes.nickname}>
-                {withNickname && nickname}
-            </Typography>
+            {withNickname ? (
+                <Typography className={classes.nickname}>{nickname}</Typography>
+            ) : null}
         </div>
     )
 }

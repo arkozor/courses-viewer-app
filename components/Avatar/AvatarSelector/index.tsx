@@ -20,7 +20,7 @@ const AvatarSelector = (): JSX.Element => {
         '/images/avatars/avatar-women-3.svg'
     ]
 
-    return (
+    return currentUser ? (
         <div className={classes.container}>
             {images.map((image) => (
                 <IconButton
@@ -33,14 +33,11 @@ const AvatarSelector = (): JSX.Element => {
                     }}
                     key={image}
                 >
-                    <Avatar
-                        nickname={currentUser.username}
-                        src={image}
-                    ></Avatar>
+                    <Avatar nickname={currentUser.username} src={image} />
                 </IconButton>
             ))}
         </div>
-    )
+    ) : null
 }
 
 export default AvatarSelector

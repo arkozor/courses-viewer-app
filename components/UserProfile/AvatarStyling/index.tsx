@@ -12,11 +12,9 @@ import classes from './style.module.scss'
 const AvatarStyling = (): JSX.Element => {
     const currentUser = useContext(UserContext)
     const [hasError, setHasError] = React.useState(false)
-    const { query } = useRouter()
+    const router = useRouter()
+    const { avatar } = router.query
     const [isLoading, setIsLoading] = React.useState(false)
-    const localStorage = typeof window !== 'undefined' && window.localStorage
-    const token =
-        typeof window !== 'undefined' && window.localStorage.getItem('token')
 
     React.useEffect(() => {
         if (hasError) {
@@ -27,53 +25,53 @@ const AvatarStyling = (): JSX.Element => {
     }, [hasError])
 
     const changeAvatar = async (image: string) => {
-        setIsLoading(true)
-        await axios
-            .patch(
-                `${process.env.AVATAR_API}`,
-                { avatar: image },
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                    timeout: 60000
-                }
-            )
+        const localStorage =
+            typeof window !== 'undefined' && window.localStorage
 
-            .then((res) => {
-                localStorage.setItem(
-                    'user',
-                    JSON.stringify({
-                        token: res.data.data.token,
-                        avatarSrc: image
-                    })
+        setIsLoading(true)
+        try {
+            axios
+                .patch(
+                    `${process.env.AVATAR_API}`,
+                    { avatar: image },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${currentUser.token}`
+                        },
+                        timeout: 60000
+                    }
                 )
-            })
-            .catch(() => {
-                setHasError(true)
-                setIsLoading(false)
-            })
-        if (!hasError && localStorage.getItem('token')) {
+
+                .then((res) => {
+                    localStorage.setItem(
+                        'user',
+                        JSON.stringify({
+                            ...currentUser,
+                            avatarSrc: res.data.data.avatar
+                        })
+                    )
+                    setIsLoading(false)
+                    router.reload()
+                })
+        } catch (e) {
+            setHasError(true)
             setIsLoading(false)
         }
     }
 
-    return (
+    return currentUser ? (
         <div className={classes.container}>
             <div className={classes.title}>
                 <Typography variant="h4">Aperçu :</Typography>
             </div>
 
-            {currentUser ? (
-                <div className={classes.currentAvatar}>
-                    <Avatar
-                        src={
-                            query.avatar
-                                ? String(query.avatar)
-                                : currentUser.avatarSrc
-                        }
-                        nickname={currentUser.username}
-                    />
-                </div>
-            ) : null}
+            <div className={classes.currentAvatar}>
+                <Avatar
+                    src={avatar ? String(avatar) : currentUser.avatarSrc}
+                    nickname={currentUser.username}
+                />
+            </div>
+
             <div className={classes.selector}>
                 <div className={classes.selectorTitle}>
                     <Typography variant="h5">Avatars disponibles :</Typography>
@@ -83,16 +81,23 @@ const AvatarStyling = (): JSX.Element => {
             <Button
                 variant="contained"
                 onClick={() => {
-                    changeAvatar(String(query.avatar))
+                    changeAvatar(String(avatar))
                 }}
                 color="secondary"
                 disabled={isLoading || hasError}
             >
                 Sauvegarder
-                {isLoading && <CircularProgress color="primary" />}
+                {isLoading ? (
+                    <CircularProgress
+                        classes={{
+                            root: classes.progress
+                        }}
+                        color="primary"
+                    />
+                ) : null}
             </Button>
         </div>
-    )
+    ) : null
 }
 
 export default AvatarStyling

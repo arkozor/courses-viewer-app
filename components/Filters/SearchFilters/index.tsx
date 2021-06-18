@@ -16,13 +16,13 @@ const SearchFilters = ({ filters }: Props): JSX.Element => {
     return (
         <div>
             <div className={classes.filter}>
-                <DropdownFilter filters={filters.domains} type="domain" />
+                <DropdownFilter filters={filters.categories} type="category" />
             </div>
             <div className={classes.filter}>
                 <DropdownFilter filters={filters.themes} type="theme" />
             </div>
             <div className={classes.filter}>
-                <DropdownFilter filters={filters.categories} type="category" />
+                <DropdownFilter filters={filters.domains} type="domain" />
             </div>
         </div>
     )
