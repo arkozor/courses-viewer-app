@@ -1,10 +1,10 @@
 import React from 'react'
 
-import { Typography, Button, Paper } from '@material-ui/core'
-import InfoIcon from '@material-ui/icons/Info'
+import { Typography, Button, Paper, IconButton, Link } from '@material-ui/core'
+import BookmarkIcon from '@material-ui/icons/Bookmark'
+import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
 import { CourseType } from 'components/Course/types'
 import Preview from 'components/Preview'
-import Link from 'next/link'
 
 import classes from './style.module.scss'
 
@@ -14,45 +14,54 @@ type Props = {
 
 const SearchCourseItem = ({ course }: Props): JSX.Element => {
     const longPreview = course.preview?.length >= 500
+    const [hasSubscribed, setHasSubscribed] = React.useState(false)
     const [displayTruncatedText, setDisplayTruncatedText] = React.useState(
         longPreview
     )
 
+    const subscribe = () => {
+        setHasSubscribed(!hasSubscribed)
+    }
+
     return (
-        <Link href={`/course/${course.id}/?chapter=0`}>
-            <a className={classes.link}>
-                <Paper elevation={3} className={classes.container}>
+        <Paper elevation={3} className={classes.card}>
+            <div className={classes.subscribe}>
+                <Preview
+                    content={
+                        <div>
+                            <Typography variant="caption">
+                                {
+                                    'Cliquez ici pour retrouver ce cours dans votre liste'
+                                }
+                            </Typography>
+                        </div>
+                    }
+                    className={classes.popover}
+                    placement="top"
+                >
+                    <IconButton onClick={subscribe}>
+                        {hasSubscribed ? (
+                            <BookmarkIcon color="primary" />
+                        ) : (
+                            <BookmarkBorderIcon color="primary" />
+                        )}
+                    </IconButton>
+                </Preview>
+            </div>
+            <Link href={`/course/${course.id}/?chapter=0`} underline="none">
+                <div className={classes.container}>
                     <div className={classes.imageContainer}>
                         <img
                             className={classes.image}
                             src={course.thumbnail}
                             alt="course-thumbnail"
                         />
-                        {/* <div className={classes.price}>
-                        <Typography variant="body1">
-                            {formatPrice(course.price)}
-                        </Typography>
-                    </div> */}
                     </div>
                     <div className={classes.detailsContainer}>
                         <div className={classes.headerContainer}>
                             <Typography color="primary" variant="h5">
                                 {course.title}
                             </Typography>
-                            <Preview
-                                content={
-                                    <div>
-                                        <Typography variant="caption">
-                                            {
-                                                "Pour pouvoir suivre correctement ce cours vous devriez peut-être d'abord voir : <insérer cours> "
-                                            }
-                                        </Typography>
-                                    </div>
-                                }
-                                className={classes.popover}
-                            >
-                                <InfoIcon />
-                            </Preview>
                         </div>
 
                         <div className={classes.previewContainer}>
@@ -68,7 +77,9 @@ const SearchCourseItem = ({ course }: Props): JSX.Element => {
                             </Typography>
                             {longPreview ? (
                                 <Button
-                                    classes={{ root: classes.showMoreButton }}
+                                    classes={{
+                                        root: classes.showMoreButton
+                                    }}
                                     variant="outlined"
                                     onClick={() =>
                                         setDisplayTruncatedText(
@@ -83,9 +94,9 @@ const SearchCourseItem = ({ course }: Props): JSX.Element => {
                             ) : null}
                         </div>
                     </div>
-                </Paper>
-            </a>
-        </Link>
+                </div>
+            </Link>
+        </Paper>
     )
 }
 

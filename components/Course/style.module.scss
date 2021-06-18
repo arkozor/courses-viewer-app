@@ -16,3 +16,13 @@
     margin: $spacing_lg 0;
     padding: $spacing_lg;
 }
+
+.chapterDescription {
+    display: flex;
+    justify-content: center;
+    padding: 0 $spacing_xl;
+    height: 500px;
+    @media (min-width: $breakpoints_media_lgMin) {
+        height: 620px;
+    }
+}

@@ -5,6 +5,7 @@ import { CourseType } from 'components/Course/types'
 import { useRouter } from 'next/router'
 
 import SearchCourseItem from '../SearchCourseItem'
+import NoResult from './NoResult'
 import classes from './style.module.scss'
 
 type Props = {
@@ -14,12 +15,36 @@ type Props = {
 
 const SearchList = ({ courseItems, isLoading }: Props): JSX.Element => {
     const router = useRouter()
-    const { domain } = router.query
+    const { domain, theme, category } = router.query
+    const [filteredList, setFilteredList] = React.useState([])
 
-    const list = domain
-        ? courseItems.filter((item) => item.domain === domain)
-        : courseItems
+    React.useEffect(() => {
+        let filtered = courseItems
 
+        const filterByCategory = (list: CourseType[]): CourseType[] =>
+            list.filter((item) => item.category?.name === category)
+
+        const filterByDomain = (list: CourseType[]): CourseType[] =>
+            list.filter((item) => item.domain?.name === domain)
+
+        const filterByTheme = (list: CourseType[]): CourseType[] =>
+            list.filter((item) => item.theme?.name === theme)
+
+        if (theme) {
+            filtered = filterByTheme(filtered)
+        }
+        if (domain) {
+            filtered = filterByDomain(filtered)
+        }
+        if (category) {
+            filtered = filterByCategory(filtered)
+        }
+        setFilteredList(filtered)
+    }, [domain, theme, category])
+
+    if (!isLoading && !filteredList.length) {
+        return <NoResult />
+    }
     return (
         <div className={classes.container}>
             {isLoading ? (
@@ -28,7 +53,7 @@ const SearchList = ({ courseItems, isLoading }: Props): JSX.Element => {
                 </Backdrop>
             ) : (
                 <div className={classes.listContainer}>
-                    {list?.map((courseItem) => {
+                    {filteredList.map((courseItem) => {
                         return (
                             <SearchCourseItem
                                 key={courseItem.id}

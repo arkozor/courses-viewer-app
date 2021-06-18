@@ -9,5 +9,8 @@
 .listContainer {
     display: flex;
     flex-direction: column;
-    padding: 0 $spacing_md;
+    margin-left: $spacing_md;
+    @media (min-width: $breakpoints_media_mdMin) {
+        margin-left: $spacing_xl;
+    }
 }

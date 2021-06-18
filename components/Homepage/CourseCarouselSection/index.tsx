@@ -3,7 +3,7 @@ import React from 'react'
 import { CircularProgress } from '@material-ui/core'
 import axios from 'axios'
 
-import CarouselTitle from './CarouselTitle'
+import CarouselHeader from './CarouselTitle'
 import CourseCarousel from './CourseCarousel'
 import classes from './style.module.scss'
 
@@ -27,7 +27,7 @@ const CourseCarouselSection = (): JSX.Element => {
                     timeout: 60000
                 })
                 .then((res) => {
-                    setCourses(res.data.data)
+                    setCourses(res.data.data.data)
                 })
             setIsLoading(false)
         } catch (e) {
@@ -51,7 +51,11 @@ const CourseCarouselSection = (): JSX.Element => {
         }
     ]
 
-    return !isLoading ? (
+    return isLoading ? (
+        <div className={classes.skeleton}>
+            <CircularProgress color="primary" />
+        </div>
+    ) : (
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
@@ -61,9 +65,10 @@ const CourseCarouselSection = (): JSX.Element => {
                             key={title}
                             className={classes.subSectionContainer}
                         >
-                            <CarouselTitle title={title} />
+                            <CarouselHeader title={title} />
                             <CourseCarousel
                                 coursesPreviewList={coursesPreview}
+                                title={title}
                             />
                         </div>
                     )
@@ -71,8 +76,6 @@ const CourseCarouselSection = (): JSX.Element => {
                 return null
             })}
         </div>
-    ) : (
-        <CircularProgress color="primary" />
     )
 }
 

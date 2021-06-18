@@ -1,35 +1,31 @@
 import React from 'react'
 
 import { Chip, Typography } from '@material-ui/core'
+import axios from 'axios'
 import classnames from 'classnames'
-import router from 'next/router'
+import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
-const ChipFilters = (): JSX.Element => {
+const ChipFilters = ({ type }: { type: string }): JSX.Element => {
+    const router = useRouter()
+
     const [selectedChip, setSelectedChip] = React.useState('')
-    const chips = [
-        {
-            className: classes.cSharpChip,
-            label: 'CSharp',
-            isSelected: classes.cSharpChipSelected
-        },
-        {
-            className: classes.javaChip,
-            label: 'Java',
-            isSelected: classes.javaChipSelected
-        },
-        {
-            className: classes.jsChip,
-            label: 'JavaScript',
-            isSelected: classes.jsChipSelected
-        },
-        {
-            className: classes.phpChip,
-            label: 'Php',
-            isSelected: classes.phpChipSelected
+    const [chipLabel, setChipLabel] = React.useState([])
+
+    React.useEffect(() => {
+        try {
+            axios
+                .get(`${process.env.DOMAIN_API}`, {
+                    timeout: 60000
+                })
+                .then((res) => {
+                    setChipLabel(res.data.data.data)
+                })
+        } catch (e) {
+            throw new Error('Récupération des labels impossible')
         }
-    ]
+    }, [])
 
     function select(event: React.MouseEvent<HTMLElement>, value) {
         const { innerText } = event.target as HTMLElement
@@ -37,46 +33,59 @@ const ChipFilters = (): JSX.Element => {
             setSelectedChip(innerText)
             router.push(
                 {
-                    query: { domain: value }
+                    query: {
+                        ...router.query,
+                        [type]: value
+                    }
                 },
-                location.pathname,
+                router.pathname,
                 { shallow: true }
             )
         } else {
             setSelectedChip('')
+            delete router.query[type]
             router.push(
                 {
-                    query: {}
+                    query: {
+                        ...router.query
+                    }
                 },
-                location.pathname,
+                router.pathname,
                 { shallow: true }
             )
         }
     }
-
     return (
         <div>
-            {chips.map((chip) => {
+            {chipLabel.map((chip) => {
                 return (
                     <Chip
-                        key={chip.label}
+                        key={chip.id}
                         classes={{
                             root: classnames(
-                                chip.className,
                                 classes.chip,
-                                selectedChip === chip.label
-                                    ? chip.isSelected
+                                router.query[type] === String(chip.id)
+                                    ? classes.selected
                                     : ''
-                            ),
-                            outlined: chip.className
+                            )
                         }}
                         label={
-                            <Typography variant="h5">{chip.label}</Typography>
+                            <Typography
+                                color="inherit"
+                                variant="body1"
+                                className={
+                                    router.query[type] === String(chip.id)
+                                        ? classes.selectedChipName
+                                        : classes.chipName
+                                }
+                            >
+                                {chip.name}
+                            </Typography>
                         }
                         variant="outlined"
                         clickable
                         onClick={(event) => {
-                            select(event, chip.label)
+                            select(event, chip.id)
                         }}
                     />
                 )

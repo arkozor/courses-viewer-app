@@ -1,29 +1,51 @@
 @import 'theme/theme';
 
-.container {
-    display: inline-flex;
+.card {
+    position: relative;
     padding: $spacing_md;
     margin-bottom: $spacing_md;
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    min-width: 500px;
 }
-.container:hover {
-    background: $primary_hover;
-    .image {
-        transform: scale(1.05);
-        transition: transform 350ms ease-out;
+
+.card:hover {
+    @media (min-width: $breakpoints_media_mdMin) {
+        background: $primary_hover;
+        .image {
+            transform: scale(1.1);
+            transition: transform 500ms ease-out;
+        }
     }
 }
+
+.container {
+    position: relative;
+    display: inline-flex;
+    margin-top: $spacing_md;
+    flex-direction: column;
+    @media (min-width: $breakpoints_media_mdMin) {
+        flex-direction: row;
+    }
+}
+
 .imageContainer {
     display: flex;
-    padding: $spacing_md;
     flex-direction: column;
     justify-content: space-between;
+    overflow: hidden;
+    height: 220px;
     .image {
+        width: 100%;
+        height: 100%;
         object-fit: cover;
-        width: 300px;
-        height: 200px;
+    }
+    @media (min-width: $breakpoints_media_mdMin) {
+        flex-direction: row;
+        min-width: 350px;
+        width: 350px;
+        height: 220px;
     }
 }
 .headerContainer {
@@ -34,12 +56,13 @@
 .detailsContainer {
     display: flex;
     flex-direction: column;
-    padding: $spacing_md;
+    @media (min-width: $breakpoints_media_mdMin) {
+        margin-left: $spacing_md;
+    }
 }
 
 .previewContainer {
     display: flex;
-    max-width: 500px;
     flex-direction: column;
 }
 .showMoreButton {
@@ -58,6 +81,8 @@
     padding: $spacing_md;
 }
 
-.link {
-    text-decoration: none;
+.subscribe {
+    position: absolute;
+    right: 0;
+    top: 0;
 }
