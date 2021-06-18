@@ -14,17 +14,17 @@ const CourseCarouselSection = (): JSX.Element => {
         try {
             axios
                 .get(`${process.env.COURSE_API}/mostClicked`, {
-                    timeout: 60000
+                    timeout: 80000
                 })
                 .then((res) => {
                     setMostClickedCourses(res.data.data)
                 })
             axios
                 .get(`${process.env.COURSE_API}`, {
-                    timeout: 60000
+                    timeout: 80000
                 })
                 .then((res) => {
-                    setCourses(res.data.data)
+                    setCourses(res.data.data.data)
                 })
         } catch (e) {
             throw new Error("Impossible d'afficher les cours")
@@ -50,7 +50,7 @@ const CourseCarouselSection = (): JSX.Element => {
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
-                if (coursesPreview.length) {
+                if (coursesPreview.length > 0) {
                     return (
                         <div
                             key={title}
