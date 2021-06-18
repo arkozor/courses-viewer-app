@@ -50,7 +50,7 @@ const CourseCarouselSection = (): JSX.Element => {
         <div className={classes.container}>
             {carouselSectionData.map((sectionData) => {
                 const { coursesPreview, title } = sectionData
-                if (coursesPreview.length > 0) {
+                if (coursesPreview.length) {
                     return (
                         <div
                             key={title}
