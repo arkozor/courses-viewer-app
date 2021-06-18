@@ -4,7 +4,11 @@ import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from
 
 import classes from '../style.module.scss'
 
-const TitleEditor = (): JSX.Element => {
+type Props = {
+    getTitle: (data: any) => void
+}
+
+const TitleEditor = ({getTitle: getTitle}: Props): JSX.Element => {
 
     const categories = [
         'CSharp',
@@ -13,8 +17,10 @@ const TitleEditor = (): JSX.Element => {
         'Php',
     ];
 
+    const save = typeof window != "undefined" ? JSON.parse(window.localStorage.getItem("editorHead")) : undefined
+
     const [state, setState] = React.useState({
-        title: "",
+        title: save?.title,
         category: ""
     })
     
@@ -28,7 +34,9 @@ const TitleEditor = (): JSX.Element => {
     }
 
     useEffect(() => {
-        window.localStorage.setItem('edit', JSON.stringify(state))
+        if (getTitle){
+            getTitle(state)
+        }
     }, [state])
 
     return (

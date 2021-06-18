@@ -12,6 +12,7 @@ type Props = {
 
 const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
 
+    const save = typeof window != "undefined" ? JSON.parse(window.localStorage.getItem("editorContent")) : undefined
     
     const [chapters, setChapters] = React.useState([])
 
@@ -30,6 +31,10 @@ const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
             // console.log(chapters);
         }
     }, [newChapter])
+
+    React.useEffect(() => {
+        setChapters(save?save:[])
+    }, [])
 
     return (
         <div className={classes.courseEditor}>
@@ -51,13 +56,13 @@ const ChapterEditor = ({getChapters: getChapters}: Props): JSX.Element => {
                         course_id: chapters.length,
                         created_at: "",
                         deleted_at: null,
-                        description: "string",
+                        description: "",
                         id: chapters.length,
                         number: chapters.length,
                         subchapters: [],
-                        title: "string",
-                        updated_at: "string",
-                        thumbnail: "string",
+                        title: "",
+                        updated_at: "",
+                        thumbnail: "",
                     }
                 ])
             }}>

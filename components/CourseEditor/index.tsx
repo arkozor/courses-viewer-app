@@ -12,17 +12,23 @@ const CourseEditor = (): JSX.Element => {
     const [step, setStep] = React.useState(0)
 
     // get chapters from chapter editor page
-    const getChapters = (data: any[]) => {
+    const getTitle = (data: any) => {
         if(data) {
-            window.localStorage.setItem("editData", JSON.stringify(data))
+            window.localStorage.setItem("editorHead", JSON.stringify(data))
+            
         }
-        console.log(window.localStorage.getItem("editData"));
-        
+    }
+
+    // get chapters from chapter editor page
+    const getChapters = (data: any) => {
+        if(data) {
+            window.localStorage.setItem("editorContent", JSON.stringify(data))
+        }
     }
 
     return (
         <div id="courseEditor">
-            {step === 0? <TitleEditor/> : null}
+            {step === 0? <TitleEditor getTitle = {getTitle}/> : null}
             {step === 1? <ChapterEditor getChapters = {getChapters}/> : null}
             {step === 2? <PreviewEditor/> : null}
             <div className={classes.navigation}>

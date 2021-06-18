@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 
 import classes from '../style.module.scss'
 
@@ -12,6 +12,9 @@ const PreviewEditor = (): JSX.Element => {
             >
                 Preview
             </Typography>
+            <Button 
+                
+            >Create</Button>
         </div>
     )
 }

@@ -14,6 +14,10 @@ type Props = {
 
 const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element => {
 
+    const save = typeof window != "undefined" ? JSON.parse(window.localStorage.getItem("editorContent")) : undefined
+    console.log(save);
+    
+
     const [newChapter, setNewChapter] = React.useState({
         course_id: chapter.course_id,
         created_at: "",
@@ -27,14 +31,12 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
         thumbnail: "",
     })
 
-    const [subChapters, setSubChapters] = React.useState([])
+    const [subChapters, setSubChapters] = React.useState(chapter.subchapters)
 
     // get modified sub chapter object from a sub chapter component
     const getNewSubChapter = (newSubChapter: any) => {
         subChapters[newSubChapter.number]=newSubChapter
         setNewChapter({...newChapter, subchapters: subChapters})
-        console.log(subChapters)
-        
     }
 
     // send sub chapters to parent page when new sub chapter is modified
@@ -71,6 +73,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
                     variant="outlined"
                     className={classes.input}
                     name="title"
+                    value={save[chapter.number]?.title}
                     onChange={handleChange}
                     label="Title"
                 ></TextField>
@@ -83,6 +86,7 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
                     variant="outlined"
                     className={classes.input}
                     name="description"
+                    value={save[chapter.number]?.description}
                     onChange={handleChange}
                     label="Description"
                 ></TextField>
@@ -96,15 +100,15 @@ const NewChapter = ({chapter, getNewChapter: getNewChapter}: Props): JSX.Element
                 setSubChapters([...subChapters,
                      {
                         chapter_id: subChapters.length,
-                        created_at: "string",
+                        created_at: "",
                         deleted_at: null,
-                        description: "string",
+                        description: "",
                         id: subChapters.length,
                         number: subChapters.length,
                         resources: [],
-                        title: "string",
-                        updated_at: "string",
-                        video_location: "string"
+                        title: "",
+                        updated_at: "",
+                        video_location: ""
                      }
                  ])
             }}>
