@@ -11,6 +11,7 @@ const CourseCarouselSection = (): JSX.Element => {
     const [mostClickedCourses, setMostClickedCourses] = React.useState([])
     const [courses, setCourses] = React.useState([])
     const [isLoading, setIsLoading] = React.useState(false)
+
     React.useEffect(() => {
         setIsLoading(true)
         try {

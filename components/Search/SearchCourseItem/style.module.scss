@@ -30,6 +30,7 @@
 
 .imageContainer {
     display: flex;
+    padding: $spacing_md;
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;

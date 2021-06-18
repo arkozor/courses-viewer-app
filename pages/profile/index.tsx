@@ -1,13 +1,8 @@
 import React from 'react'
 
-import Box from '@material-ui/core/Box'
-import Tab from '@material-ui/core/Tab'
-import Tabs from '@material-ui/core/Tabs'
-import Typography from '@material-ui/core/Typography'
-// import Avatar from 'components/Avatar'
+import { Box, Tab, Tabs } from '@material-ui/core'
 import AvatarStyling from 'components/UserProfile/AvatarStyling'
 import ProfileStyling from 'components/UserProfile/ProfileStyling'
-// import { UserContext } from 'context'
 
 import classes from './style.module.scss'
 
@@ -18,7 +13,7 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props
+    const { children, value, index } = props
 
     return (
         <div
@@ -26,26 +21,17 @@ function TabPanel(props: TabPanelProps) {
             hidden={value !== index}
             id={`vertical-tabpanel-${index}`}
             aria-labelledby={`vertical-tab-${index}`}
-            {...other}
         >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
+            {value === index ? (
+                <Box component="div">
+                    <div>{children}</div>
                 </Box>
-            )}
+            ) : null}
         </div>
     )
 }
 
-function a11yProps(index: any) {
-    return {
-        id: `vertical-tab-${index}`,
-        'aria-controls': `vertical-tabpanel-${index}`
-    }
-}
-
 const Profile = (): JSX.Element => {
-    // const currentUser = useContext(UserContext)
     const [value, setValue] = React.useState(0)
 
     const handleChange = (
@@ -58,34 +44,14 @@ const Profile = (): JSX.Element => {
     return (
         <div className={classes.root}>
             <div className={classes.nav}>
-                {/* <div className={classes.avatar}>
-                    {currentUser ? (
-                        <Avatar
-                            src={currentUser.avatarSrc}
-                            nickname={currentUser.username}
-                        />
-                    ) : null}
-                </div> */}
                 <Tabs
-                    //TabIndicatorProps={{ style: { background: '#6dcebb' } }}
                     orientation="vertical"
-                    variant="scrollable"
                     value={value}
                     onChange={handleChange}
-                    aria-label="Vertical tabs example"
                     className={classes.tabs}
                 >
-                    <Tab
-                        className={classes.tabLabel}
-                        label="Avatar"
-                        {...a11yProps(0)}
-                    />
-                    <Tab
-                        className={classes.tabLabel}
-                        disabled={false}
-                        label="profil"
-                        {...a11yProps(1)}
-                    />
+                    <Tab className={classes.tabLabel} label="Avatar" />
+                    <Tab className={classes.tabLabel} label="Profile" />
                 </Tabs>
             </div>
             <div className={classes.content}>

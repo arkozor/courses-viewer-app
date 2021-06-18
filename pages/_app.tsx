@@ -43,7 +43,7 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
     })
 
     return (
-        <UserContext.Provider value={currentUser}>
+        <>
             <Head>
                 <link
                     rel="preload"
@@ -59,30 +59,20 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
                     crossOrigin=""
                 />
             </Head>
-            <Layout>
-                <ErrorBoundary
-                    FallbackComponent={ErrorFallback}
-                    onReset={() => {
-                        // reset the state of your app so the error doesn't happen again
-                    }}
-                >
-                    <Component {...pageProps} />
-                </ErrorBoundary>
-            </Layout>
-        </UserContext.Provider>
+            <UserContext.Provider value={currentUser}>
+                <Layout>
+                    <ErrorBoundary
+                        FallbackComponent={ErrorFallback}
+                        onReset={() => {
+                            // reset the state of your app so the error doesn't happen again
+                        }}
+                    >
+                        <Component {...pageProps} />
+                    </ErrorBoundary>
+                </Layout>
+            </UserContext.Provider>
+        </>
     )
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// CoursesViewerApp.getInitialProps = async (appContext: AppContext) => {
-//     // calls page's `getInitialProps` and fills `appProps.pageProps`
-//     const appProps = await App.getInitialProps(appContext)
-
-//     return { ...appProps }
-// }
 
 export default CoursesViewerApp
