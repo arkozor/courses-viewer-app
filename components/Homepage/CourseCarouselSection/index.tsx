@@ -14,14 +14,14 @@ const CourseCarouselSection = (): JSX.Element => {
         try {
             axios
                 .get(`${process.env.COURSE_API}/mostClicked`, {
-                    timeout: 80000
+                    timeout: 60000
                 })
                 .then((res) => {
                     setMostClickedCourses(res.data.data)
                 })
             axios
                 .get(`${process.env.COURSE_API}`, {
-                    timeout: 80000
+                    timeout: 60000
                 })
                 .then((res) => {
                     setCourses(res.data.data.data)
