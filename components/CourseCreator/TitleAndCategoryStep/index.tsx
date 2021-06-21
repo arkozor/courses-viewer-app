@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { Typography, MenuItem, Select, TextField } from '@material-ui/core'
+import { ImageDropzoneWithPreview } from 'components/DropZone'
 import { CategoryFilter } from 'components/Filters/SearchFilters/type'
 
 import { PostCourseArgs } from '../type'
@@ -16,7 +17,7 @@ const TitleAndCategoryStep = ({ categories }: Props): JSX.Element => {
     const parsedLocalStorageCourse: PostCourseArgs = JSON.parse(
         localStorageCourse
     )
-
+    const [image, setImage] = React.useState(parsedLocalStorageCourse?.preview)
     const [category, setCategory] = React.useState(
         parsedLocalStorageCourse?.category_id
     )
@@ -29,6 +30,37 @@ const TitleAndCategoryStep = ({ categories }: Props): JSX.Element => {
     const onChangeCategory = (event: React.ChangeEvent<HTMLInputElement>) => {
         setCategory(Number(event.target.value))
     }
+    const blobToBase64 = (files: Blob[]) => {
+        const promise = new Promise((resolve, reject) => {
+            const reader = new FileReader()
+
+            reader.readAsDataURL(files[0])
+
+            reader.onload = () => {
+                if (reader.result) {
+                    resolve(reader.result)
+                } else {
+                    reject(Error('Failed converting to base64'))
+                }
+            }
+        })
+        promise.then(
+            (result: any) => {
+                setImage(result)
+            },
+            (err) => {
+                throw new Error(
+                    `Impossible de télécharger l'image ${err.message}`
+                )
+            }
+        )
+    }
+
+    const getImage = (image) => {
+        if (image.length) {
+            blobToBase64(image)
+        }
+    }
 
     React.useEffect(() => {
         localStorage.setItem(
@@ -36,14 +68,30 @@ const TitleAndCategoryStep = ({ categories }: Props): JSX.Element => {
             JSON.stringify({
                 ...parsedLocalStorageCourse,
                 title: title,
-                category_id: category
+                category_id: category,
+                preview: image
             })
         )
-    }, [title, category])
+    }, [title, category, image])
 
     return (
         <div className={classes.container}>
-            <div className={classes.titleContainer}>
+            <div className={classes.sectionContainer}>
+                <Typography variant="h3" gutterBottom>
+                    Miniature
+                </Typography>
+                <Typography color="primary" variant="subtitle1" gutterBottom>
+                    La miniature fera que l&apos;utilisateur cliquera ou non sur
+                    votre cours. Trouvez une image qui accroche l&apos;oeil des
+                    étudiants !
+                </Typography>
+                <ImageDropzoneWithPreview
+                    getFile={getImage}
+                    defaultValues={image}
+                />
+            </div>
+
+            <div className={classes.sectionContainer}>
                 <Typography variant="h3" gutterBottom>
                     Titre du cours
                 </Typography>
@@ -61,7 +109,7 @@ const TitleAndCategoryStep = ({ categories }: Props): JSX.Element => {
                     fullWidth
                 />
             </div>
-            <div className={classes.categoryContainer}>
+            <div className={classes.sectionContainer}>
                 <Typography variant="h3" gutterBottom>
                     Catégorie du cours
                 </Typography>
@@ -70,7 +118,7 @@ const TitleAndCategoryStep = ({ categories }: Props): JSX.Element => {
                     cours plus facilement.
                     <br />
                     Si vous n&apos;êtes pas sûr de la catégorie, vous pourrez la
-                    modifier plus tard
+                    modifier plus tard.
                 </Typography>
                 <Select
                     onChange={onChangeCategory}

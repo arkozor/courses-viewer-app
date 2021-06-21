@@ -5,6 +5,21 @@
     padding: $spacing_xl 0;
 }
 
-.titleContainer {
-    margin-top: $spacing_xl;
+.chaptersList {
+    padding: $spacing_md $spacing_xxl;
+}
+
+.chapter {
+    margin: $spacing_md 0;
+    padding: $spacing_md;
+    border-radius: 4px;
+}
+
+.endAdornment {
+    padding: 0 !important;
+}
+.goToChapterButton {
+    color: white !important;
+    box-shadow: none !important;
+    border-radius: none !important;
 }

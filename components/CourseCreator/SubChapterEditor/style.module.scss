@@ -5,6 +5,11 @@
     padding: $spacing_xl 0;
 }
 
-.sectionContainer {
+.titleContainer {
     margin-top: $spacing_xl;
+}
+
+.subChapter {
+    max-width: 50%;
+    margin-bottom: $spacing_xl;
 }

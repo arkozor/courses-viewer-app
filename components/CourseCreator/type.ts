@@ -2,13 +2,17 @@ export type PostSubChapterArgs = {
     title: string
     number: number
     description: string
-    video_location: string
+    video_location: {
+        preview: string
+        name: string
+    }
     resources: PostRessourceArgs[]
 }
 
 export type PostRessourceArgs = {
-    title: string
-    resource_location: string
+    name: string
+    preview: string
+    resource_location?: string
 }
 
 export type PostChapterArgs = {

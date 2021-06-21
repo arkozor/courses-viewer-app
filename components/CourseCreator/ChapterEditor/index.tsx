@@ -1,45 +1,30 @@
 import React from 'react'
 
-import { Typography, TextareaAutosize } from '@material-ui/core'
+import { Typography, TextField } from '@material-ui/core'
 
 import { PostChapterArgs, PostCourseArgs } from '../type'
 
 type Props = {
     chapterId: number
+    target: PostChapterArgs[]
+    course: PostCourseArgs
 }
 
-const ChapterEditor = ({
-    chapterId
-}: // localStorageTarget
-Props): JSX.Element => {
+const ChapterEditor = ({ chapterId, target, course }: Props): JSX.Element => {
     const chapterIndex = chapterId - 1
 
-    const localStorageCourse =
-        typeof window !== 'undefined' && localStorage.getItem('course')
-
-    const parsedLocalStorageCourse: PostCourseArgs = JSON.parse(
-        localStorageCourse
-    )
-
-    const parsedLocalStorageChapters = JSON.parse(localStorageCourse)?.chapters
-
-    const parsedLocalStorageCurrentChapter: PostChapterArgs =
-        parsedLocalStorageCourse?.chapters &&
-        parsedLocalStorageCourse?.chapters[chapterIndex]
-
-    const [description, setDescription] = React.useState(
-        parsedLocalStorageCurrentChapter?.description || ''
-    )
+    const [
+        parsedLocalStorageCurrentChapter,
+        setParsedLocalStorageCurrentChapter
+    ] = React.useState<PostChapterArgs>()
 
     React.useEffect(() => {
-        setDescription(parsedLocalStorageCurrentChapter?.description)
+        setParsedLocalStorageCurrentChapter(target[chapterIndex])
     }, [chapterId])
 
-    const [updatedChapters, setUpdatedChapters] = React.useState(
-        parsedLocalStorageChapters
-    )
+    const [updatedChapters, setUpdatedChapters] = React.useState(target)
+
     const onChangeDescription = (event) => {
-        setDescription(event.target.value)
         setUpdatedChapters(
             updatedChapters.map((chapter) =>
                 chapter?.number === chapterId
@@ -53,25 +38,24 @@ Props): JSX.Element => {
         localStorage.setItem(
             'course',
             JSON.stringify({
-                ...parsedLocalStorageCourse,
+                ...course,
                 chapters: updatedChapters
             })
         )
-    }, [description])
+    }, [updatedChapters])
 
     return (
         <div>
             <Typography variant="h3">
                 {parsedLocalStorageCurrentChapter?.title}
             </Typography>
-            <TextareaAutosize
-                aria-label="minimum height"
-                rowsMin={3}
-                placeholder="Minimum 3 rows"
-                onChange={onChangeDescription}
-                value={description}
+            <TextField
+                defaultValue={updatedChapters[chapterIndex].description}
+                placeholder="Description du chapitre"
+                onBlur={onChangeDescription}
+                multiline
+                variant="outlined"
             />
-            description: {description}
         </div>
     )
 }
