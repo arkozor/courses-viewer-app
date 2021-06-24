@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 import BookmarkIcon from '@material-ui/icons/Bookmark'
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder'
+import { Scrollbars } from 'react-custom-scrollbars'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 import { CoursePreview } from '../../types'
@@ -18,6 +19,22 @@ import classes from './style.module.scss'
 type Props = {
     course: CoursePreview
 }
+
+const renderThumb = ({ style, ...props }) => {
+    const thumbStyle = {
+        borderRadius: 6,
+        backgroundColor: 'rgba(35, 49, 86, 0.8)'
+    }
+    return <div style={{ ...style, ...thumbStyle }} {...props} />
+}
+
+const CustomScrollbars = (props) => (
+    <Scrollbars
+        renderThumbHorizontal={renderThumb}
+        renderThumbVertical={renderThumb}
+        {...props}
+    />
+)
 
 const CourseCard = ({ course }: Props): JSX.Element => {
     const { title, preview, id, thumbnail } = course
@@ -57,8 +74,15 @@ const CourseCard = ({ course }: Props): JSX.Element => {
                     <Typography variant="h6" className={classes.title}>
                         {title}
                     </Typography>
+
                     <Typography variant="subtitle1" className={classes.preview}>
-                        {preview}
+                        <CustomScrollbars
+                            autoHide
+                            autoHideTimeout={500}
+                            autoHideDuration={200}
+                        >
+                            <div className={classes.content}> {preview}</div>
+                        </CustomScrollbars>
                     </Typography>
                 </CardContent>
             </Link>
