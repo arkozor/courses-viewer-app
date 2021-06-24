@@ -17,10 +17,8 @@ const SubChapterEditor = ({ chapterId }: Props): JSX.Element => {
     const localStorageCourse =
         typeof window !== 'undefined' && localStorage.getItem('course')
 
-    const [
-        parsedLocalStorageCourse,
-        setParsedLocalStorageCourse
-    ] = React.useState<PostCourseArgs>(JSON.parse(localStorageCourse))
+    const [parsedLocalStorageCourse, setParsedLocalStorageCourse] =
+        React.useState<PostCourseArgs>(JSON.parse(localStorageCourse))
 
     const [chapters, setChapters] = React.useState(
         parsedLocalStorageCourse?.chapters
@@ -155,7 +153,7 @@ const SubChapterEditor = ({ chapterId }: Props): JSX.Element => {
                                                     .subchapters[index]?.title
                                             }
                                             variant="outlined"
-                                            label={`Sous-chapitre ${subchapter.number}`}
+                                            label={`Titre du sous-chapitre ${subchapter.number}`}
                                             fullWidth
                                         />
                                     </div>
@@ -206,7 +204,8 @@ const SubChapterEditor = ({ chapterId }: Props): JSX.Element => {
 
                                                 onChangeSubChapter(index, {
                                                     ...subchapter,
-                                                    video_location: videoLocation
+                                                    video_location:
+                                                        videoLocation
                                                 })
                                             }}
                                         />

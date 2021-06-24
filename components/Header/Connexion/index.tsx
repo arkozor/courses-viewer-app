@@ -111,12 +111,17 @@ const RegistrationAndConnexion = (): JSX.Element => {
                         color="inherit"
                         href="/course/new?step=0"
                     >
-                        <span className={classes.menuItem}>
-                            <AddIcon color="inherit" className={classes.icon} />
-                            <Typography variant="body1">
-                                Ajouter un cours
-                            </Typography>
-                        </span>
+                        {currentUser.isAdmin ? (
+                            <span className={classes.menuItem}>
+                                <AddIcon
+                                    color="inherit"
+                                    className={classes.icon}
+                                />
+                                <Typography variant="body1">
+                                    Ajouter un cours
+                                </Typography>
+                            </span>
+                        ) : null}
                     </Link>
                 </MenuItem>
                 <Divider light variant="middle" />

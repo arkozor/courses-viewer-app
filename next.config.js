@@ -1,7 +1,7 @@
 module.exports = {
     env: {
         COURSE_API: 'http://idboard.net:43001/api/courses',
-        USER_API: 'http://idboard.net:43001/api/user/me',
+        USER_API: 'http://idboard.net:43001/api/users',
         AUTH_API: 'http://idboard.net:43001/api/auth',
         SEARCH_API: 'http://idboard.net:43001/api/search',
         DOMAIN_API: 'http://idboard.net:43001/api/domains',

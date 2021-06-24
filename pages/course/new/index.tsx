@@ -1,12 +1,34 @@
 import React from 'react'
 
 import CourseCreator from 'components/CourseCreator'
+import {
+    DomainFilter,
+    ThemeFilter,
+    CategoryFilter
+} from 'components/Filters/SearchFilters/type'
+import { UserContext } from 'context'
 import { GetStaticProps } from 'next'
 
-const NewCourse = ({ filters }): JSX.Element => {
-    // const [isAdmin, setIsAdmin] = React.useState(false)
+type Props = {
+    filters?: {
+        domains: DomainFilter[]
+        themes: ThemeFilter[]
+        categories: CategoryFilter[]
+    }
+}
 
-    return <CourseCreator filters={filters} />
+const NewCourse = ({ filters }: Props): JSX.Element => {
+    const currentUser = React.useContext(UserContext)
+
+    React.useEffect(() => {
+        if (currentUser?.isAdmin === false) {
+            throw new Error(
+                "Vous n'avez pas les droits pour accéder à cette page"
+            )
+        }
+    }, [currentUser?.isAdmin])
+
+    return currentUser ? <CourseCreator filters={filters} /> : null
 }
 
 export default NewCourse

@@ -29,9 +29,8 @@ const TitleAndCategoryStep = ({ filters }: Props): JSX.Element => {
     const localStorageCourse =
         typeof window !== 'undefined' && localStorage.getItem('course')
 
-    const parsedLocalStorageCourse: PostCourseArgs = JSON.parse(
-        localStorageCourse
-    )
+    const parsedLocalStorageCourse: PostCourseArgs =
+        JSON.parse(localStorageCourse)
     const [image, setImage] = React.useState('')
 
     const [imageSrc, setImageSrc] = React.useState(
@@ -197,7 +196,7 @@ const TitleAndCategoryStep = ({ filters }: Props): JSX.Element => {
                         onChange={onChangePreview}
                         value={preview}
                         variant="outlined"
-                        label="Titre"
+                        label="Preview"
                     />
                 </div>
             </div>

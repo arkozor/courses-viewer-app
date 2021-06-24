@@ -1,5 +1,6 @@
 import React from 'react'
 
+import axios from 'axios'
 import Layout from 'components/Layout'
 import { UserContext } from 'context'
 import type { AppProps } from 'next/app'
@@ -41,6 +42,26 @@ const CoursesViewerApp = ({ Component, pageProps }: AppProps): JSX.Element => {
                 syncCurrentUserWithLocalStorage
             )
     })
+
+    React.useEffect(() => {
+        if (currentUser?.token) {
+            try {
+                axios
+                    .get(`${process.env.USER_API}/courses/publisher`, {
+                        headers: {
+                            Authorization: `Bearer ${currentUser.token}`
+                        },
+                        timeout: 60000
+                    })
+                    .then((res) => {
+                        const isAdmin = res.data.data
+                        setCurrentUser({ ...currentUser, isAdmin })
+                    })
+            } catch (e) {
+                throw new Error('Le serveur ne répond pas')
+            }
+        }
+    }, [currentUser?.token])
 
     return (
         <>
