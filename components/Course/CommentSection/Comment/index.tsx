@@ -17,9 +17,8 @@ type Props = {
 const Comment = (props: Props): JSX.Element => {
     const { comment, getIsNewComment } = props
 
-    const [shouldDisplayReplies, setShouldDisplayReplies] = React.useState(
-        false
-    )
+    const [shouldDisplayReplies, setShouldDisplayReplies] =
+        React.useState(false)
 
     const [isReplying, setIsReplying] = React.useState(false)
 

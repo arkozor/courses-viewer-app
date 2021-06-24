@@ -24,10 +24,8 @@ type Props = {
 const SubChapterDescriptionAndRessources = (props: Props): JSX.Element => {
     const { resources, show, description, isPreview } = props
 
-    const [
-        shouldDisplayFullDescription,
-        setShouldDisplayFullDescription
-    ] = React.useState(false)
+    const [shouldDisplayFullDescription, setShouldDisplayFullDescription] =
+        React.useState(false)
 
     const longDescription = description?.length >= 400
 

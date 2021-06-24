@@ -21,10 +21,8 @@ type Props = {
 const CourseDescription = (props: Props): JSX.Element => {
     const currentUser = useContext(UserContext)
 
-    const [
-        shouldDisplayFullDescription,
-        setShouldDisplayFullDescription
-    ] = React.useState(false)
+    const [shouldDisplayFullDescription, setShouldDisplayFullDescription] =
+        React.useState(false)
     const [author, setAuthor] = React.useState({ nickname: '', avatarSrc: '' })
     const [isLoadingAvatar, setIsLoadingAvatar] = React.useState(false)
     const [hasError, setHasError] = React.useState(false)

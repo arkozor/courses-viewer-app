@@ -101,8 +101,10 @@ const Register = (): JSX.Element => {
         }
     }, [email, password, hasError])
 
-    const passwordValidationRegex = /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/gm
-    const emailValidationRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gm
+    const passwordValidationRegex =
+        /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/gm
+    const emailValidationRegex =
+        /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/gm
 
     const validPassword = password.value.match(passwordValidationRegex)
     const validEmail = email.value.match(emailValidationRegex)

@@ -12,9 +12,8 @@ const ChaptersStep = (): JSX.Element => {
     const localStorageCourse =
         typeof window !== 'undefined' && localStorage.getItem('course')
 
-    const parsedLocalStorageCourse: PostCourseArgs = JSON.parse(
-        localStorageCourse
-    )
+    const parsedLocalStorageCourse: PostCourseArgs =
+        JSON.parse(localStorageCourse)
 
     const [chapters, setChapters] = React.useState<PostChapterArgs[]>(
         parsedLocalStorageCourse?.chapters || []
