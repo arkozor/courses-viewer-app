@@ -29,6 +29,15 @@ const ChaptersStep = (): JSX.Element => {
             )
         )
     }
+    const onChangeChapterDescription = (event, index) => {
+        setChapters(
+            chapters.map((chapter) =>
+                chapter.number === index + 1
+                    ? { ...chapter, description: event.target.value }
+                    : chapter
+            )
+        )
+    }
 
     const goToChapter = (chapterNumber: number) => {
         router.push({
@@ -64,10 +73,11 @@ const ChaptersStep = (): JSX.Element => {
                         key={`chapter-${index + 1}`}
                     >
                         <TextField
+                            label={`Chapitre ${index + 1}`}
                             onChange={(e) => onChangeChapterTitle(e, index)}
                             value={chapter.title}
                             variant="outlined"
-                            placeholder={`Chapitre ${index + 1}`}
+                            classes={{ root: classes.chapterTextField }}
                             InputProps={{
                                 classes: { root: classes.endAdornment },
                                 endAdornment: chapter.title ? (
@@ -83,37 +93,63 @@ const ChaptersStep = (): JSX.Element => {
                                     </Button>
                                 ) : null
                             }}
-                            fullWidth
                         />
+                        <div>
+                            <TextField
+                                label="Description du Chapitre"
+                                classes={{
+                                    root: classes.multiLineChapterTextField
+                                }}
+                                className={classes.textField}
+                                onChange={(e) =>
+                                    onChangeChapterDescription(e, index)
+                                }
+                                value={chapter.description}
+                                variant="outlined"
+                                multiline
+                            />
+                        </div>
                     </div>
                 ))}
             </div>
-            <Button
-                onClick={() => {
-                    setChapters((oldArray) => [
-                        ...oldArray,
-                        {
-                            number: chapters.length + 1,
-                            title: '',
-                            description: '',
-                            subchapters: []
-                        }
-                    ])
-                }}
-            >
-                Ajouter un Chapitre
-            </Button>
-            {chapters.length > 1 ? (
+            <div className={classes.chapterActionContainer}>
                 <Button
+                    classes={{
+                        root: classes.chapterAction
+                    }}
+                    variant="contained"
+                    color="primary"
                     onClick={() => {
-                        setChapters((oldArray) =>
-                            oldArray.slice(0, oldArray.length - 1)
-                        )
+                        setChapters((oldArray) => [
+                            ...oldArray,
+                            {
+                                number: chapters.length + 1,
+                                title: '',
+                                description: '',
+                                subchapters: []
+                            }
+                        ])
                     }}
                 >
-                    Supprimer un Chapitre
+                    Ajouter un Chapitre
                 </Button>
-            ) : null}
+                {chapters.length > 1 ? (
+                    <Button
+                        classes={{
+                            root: classes.chapterAction
+                        }}
+                        variant="contained"
+                        color="primary"
+                        onClick={() => {
+                            setChapters((oldArray) =>
+                                oldArray.slice(0, oldArray.length - 1)
+                            )
+                        }}
+                    >
+                        Supprimer un Chapitre
+                    </Button>
+                ) : null}
+            </div>
         </div>
     )
 }

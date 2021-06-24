@@ -11,6 +11,7 @@ import ChaptersStep from './ChaptersStep'
 import CourseStepper from './CourseStepper'
 import classes from './style.module.scss'
 import TitleAndCategoryStep from './TitleAndCategoryStep'
+import ValidationStep from './ValidationStep'
 
 type Props = {
     filters?: {
@@ -19,7 +20,25 @@ type Props = {
         categories: CategoryFilter[]
     }
 }
+
 const CourseCreator = ({ filters }: Props): JSX.Element => {
+    const localStorageCourse =
+        typeof window != 'undefined' && localStorage.getItem('course')
+    const components = localStorageCourse
+        ? [
+              <TitleAndCategoryStep
+                  key="TitleAndCategoryStep"
+                  filters={filters}
+              />,
+              <ChaptersStep key="ChaptersStep" />,
+              <ValidationStep key="ValidationStep" />
+          ]
+        : [
+              <TitleAndCategoryStep
+                  key="TitleAndCategoryStep"
+                  filters={filters}
+              />
+          ]
     return (
         <Paper elevation={1} className={classes.container}>
             <div className={classes.header}>
@@ -27,16 +46,7 @@ const CourseCreator = ({ filters }: Props): JSX.Element => {
                     Création de cours
                 </Typography>
             </div>
-            <CourseStepper
-                components={[
-                    <TitleAndCategoryStep
-                        key="TitleAndCategoryStep"
-                        categories={filters.categories}
-                    />,
-                    <ChaptersStep key="ChaptersStep" />,
-                    <div key="Validation">Validation</div>
-                ]}
-            />
+            <CourseStepper components={components} />
         </Paper>
     )
 }

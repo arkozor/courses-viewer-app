@@ -8,8 +8,9 @@
 }
 
 .dropzone {
-    min-width: 700px;
-    margin-top: $spacing_xl;
+    justify-content: center;
+    display: flex;
+    width: 700px;
     .img {
         object-fit: cover;
         width: 100%;
@@ -31,13 +32,14 @@
 }
 
 .resourcesContainer {
-    max-width: 900px;
+    width: 100%;
     padding: $spacing_md;
 }
 
 .resourceDropzone {
     height: 50px;
     margin-top: $spacing_xl;
+    width: 700px;
 }
 
 .resource {

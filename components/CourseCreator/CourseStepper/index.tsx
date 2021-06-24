@@ -1,22 +1,25 @@
 import React from 'react'
 
-import Button from '@material-ui/core/Button'
-import Step from '@material-ui/core/Step'
-import StepButton from '@material-ui/core/StepButton'
-import Stepper from '@material-ui/core/Stepper'
-import Typography from '@material-ui/core/Typography'
+import { Button, Step, StepLabel, Stepper, Typography } from '@material-ui/core'
+import axios from 'axios'
+import { UserContext } from 'context'
 import { useRouter } from 'next/router'
+
+import classes from './style.module.scss'
 
 type Props = {
     components: React.ReactNode[]
 }
+
 const CourseStepper = ({ components }: Props): JSX.Element => {
     const router = useRouter()
     const queryStep = router.query.step
+
     function getStepContent(step: number) {
         return components[step]
     }
 
+    const currentUser = React.useContext(UserContext)
     const steps = ['Titre et catégorie', 'Chapitres', 'Publication']
 
     const [activeStep, setActiveStep] = React.useState(0)
@@ -68,36 +71,37 @@ const CourseStepper = ({ components }: Props): JSX.Element => {
         })
     }
 
-    const handleStep = (clickedStep: number) => () => {
-        setActiveStep(clickedStep)
-        router.push({
-            query: {
-                step: clickedStep
-            }
-        })
-    }
-
     const handleComplete = () => {
         const newCompleted = completed
         newCompleted[activeStep] = true
         setCompleted(newCompleted)
         handleNext()
         if (activeStep === 2) {
-            localStorage.removeItem('course')
+            const course = JSON.parse(localStorage.getItem('course'))
+            try {
+                axios.post(
+                    `${process.env.COURSE_API}`,
+                    { ...course, publisher_id: currentUser.id },
+                    {
+                        headers: {
+                            Authorization: `Bearer ${currentUser.token}`
+                        },
+                        timeout: 60000
+                    }
+                )
+                localStorage.removeItem('course')
+            } catch (e) {
+                throw new Error("Le cours n'a pas pu être posté")
+            }
         }
     }
 
     return (
         <div>
             <Stepper nonLinear activeStep={activeStep}>
-                {steps.map((label, index) => (
+                {steps.map((label) => (
                     <Step key={label}>
-                        <StepButton
-                            onClick={handleStep(index)}
-                            completed={completed[index]}
-                        >
-                            {label}
-                        </StepButton>
+                        <StepLabel>{label}</StepLabel>
                     </Step>
                 ))}
             </Stepper>
@@ -109,18 +113,26 @@ const CourseStepper = ({ components }: Props): JSX.Element => {
                 ) : (
                     <div>
                         <div>{getStepContent(activeStep)}</div>
-                        <div>
+                        <div className={classes.stepContainer}>
                             <Button
                                 disabled={activeStep === 0}
                                 onClick={handleBack}
+                                classes={{
+                                    root: classes.stepButton
+                                }}
+                                variant="contained"
+                                color="secondary"
                             >
                                 Etape Précédente
                             </Button>
 
                             {activeStep !== steps.length && (
                                 <Button
+                                    classes={{
+                                        root: classes.stepButton
+                                    }}
                                     variant="contained"
-                                    color="primary"
+                                    color="secondary"
                                     onClick={handleComplete}
                                 >
                                     {Number(activeStep) === 2

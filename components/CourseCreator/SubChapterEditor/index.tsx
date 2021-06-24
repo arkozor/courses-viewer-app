@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Typography, TextField, Button } from '@material-ui/core'
+import { Typography, TextField, Button, Divider } from '@material-ui/core'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { RessourcesDropzone, VideoDropzone } from 'components/DropZone'
 
@@ -56,10 +56,7 @@ const SubChapterEditor = ({ chapterId }: Props): JSX.Element => {
             title: '',
             number: subChapters.length + 1,
             description: '',
-            video_location: {
-                name: '',
-                preview: ''
-            },
+            video_location: '',
             resources: []
         }
         const updatedSubChapters = [
@@ -105,114 +102,189 @@ const SubChapterEditor = ({ chapterId }: Props): JSX.Element => {
     }, [chapters])
 
     return (
-        <div className={classes.container}>
-            <Button href="/course/new?step=1" className={classes.back}>
-                <Typography variant="h4">
-                    <ArrowBackIcon /> Retourner aux chapitres
+        <>
+            <Button href="/course/new?step=1">
+                <Typography variant="body1" className={classes.back}>
+                    <ArrowBackIcon className={classes.arrowIcon} />
+                    Retourner aux chapitres
                 </Typography>
             </Button>
-            <div className={classes.titleContainer}>
-                <Typography variant="h3" gutterBottom>
-                    Titre: {currentChapter?.title}
-                </Typography>
-                <Typography variant="h3" gutterBottom>
-                    Sous Chapitres
-                </Typography>
-                <Typography color="primary" variant="subtitle1" gutterBottom>
-                    Résumez en quelques mots le contenu de votre sous chapitre.
-                </Typography>
-                {subChapters?.map((subchapter, index) => {
-                    const currentLocalStorageSubChapter =
-                        currentChapter.subchapters[index]
+            <Typography className={classes.currentChapter} variant="h4">
+                Chapitre {currentChapter.number}: {currentChapter?.title}
+            </Typography>
 
-                    return (
-                        <div
-                            className={classes.subChapter}
-                            key={`Chapter-${index}`}
-                        >
-                            <TextField
-                                onBlur={(e) => {
-                                    onChangeSubChapter(index, {
-                                        ...subchapter,
-                                        title: e.target.value
-                                    })
-                                    setParsedLocalStorageCourse({
-                                        ...parsedLocalStorageCourse,
-                                        chapters
-                                    })
-                                }}
-                                defaultValue={
-                                    parsedLocalStorageCourse.chapters[
-                                        chapterIndex
-                                    ].subchapters[index]?.title
-                                }
-                                variant="outlined"
-                                placeholder={`Sous-chapitre ${subchapter.number}`}
-                                fullWidth
-                            />
-                            <TextField
-                                onBlur={(e) => {
-                                    onChangeSubChapter(index, {
-                                        ...subchapter,
-                                        description: e.target.value
-                                    })
-                                    setParsedLocalStorageCourse({
-                                        ...parsedLocalStorageCourse,
-                                        chapters
-                                    })
-                                }}
-                                defaultValue={
-                                    parsedLocalStorageCourse.chapters[
-                                        chapterIndex
-                                    ].subchapters[index]?.description
-                                }
-                                variant="outlined"
-                                placeholder={`Descripion du sous chapitre ${subchapter.number}`}
-                                multiline
-                                fullWidth
-                            />
-                            <VideoDropzone
-                                defaultValues={
-                                    currentLocalStorageSubChapter.video_location
-                                }
-                                getFile={(video) => {
-                                    onChangeSubChapter(index, {
-                                        ...subchapter,
-                                        video_location: video.length
-                                            ? {
-                                                  name: video[0].name,
-                                                  preview: video[0].name.preview
-                                              }
-                                            : undefined
-                                    })
-                                }}
-                            />
-                            <RessourcesDropzone
-                                defaultValues={
-                                    currentLocalStorageSubChapter.resources
-                                }
-                                getFiles={(files) => {
-                                    const resources = files.map((file) => ({
-                                        name: file.name,
-                                        preview: file.preview
-                                    }))
-                                    onChangeSubChapter(index, {
-                                        ...subchapter,
-                                        resources
-                                    })
-                                }}
-                            />
-                        </div>
-                    )
-                })}
-                <Button onClick={addChapter}>Ajouter un sous-chapitre</Button>
-                {subChapters.length > 1 ? (
-                    <Button onClick={removeChapter}>
-                        Supprimer un sous-chapitre
+            <div className={classes.container}>
+                <div>
+                    <div className={classes.header}>
+                        <Typography variant="h3" gutterBottom>
+                            Sous Chapitres
+                        </Typography>
+                    </div>
+
+                    <div className={classes.subChapterList}>
+                        {subChapters?.map((subchapter, index) => {
+                            const currentLocalStorageSubChapter =
+                                currentChapter.subchapters[index]
+
+                            return (
+                                <div
+                                    className={classes.subChapter}
+                                    key={`Chapter-${index}`}
+                                >
+                                    <div className={classes.section}>
+                                        <Typography variant="h3" gutterBottom>
+                                            Titre
+                                        </Typography>
+                                        <TextField
+                                            className={
+                                                classes.subChapterTitleTextField
+                                            }
+                                            onBlur={(e) => {
+                                                onChangeSubChapter(index, {
+                                                    ...subchapter,
+                                                    title: e.target.value
+                                                })
+                                                setParsedLocalStorageCourse({
+                                                    ...parsedLocalStorageCourse,
+                                                    chapters
+                                                })
+                                            }}
+                                            defaultValue={
+                                                parsedLocalStorageCourse
+                                                    .chapters[chapterIndex]
+                                                    .subchapters[index]?.title
+                                            }
+                                            variant="outlined"
+                                            label={`Sous-chapitre ${subchapter.number}`}
+                                            fullWidth
+                                        />
+                                    </div>
+                                    <Divider light />
+                                    <div className={classes.section}>
+                                        <Typography variant="h3" gutterBottom>
+                                            Description
+                                        </Typography>
+                                        <TextField
+                                            onBlur={(e) => {
+                                                onChangeSubChapter(index, {
+                                                    ...subchapter,
+                                                    description: e.target.value
+                                                })
+                                                setParsedLocalStorageCourse({
+                                                    ...parsedLocalStorageCourse,
+                                                    chapters
+                                                })
+                                            }}
+                                            className={
+                                                classes.subChapterDescriptionTextField
+                                            }
+                                            defaultValue={
+                                                parsedLocalStorageCourse
+                                                    .chapters[chapterIndex]
+                                                    .subchapters[index]
+                                                    ?.description
+                                            }
+                                            variant="outlined"
+                                            label={`Descripion du sous chapitre ${subchapter.number}`}
+                                            multiline
+                                            fullWidth
+                                        />
+                                    </div>
+                                    <Divider light />
+                                    <div className={classes.section}>
+                                        <Typography variant="h3" gutterBottom>
+                                            Vidéo
+                                        </Typography>
+                                        <VideoDropzone
+                                            defaultValues={
+                                                currentLocalStorageSubChapter.video_location
+                                            }
+                                            getFile={(video) => {
+                                                const videoLocation = video[0]
+                                                    ? video[0].name
+                                                    : ''
+
+                                                onChangeSubChapter(index, {
+                                                    ...subchapter,
+                                                    video_location: videoLocation
+                                                })
+                                            }}
+                                        />
+                                        <div
+                                            className={
+                                                classes.subChapterVideoLinkTextField
+                                            }
+                                        >
+                                            <TextField
+                                                onBlur={(e) => {
+                                                    onChangeSubChapter(index, {
+                                                        ...subchapter,
+                                                        video_location:
+                                                            e.target.value
+                                                    })
+                                                    setParsedLocalStorageCourse(
+                                                        {
+                                                            ...parsedLocalStorageCourse,
+                                                            chapters
+                                                        }
+                                                    )
+                                                }}
+                                                defaultValue={
+                                                    parsedLocalStorageCourse
+                                                        .chapters[chapterIndex]
+                                                        .subchapters[index]
+                                                        ?.video_location
+                                                }
+                                                variant="outlined"
+                                                label={`Adresse de la vidéo`}
+                                                fullWidth
+                                            />
+                                        </div>
+                                    </div>
+                                    <Divider light />
+                                    <div className={classes.section}>
+                                        <Typography variant="h3" gutterBottom>
+                                            Ressources
+                                        </Typography>
+                                        <RessourcesDropzone
+                                            defaultValues={
+                                                currentLocalStorageSubChapter.resources
+                                            }
+                                            getFiles={(files) => {
+                                                const resources = files.map(
+                                                    (file) => ({
+                                                        title: file.name,
+                                                        resource_location:
+                                                            file.location
+                                                    })
+                                                )
+                                                onChangeSubChapter(index, {
+                                                    ...subchapter,
+                                                    resources
+                                                })
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
+                    <Button
+                        classes={{ root: classes.subChapterAction }}
+                        onClick={addChapter}
+                        variant="contained"
+                        color="primary"
+                    >
+                        Ajouter un sous-chapitre
                     </Button>
-                ) : null}
+                    {subChapters.length > 1 ? (
+                        <Button onClick={removeChapter}>
+                            Supprimer un sous-chapitre
+                        </Button>
+                    ) : null}
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

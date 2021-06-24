@@ -17,9 +17,26 @@
 
 .endAdornment {
     padding: 0 !important;
+    max-height: 60px;
 }
 .goToChapterButton {
     color: white !important;
     box-shadow: none !important;
     border-radius: none !important;
+}
+
+.chapterTextField {
+    width: 500px;
+    height: 60px;
+    margin: $spacing_md 0 !important;
+}
+
+.multiLineChapterTextField {
+    width: 500px;
+    margin: $spacing_md 0 !important;
+}
+
+.chapterAction {
+    color: white !important;
+    margin: 0 $spacing_sm !important;
 }

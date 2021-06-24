@@ -1,15 +1,61 @@
 @import 'theme/theme';
 
 .container {
-    margin-top: $spacing_xl;
     padding: $spacing_xl 0;
+    display: flex;
+    justify-content: center;
 }
-
-.titleContainer {
-    margin-top: $spacing_xl;
+.back {
+    display: flex;
+    align-items: center;
 }
-
+.arrowIcon {
+    margin-right: $spacing_sm;
+    width: 30px !important;
+    height: 30px !important;
+}
 .subChapter {
-    max-width: 50%;
-    margin-bottom: $spacing_xl;
+    margin: $spacing_md 0;
+    padding: $spacing_md;
+    border-radius: 4px;
+}
+
+.subChapterList {
+    padding: 0 $spacing_xxl;
+}
+
+.subChapterDescriptionTextField {
+    width: 500px;
+}
+
+.subChapterTitleTextField {
+    width: 500px;
+    height: 60px;
+}
+
+.subChapterAction {
+    color: white !important;
+    margin: 0 $spacing_sm !important;
+}
+.header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.currentChapter {
+    display: flex;
+    justify-content: center;
+}
+.subChapterVideoLinkTextField {
+    padding: $spacing_md 0;
+}
+
+.chapterTitle {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.section {
+    margin: $spacing_xl 0;
 }

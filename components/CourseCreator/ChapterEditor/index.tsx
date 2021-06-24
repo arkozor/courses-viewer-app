@@ -51,7 +51,7 @@ const ChapterEditor = ({ chapterId, target, course }: Props): JSX.Element => {
             </Typography>
             <TextField
                 defaultValue={updatedChapters[chapterIndex].description}
-                placeholder="Description du chapitre"
+                label="Description du chapitre"
                 onBlur={onChangeDescription}
                 multiline
                 variant="outlined"

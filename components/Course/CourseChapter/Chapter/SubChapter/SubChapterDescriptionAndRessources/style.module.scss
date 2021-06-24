@@ -24,9 +24,13 @@
 }
 
 .iconButton {
-    color: white !important;
+    color: $secondary;
 }
 
 .resourcesContainer {
     margin-top: $spacing_md;
+}
+
+.itemText {
+    padding-right: $spacing_sm;
 }

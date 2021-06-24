@@ -9,7 +9,7 @@ import { getIcon } from './utils'
 
 type Props = {
     getFile: (files: any[]) => void
-    defaultValues: { name: string; preview: string }
+    defaultValues: string
 }
 
 const VideoDropzone = ({ getFile, defaultValues }: Props): JSX.Element => {
@@ -43,15 +43,13 @@ const VideoDropzone = ({ getFile, defaultValues }: Props): JSX.Element => {
                     <Paper elevation={1} className={classes.resourcesContainer}>
                         <div className={classes.resource}>
                             <span className={classes.resourceIcon}>
-                                {defaultValues
-                                    ? getIcon(defaultValues.name)
-                                    : null}
+                                {defaultValues ? getIcon(defaultValues) : null}
                             </span>
                             <Typography variant="body2">
-                                {defaultValues ? defaultValues.name : null}
+                                {defaultValues ? defaultValues : null}
                             </Typography>
                         </div>
-                        {defaultValues?.name ? (
+                        {defaultValues ? (
                             <Divider
                                 classes={{ root: classes.divider }}
                                 light

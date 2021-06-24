@@ -9,7 +9,7 @@ import { getIcon } from './utils'
 
 type Props = {
     getFiles: (files: any[]) => void
-    defaultValues: { name: string; preview: string }[]
+    defaultValues: { title: string; resource_location: string }[]
 }
 
 const RessourcesDropzone = ({
@@ -48,13 +48,13 @@ const RessourcesDropzone = ({
                             ? defaultValues.map((file) => (
                                   <div
                                       className={classes.resource}
-                                      key={file.name}
+                                      key={file.title}
                                   >
                                       <span className={classes.resourceIcon}>
-                                          {getIcon(file.name)}
+                                          {getIcon(file.title)}
                                       </span>
                                       <Typography variant="body1">
-                                          {file.name}
+                                          {file.title}
                                       </Typography>
                                   </div>
                               ))

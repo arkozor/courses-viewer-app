@@ -74,7 +74,7 @@ const AddComment = (props: Props): JSX.Element => {
                 <TextField
                     className={classes.input}
                     onChange={onInputChange}
-                    placeholder={
+                    label={
                         commentId
                             ? `Répondre à ${author}`
                             : 'Ajouter un commentaire'

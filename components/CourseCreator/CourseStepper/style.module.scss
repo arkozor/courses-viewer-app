@@ -1,0 +1,9 @@
+@import 'theme/theme';
+
+.stepContainer {
+    display: flex;
+    justify-content: space-around;
+}
+.stepButton {
+    margin: 0 $spacing_sm !important;
+}

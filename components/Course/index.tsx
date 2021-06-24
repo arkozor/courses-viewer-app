@@ -17,10 +17,11 @@ import { CourseType } from './types'
 
 type Props = {
     course?: CourseType
+    isPreview?: boolean
 }
 
 const Course = (props: Props): JSX.Element => {
-    const { course } = props
+    const { course, isPreview } = props
     const [comments, setComments] = React.useState([])
     const [isNewComment, setIsNewComment] = React.useState(false)
 
@@ -33,7 +34,7 @@ const Course = (props: Props): JSX.Element => {
     } = router.query
 
     React.useEffect(() => {
-        if (currentUser) {
+        if (currentUser && !isPreview) {
             try {
                 axios
                     .get(`${process.env.COMMENT_API}/course/${id}`, {
@@ -85,7 +86,7 @@ const Course = (props: Props): JSX.Element => {
             <CourseTitle title={course?.title} />
             <Grid container className={classes.navigationContainer}>
                 <Grid item xs={12} md={8}>
-                    {currentSubChapter ? (
+                    {currentSubChapter && !isPreview ? (
                         <VideoPlayer
                             subChapter={currentSubChapter}
                             thumbnail={currentChapter?.thumbnail}
@@ -97,18 +98,24 @@ const Course = (props: Props): JSX.Element => {
                     )}
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <CourseChapter chapters={course?.chapters} />
+                    <CourseChapter
+                        chapters={course?.chapters}
+                        isPreview={isPreview}
+                    />
                 </Grid>
             </Grid>
             <ChapterTitle chapter={currentChapter} />
             <CourseDescription
+                isPreview={isPreview}
                 description={currentChapter?.description}
                 authorId={course?.publisher_id}
             />
-            <CommentSection
-                comments={comments}
-                getIsNewComment={getIsNewComment}
-            />
+            {isPreview ? null : (
+                <CommentSection
+                    comments={comments}
+                    getIsNewComment={getIsNewComment}
+                />
+            )}
         </div>
     ) : (
         <CoursePreview />

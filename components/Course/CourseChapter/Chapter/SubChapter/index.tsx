@@ -18,6 +18,7 @@ type Props = {
     chapterNumber: number
     subchapter: SubChapterType
     show: boolean
+    isPreview?: boolean
 }
 const SubChapter = (props: Props): JSX.Element => {
     const [open, setOpen] = React.useState(false)
@@ -28,7 +29,7 @@ const SubChapter = (props: Props): JSX.Element => {
         setOpen(!open)
     }
 
-    const { subchapter, show, chapterNumber } = props
+    const { subchapter, show, chapterNumber, isPreview } = props
     return (
         <Collapse in={show} key={subchapter.id}>
             <ListItem
@@ -39,6 +40,7 @@ const SubChapter = (props: Props): JSX.Element => {
             >
                 <ListItemIcon>
                     <IconButton
+                        disabled={isPreview}
                         onClick={(e) => {
                             e.stopPropagation()
                             router.push(
@@ -58,6 +60,7 @@ const SubChapter = (props: Props): JSX.Element => {
                         <VideoLibrary />
                     </IconButton>
                 </ListItemIcon>
+
                 <ListItemText primary={subchapter.title} />
                 {subchapter.resources.length || subchapter.description ? (
                     open ? (
@@ -71,6 +74,7 @@ const SubChapter = (props: Props): JSX.Element => {
                 resources={subchapter.resources}
                 description={subchapter.description}
                 show={open}
+                isPreview={isPreview}
             />
         </Collapse>
     )

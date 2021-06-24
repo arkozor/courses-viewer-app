@@ -9,8 +9,8 @@ import {
     Typography,
     Button
 } from '@material-ui/core'
-import GetAppIcon from '@material-ui/icons/GetApp'
 import { ResourceType } from 'components/Course/types'
+import { getIcon } from 'components/DropZone/utils'
 
 import classes from './style.module.scss'
 
@@ -18,10 +18,11 @@ type Props = {
     resources: ResourceType[]
     description: string
     show: boolean
+    isPreview?: boolean
 }
 
 const SubChapterDescriptionAndRessources = (props: Props): JSX.Element => {
-    const { resources, show, description } = props
+    const { resources, show, description, isPreview } = props
 
     const [
         shouldDisplayFullDescription,
@@ -71,17 +72,18 @@ const SubChapterDescriptionAndRessources = (props: Props): JSX.Element => {
                             >
                                 <ListItemIcon>
                                     <IconButton
+                                        disabled={isPreview}
                                         className={classes.iconButton}
                                         onClick={() => {
                                             /*Todo open ressource*/
                                         }}
                                     >
-                                        <GetAppIcon />
+                                        {getIcon(resource?.title)}
                                     </IconButton>
                                 </ListItemIcon>
                                 <ListItemText
+                                    className={classes.itemText}
                                     primary={resource.title}
-                                    className={classes.listItemText}
                                 />
                             </ListItem>
                         ))}
