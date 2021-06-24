@@ -11,7 +11,11 @@
 .preview {
     height: 150px;
     padding: $spacing_sm;
-    overflow: scroll;
+    overflow: hidden;
+}
+
+.content {
+    margin-right: $spacing_md;
 }
 
 .link {
