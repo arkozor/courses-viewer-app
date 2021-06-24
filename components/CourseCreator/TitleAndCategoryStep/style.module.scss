@@ -1,0 +1,26 @@
+@import 'theme/theme';
+
+.container {
+    margin-top: $spacing_xl;
+    padding: $spacing_xl 0;
+}
+
+.sectionContainer {
+    display: flex;
+    justify-content: center;
+    padding: $spacing_xl;
+}
+
+.textField {
+    width: 500px;
+    height: 60px;
+    margin-top: $spacing_md !important;
+}
+.select {
+    width: 250px;
+    margin-top: $spacing_md;
+}
+
+.section {
+    margin: $spacing_md;
+}

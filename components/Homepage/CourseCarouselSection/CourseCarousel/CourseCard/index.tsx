@@ -71,7 +71,11 @@ const CourseCard = ({ course }: Props): JSX.Element => {
                 <Divider light variant="middle" />
 
                 <CardContent>
-                    <Typography variant="h6" className={classes.title}>
+                    <Typography
+                        variant="h6"
+                        className={classes.title}
+                        gutterBottom
+                    >
                         {title}
                     </Typography>
 

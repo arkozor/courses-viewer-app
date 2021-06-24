@@ -70,3 +70,12 @@
     text-decoration: none;
     color: inherit;
 }
+
+.menuItem {
+    display: flex;
+    align-items: center;
+}
+.icon {
+    margin-right: $spacing_sm;
+    color: $primary;
+}

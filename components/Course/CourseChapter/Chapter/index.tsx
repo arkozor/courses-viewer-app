@@ -16,10 +16,11 @@ import SubChapter from './SubChapter'
 
 type Props = {
     chapter: ChapterType
+    isPreview: boolean
 }
 
 const Chapter = (props: Props): JSX.Element => {
-    const { chapter } = props
+    const { chapter, isPreview } = props
     const [open, setOpen] = React.useState(false)
     const router = useRouter()
 
@@ -27,7 +28,7 @@ const Chapter = (props: Props): JSX.Element => {
         setOpen(!open)
     }
 
-    return (
+    return chapter.title ? (
         <List component="div" aria-labelledby="chapters">
             <ListItem
                 disableRipple
@@ -38,6 +39,7 @@ const Chapter = (props: Props): JSX.Element => {
             >
                 <ListItemIcon>
                     <IconButton
+                        disabled={isPreview}
                         onClick={(e) => {
                             e.stopPropagation()
                             router.push(
@@ -66,16 +68,19 @@ const Chapter = (props: Props): JSX.Element => {
             </ListItem>
 
             {chapter.subchapters &&
-                chapter.subchapters.map((subchapter: SubChapterType) => (
-                    <SubChapter
-                        key={subchapter.number}
-                        chapterNumber={chapter.number}
-                        subchapter={subchapter}
-                        show={open}
-                    />
-                ))}
+                chapter.subchapters.map((subchapter: SubChapterType) =>
+                    subchapter.title ? (
+                        <SubChapter
+                            key={subchapter.number}
+                            chapterNumber={chapter.number}
+                            subchapter={subchapter}
+                            show={open}
+                            isPreview={isPreview}
+                        />
+                    ) : null
+                )}
         </List>
-    )
+    ) : null
 }
 
 export default Chapter

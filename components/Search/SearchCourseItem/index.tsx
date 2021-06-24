@@ -15,9 +15,8 @@ type Props = {
 const SearchCourseItem = ({ course }: Props): JSX.Element => {
     const longPreview = course.preview?.length >= 500
     const [hasSubscribed, setHasSubscribed] = React.useState(false)
-    const [displayTruncatedText, setDisplayTruncatedText] = React.useState(
-        longPreview
-    )
+    const [displayTruncatedText, setDisplayTruncatedText] =
+        React.useState(longPreview)
 
     const subscribe = () => {
         setHasSubscribed(!hasSubscribed)

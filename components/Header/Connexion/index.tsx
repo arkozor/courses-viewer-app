@@ -1,14 +1,25 @@
 import React from 'react'
 
-import { Button, Menu, MenuItem } from '@material-ui/core'
+import {
+    Button,
+    Menu,
+    MenuItem,
+    Divider,
+    Typography,
+    Link
+} from '@material-ui/core'
+import AddIcon from '@material-ui/icons/Add'
+import BookmarksIcon from '@material-ui/icons/Bookmarks'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import PersonIcon from '@material-ui/icons/Person'
+import SettingsIcon from '@material-ui/icons/Settings'
 import Avatar from 'components/Avatar'
 import { UserContext } from 'context'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import classes from './style.module.scss'
 
-const RegistrationAndConnexion = () => {
+const RegistrationAndConnexion = (): JSX.Element => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
     const [isLoading, setIsLoading] = React.useState(true)
     const router = useRouter()
@@ -35,6 +46,7 @@ const RegistrationAndConnexion = () => {
     const handleClose = () => {
         setAnchorEl(null)
     }
+
     return currentUser ? (
         <div className={classes.avatar}>
             <Button
@@ -56,14 +68,73 @@ const RegistrationAndConnexion = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}>
-                    <Link href="/profile">
-                        <a className={classes.link}>Modifier le profil</a>
+                    <Link underline="none" color="inherit" href="/profile">
+                        <span className={classes.menuItem}>
+                            <PersonIcon
+                                color="inherit"
+                                className={classes.icon}
+                            />
+                            <Typography variant="body1">
+                                Modifier le profil
+                            </Typography>
+                        </span>
                     </Link>
                 </MenuItem>
 
-                <MenuItem onClick={handleClose}>Paramètres du compte</MenuItem>
-                <MenuItem onClick={handleClose}>Mes cours</MenuItem>
-                <MenuItem onClick={logout}>Se déconnecter</MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <span className={classes.menuItem}>
+                        <SettingsIcon
+                            color="inherit"
+                            className={classes.icon}
+                        />
+                    </span>
+                    <Link underline="none" color="inherit" href="/settings">
+                        <Typography variant="body1">
+                            Paramètres du compte
+                        </Typography>
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                    <span className={classes.menuItem}>
+                        <BookmarksIcon
+                            color="inherit"
+                            className={classes.icon}
+                        />
+                    </span>
+                    <Link underline="none" color="inherit" href="/my-list">
+                        <Typography variant="body1">Ma liste</Typography>
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link
+                        underline="none"
+                        color="inherit"
+                        href="/course/new?step=0"
+                    >
+                        {currentUser.isAdmin ? (
+                            <span className={classes.menuItem}>
+                                <AddIcon
+                                    color="inherit"
+                                    className={classes.icon}
+                                />
+                                <Typography variant="body1">
+                                    Ajouter un cours
+                                </Typography>
+                            </span>
+                        ) : null}
+                    </Link>
+                </MenuItem>
+                <Divider light variant="middle" />
+                <MenuItem>
+                    <Link underline="none" color="inherit" onClick={logout}>
+                        <Typography variant="body1">
+                            <span className={classes.menuItem}>
+                                <ExitToAppIcon className={classes.icon} />
+                                Se déconnecter
+                            </span>
+                        </Typography>
+                    </Link>
+                </MenuItem>
             </Menu>
         </div>
     ) : (

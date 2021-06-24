@@ -5,4 +5,5 @@ export type User = {
     lastname: string
     token: string
     avatarSrc?: string
+    isAdmin?: boolean
 } | null

@@ -1,0 +1,65 @@
+@import 'theme/theme';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dropzone {
+    justify-content: center;
+    display: flex;
+    width: 700px;
+    .img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.dropzone:hover {
+    cursor: pointer;
+}
+
+.addImage {
+    margin-right: $spacing_md;
+}
+.removeImage {
+    position: absolute;
+    top: $spacing_sm;
+    right: $spacing_sm;
+}
+
+.resourcesContainer {
+    width: 100%;
+    padding: $spacing_md;
+}
+
+.resourceDropzone {
+    height: 50px;
+    margin-top: $spacing_xl;
+    width: 700px;
+}
+
+.resource {
+    display: flex;
+    align-items: center;
+}
+.resourceIcon {
+    margin-right: $spacing_sm;
+}
+
+.addResource {
+    display: flex;
+    align-items: center;
+}
+
+.divider {
+    margin: $spacing_md 0 !important;
+}
+
+.imagePreview {
+    width: 100%;
+    object-fit: cover;
+}

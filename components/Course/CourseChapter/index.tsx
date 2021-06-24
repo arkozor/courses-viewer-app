@@ -6,15 +6,20 @@ import classes from './style.module.scss'
 
 type Props = {
     chapters: ChapterType[]
+    isPreview: boolean
 }
 const CourseChapter = (props: Props): JSX.Element => {
-    const { chapters } = props
+    const { chapters, isPreview } = props
 
     return (
         <div className={classes.container}>
             {chapters &&
                 chapters.map((chapter) => (
-                    <Chapter key={chapter.id} chapter={chapter} />
+                    <Chapter
+                        key={chapter.id}
+                        chapter={chapter}
+                        isPreview={isPreview}
+                    />
                 ))}
         </div>
     )

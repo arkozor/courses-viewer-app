@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import {
     Button,
@@ -8,25 +8,26 @@ import {
 } from '@material-ui/core'
 import axios from 'axios'
 import Avatar from 'components/Avatar'
+import { UserContext } from 'context'
 
 import classes from './style.module.scss'
 
 type Props = {
     authorId: number
     description: string
+    isPreview?: boolean
 }
 
 const CourseDescription = (props: Props): JSX.Element => {
-    const [
-        shouldDisplayFullDescription,
-        setShouldDisplayFullDescription
-    ] = React.useState(false)
+    const currentUser = useContext(UserContext)
 
+    const [shouldDisplayFullDescription, setShouldDisplayFullDescription] =
+        React.useState(false)
     const [author, setAuthor] = React.useState({ nickname: '', avatarSrc: '' })
     const [isLoadingAvatar, setIsLoadingAvatar] = React.useState(false)
     const [hasError, setHasError] = React.useState(false)
 
-    const { authorId, description } = props
+    const { authorId, description, isPreview } = props
 
     const getAuthorInfos = () => {
         setIsLoadingAvatar(true)
@@ -46,7 +47,7 @@ const CourseDescription = (props: Props): JSX.Element => {
     }
 
     React.useEffect(() => {
-        if (authorId) {
+        if (authorId && !isPreview) {
             getAuthorInfos()
         }
         if (hasError) {
@@ -75,8 +76,16 @@ const CourseDescription = (props: Props): JSX.Element => {
                         />
                     ) : (
                         <Avatar
-                            nickname={author.nickname}
-                            src={author.avatarSrc}
+                            nickname={
+                                isPreview
+                                    ? currentUser.username
+                                    : author.nickname
+                            }
+                            src={
+                                isPreview
+                                    ? currentUser.avatarSrc
+                                    : author.avatarSrc
+                            }
                             withNickname
                         />
                     )}

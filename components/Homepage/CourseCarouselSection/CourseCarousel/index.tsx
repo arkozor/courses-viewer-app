@@ -24,9 +24,8 @@ const breakPoints = [
 const Carousel = (props: Props): JSX.Element => {
     const { coursesPreviewList, title } = props
 
-    const [carouselCourses, setCarouselCourses] = React.useState(
-        coursesPreviewList
-    )
+    const [carouselCourses, setCarouselCourses] =
+        React.useState(coursesPreviewList)
     const router = useRouter()
 
     React.useEffect(() => {

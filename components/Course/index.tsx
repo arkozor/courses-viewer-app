@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Grid, Typography } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import axios from 'axios'
 import CourseTitle from 'components/Course/CourseTitle'
 import VideoPlayer from 'components/Course/CourseVideo'
@@ -17,10 +17,11 @@ import { CourseType } from './types'
 
 type Props = {
     course?: CourseType
+    isPreview?: boolean
 }
 
 const Course = (props: Props): JSX.Element => {
-    const { course } = props
+    const { course, isPreview } = props
     const [comments, setComments] = React.useState([])
     const [isNewComment, setIsNewComment] = React.useState(false)
 
@@ -33,7 +34,7 @@ const Course = (props: Props): JSX.Element => {
     } = router.query
 
     React.useEffect(() => {
-        if (currentUser) {
+        if (currentUser && !isPreview) {
             try {
                 axios
                     .get(`${process.env.COMMENT_API}/course/${id}`, {
@@ -85,38 +86,36 @@ const Course = (props: Props): JSX.Element => {
             <CourseTitle title={course?.title} />
             <Grid container className={classes.navigationContainer}>
                 <Grid item xs={12} md={8}>
-                    {currentSubChapter ? (
+                    {currentSubChapter && !isPreview ? (
                         <VideoPlayer
                             subChapter={currentSubChapter}
                             thumbnail={currentChapter?.thumbnail}
                         />
                     ) : (
-                        <div className={classes.chapterDescription}>
-                            <img
-                                src={
-                                    currentSubChapter?.title ||
-                                    currentChapter?.thumbnail
-                                }
-                            />
-                            <Typography paragraph variant="body1">
-                                {currentChapter?.description}
-                            </Typography>
+                        <div className={classes.courseThumbnail}>
+                            <img src={course?.thumbnail} />
                         </div>
                     )}
                 </Grid>
                 <Grid item xs={12} md={4}>
-                    <CourseChapter chapters={course?.chapters} />
+                    <CourseChapter
+                        chapters={course?.chapters}
+                        isPreview={isPreview}
+                    />
                 </Grid>
             </Grid>
             <ChapterTitle chapter={currentChapter} />
             <CourseDescription
+                isPreview={isPreview}
                 description={currentChapter?.description}
                 authorId={course?.publisher_id}
             />
-            <CommentSection
-                comments={comments}
-                getIsNewComment={getIsNewComment}
-            />
+            {isPreview ? null : (
+                <CommentSection
+                    comments={comments}
+                    getIsNewComment={getIsNewComment}
+                />
+            )}
         </div>
     ) : (
         <CoursePreview />
