@@ -41,7 +41,7 @@
         "jest-watch-typeahead": "^0.6.1",
         "lint-staged": "^10.5.1",
         "moment": "^2.29.1",
-        "next": "^10.2.3",
+        "next": "^11.1.0",
         "next-redux-wrapper": "^6.0.2",
         "react": "^17.0.1",
         "react-custom-scrollbars": "^4.2.1",
